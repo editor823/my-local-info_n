@@ -22,14 +22,26 @@ function parseDateParts(dateStr: string) {
   };
 }
 
+// 2025년 이전 시작일이거나 상시 접수인 경우 친절하게 표시해주는 스마트 날짜 함수
+function formatDisplayPeriod(startDate: string, endDate: string) {
+  if (endDate === "상시" || endDate === "2026-12-31" || endDate === "연중") {
+    return "연중 상시 신청 가능";
+  }
+  if (startDate === endDate) {
+    return startDate;
+  }
+  return `${startDate} ~ ${endDate}`;
+}
+
 export default function Home() {
-  const festivals = localData.items.filter(
+  // 최신순(시작일 또는 종료일 기준 내림차순) 정렬
+  const festivals = (localData.items.filter(
     (item) => item.category === "행사"
-  ) as InfoItem[];
+  ) as InfoItem[]).sort((a, b) => b.startDate.localeCompare(a.startDate));
   
-  const benefits = localData.items.filter(
+  const benefits = (localData.items.filter(
     (item) => item.category === "혜택"
-  ) as InfoItem[];
+  ) as InfoItem[]).sort((a, b) => b.startDate.localeCompare(a.startDate));
 
   return (
     <div className="min-h-screen bg-[#f7f9fa] text-[#222222] flex flex-col justify-between font-sans">
@@ -164,8 +176,8 @@ export default function Home() {
                     <span className="inline-block px-2.5 py-1 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded">
                       복지·지원금
                     </span>
-                    <span className="text-xs font-semibold text-emerald-600">
-                      ● 상시 신청 접수
+                    <span className="text-xs font-bold text-emerald-600 bg-emerald-50/60 px-2 py-0.5 rounded border border-emerald-100">
+                      ● {formatDisplayPeriod(item.startDate, item.endDate)}
                     </span>
                   </div>
 
