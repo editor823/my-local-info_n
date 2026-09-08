@@ -45,6 +45,33 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#f7f9fa] text-[#222222] flex flex-col justify-between font-sans">
+      {/* 상단 네비게이션 바 */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-2xs">
+        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-sm font-extrabold text-slate-800 hover:text-sky-600 transition-colors flex items-center gap-1.5"
+          >
+            <span>📢</span>
+            <span>우리 동네 소식통</span>
+          </Link>
+          <nav className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="text-xs sm:text-sm font-bold text-sky-600 border-b-2 border-sky-600 pb-0.5"
+            >
+              생활정보
+            </Link>
+            <Link
+              href="/blog"
+              className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-sky-600 transition-colors"
+            >
+              블로그
+            </Link>
+          </nav>
+        </div>
+      </header>
+
       {/* 1. 맨 위 큰 배너: 하늘색 배경의 네이버 블로그 스타일 상단 배너 */}
       <section className="bg-gradient-to-b from-[#e0f2fe] via-[#bae6fd] to-[#93c5fd] border-b border-sky-300/60 py-12 sm:py-16 text-center">
         <div className="max-w-4xl mx-auto px-4">
@@ -115,7 +142,7 @@ export default function Home() {
                     </div>
 
                     <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 hover:text-sky-600 transition-colors">
-                      <Link href={`/info/${item.id}`}>
+                      <Link href="/blog">
                         {item.name}
                       </Link>
                     </h3>
@@ -139,7 +166,7 @@ export default function Home() {
                   {/* 상세 버튼 */}
                   <div className="w-full sm:w-auto shrink-0 pt-2 sm:pt-0">
                     <Link
-                      href={`/info/${item.id}`}
+                      href="/blog"
                       className="block text-center sm:inline-block px-4 py-2.5 bg-slate-100 hover:bg-sky-600 hover:text-white text-slate-700 text-xs font-bold rounded-lg transition-colors"
                     >
                       상세보기 &gt;
@@ -182,7 +209,7 @@ export default function Home() {
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 hover:text-emerald-700 transition-colors">
-                    <Link href={`/info/${item.id}`}>
+                    <Link href="/blog">
                       {item.name}
                     </Link>
                   </h3>
@@ -209,7 +236,7 @@ export default function Home() {
                 </div>
 
                 <Link
-                  href={`/info/${item.id}`}
+                  href="/blog"
                   className="w-full text-center py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-lg transition-colors shadow-xs"
                 >
                   신청 방법 및 상세 내용 확인 &gt;
