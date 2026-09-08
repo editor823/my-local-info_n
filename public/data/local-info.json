@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-01",
+  "updatedAt": "2026-09-08",
   "source": "공공데이터포털(data.go.kr)",
   "region": "성남시",
   "items": [
@@ -57,6 +57,18 @@
       "target": "출생아 출생일 기준 경기도(성남시) 주민등록 등재 부 또는 모",
       "summary": "출산 가정을 축하하고 초기 양육 부담을 덜어드리기 위해 첫째 아이 100만원, 둘째 아이 150만원을 지역화폐/계좌로 지급합니다.",
       "url": "#"
+    },
+    {
+      "id": 465790,
+      "name": "유아학비 (누리과정) 지원",
+      "category": "혜택",
+      "startDate": "2026-09-08",
+      "endDate": "상시",
+      "location": "교육부",
+      "target": "국공립 및 사립유치원에 다니는 3~5세 유아",
+      "summary": "유치원에 다니는 3~5세 아동에게 유아학비, 방과후과정비 등 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/000000465790",
+      "url": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/000000465790"
     }
   ]
 }
