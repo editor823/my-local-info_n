@@ -142,7 +142,7 @@ export default function Home() {
                     </div>
 
                     <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 hover:text-sky-600 transition-colors">
-                      <Link href="/blog">
+                      <Link href={`/blog/${item.id}`}>
                         {item.name}
                       </Link>
                     </h3>
@@ -166,7 +166,7 @@ export default function Home() {
                   {/* 상세 버튼 */}
                   <div className="w-full sm:w-auto shrink-0 pt-2 sm:pt-0">
                     <Link
-                      href="/blog"
+                      href={`/blog/${item.id}`}
                       className="block text-center sm:inline-block px-4 py-2.5 bg-slate-100 hover:bg-sky-600 hover:text-white text-slate-700 text-xs font-bold rounded-lg transition-colors"
                     >
                       상세보기 &gt;
@@ -209,7 +209,7 @@ export default function Home() {
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 hover:text-emerald-700 transition-colors">
-                    <Link href="/blog">
+                    <Link href={`/blog/${item.id}`}>
                       {item.name}
                     </Link>
                   </h3>
@@ -236,7 +236,7 @@ export default function Home() {
                 </div>
 
                 <Link
-                  href="/blog"
+                  href={`/blog/${item.id}`}
                   className="w-full text-center py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-lg transition-colors shadow-xs"
                 >
                   신청 방법 및 상세 내용 확인 &gt;
