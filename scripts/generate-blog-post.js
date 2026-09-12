@@ -56,11 +56,11 @@ async function main() {
 
 아래 형식으로 출력해줘. 반드시 이 형식만 출력하고 다른 텍스트는 없이:
 ---
-title: (친근하고 흥미로운 제목)
-date: ${today}
-summary: (한 줄 요약)
-category: 정보
-tags: [태그1, 태그2, 태그3]
+title: "친근하고 흥미로운 제목"
+date: "${today}"
+summary: "한 줄 요약"
+category: "정보"
+tags: ["태그1", "태그2", "태그3"]
 ---
 
 (본문: 800자 이상, 친근한 블로그 톤, 추천 이유 3가지 포함, 신청 방법 안내)
@@ -100,8 +100,11 @@ tags: [태그1, 태그2, 태그3]
       throw new Error("Gemini 응답 내용이 비어 있습니다.");
     }
 
-    // [3단계] 파일 저장
+    // [3단계] 파일 저장 및 텍스트 정제
     let fullText = candidateText.trim();
+    // 널 문자(\x00)나 비정상 제어 문자 제거
+    fullText = fullText.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
+
     if (fullText.startsWith("```markdown")) {
       fullText = fullText.replace(/^```markdown\s*/i, "").replace(/```\s*$/, "").trim();
     } else if (fullText.startsWith("```")) {

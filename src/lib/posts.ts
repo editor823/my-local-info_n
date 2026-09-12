@@ -41,25 +41,34 @@ export function getAllPosts(): PostData[] {
   }
 
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPosts = fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => {
+  const allPosts: PostData[] = [];
+
+  for (const fileName of fileNames) {
+    if (!fileName.endsWith(".md")) continue;
+
+    try {
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
+      let fileContents = fs.readFileSync(fullPath, "utf8");
+
+      // 제어문자 및 널 문자 청소
+      fileContents = fileContents.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
 
       const { data, content } = matter(fileContents);
 
-      return {
+      allPosts.push({
         slug,
         title: data.title || slug,
         date: formatDateString(data.date),
         summary: data.summary || "",
         category: data.category || "일반",
         tags: Array.isArray(data.tags) ? data.tags : [],
-        content,
-      };
-    });
+        content: content || "",
+      });
+    } catch (err) {
+      console.warn(`[포스트 파싱 경고] ${fileName} 파일을 읽는 중 오류가 발생하여 건너뜁니다:`, err);
+    }
+  }
 
   // 날짜 기준 내림차순(최신순) 정렬
   return allPosts.sort((a, b) => b.date.localeCompare(a.date));
@@ -73,16 +82,22 @@ export function getPostBySlug(slug: string): PostData | null {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  try {
+    let fileContents = fs.readFileSync(fullPath, "utf8");
+    fileContents = fileContents.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
+    const { data, content } = matter(fileContents);
 
-  return {
-    slug,
-    title: data.title || slug,
-    date: formatDateString(data.date),
-    summary: data.summary || "",
-    category: data.category || "일반",
-    tags: Array.isArray(data.tags) ? data.tags : [],
-    content,
-  };
+    return {
+      slug,
+      title: data.title || slug,
+      date: formatDateString(data.date),
+      summary: data.summary || "",
+      category: data.category || "일반",
+      tags: Array.isArray(data.tags) ? data.tags : [],
+      content: content || "",
+    };
+  } catch (err) {
+    console.error(`[포스트 상세 오류] ${slug}.md 파일을 읽는 중 오류 발생:`, err);
+    return null;
+  }
 }
