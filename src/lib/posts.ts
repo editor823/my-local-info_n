@@ -9,95 +9,67 @@ export interface PostData {
   title: string;
   date: string;
   summary: string;
-  category?: string;
-  tags?: string[];
+  category: string;
+  tags: string[];
   content: string;
 }
 
-// Date 객체이거나 임의의 형식일 때 YYYY-MM-DD 문자열로 변환해주는 헬퍼 함수
-function formatDateString(rawDate: unknown): string {
-  if (!rawDate) return "";
-
-  if (rawDate instanceof Date) {
-    const year = rawDate.getFullYear();
-    const month = String(rawDate.getMonth() + 1).padStart(2, "0");
-    const day = String(rawDate.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+// 날짜 값을 YYYY-MM-DD 형식의 문자열로 안전하게 변환
+function formatPostDate(dateVal: unknown): string {
+  if (!dateVal) return "";
+  if (dateVal instanceof Date) {
+    return dateVal.toISOString().split("T")[0];
   }
-
-  const str = String(rawDate).trim();
-  // "2026-09-08T00:00:00.000Z" 형태 등 ISO 문자열인 경우 처리
-  if (str.includes("T")) {
-    return str.split("T")[0];
-  }
-
-  return str;
+  return String(dateVal);
 }
 
-// 모든 포스트 목록을 가져와서 최신 날짜순으로 정렬하는 함수
 export function getAllPosts(): PostData[] {
+  // src/content/posts 폴더가 없으면 빈 배열 반환
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
 
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPosts: PostData[] = [];
-
-  for (const fileName of fileNames) {
-    if (!fileName.endsWith(".md")) continue;
-
-    try {
+  const allPostsData = fileNames
+    .filter((fileName) => fileName.endsWith(".md"))
+    .map((fileName) => {
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, fileName);
-      let fileContents = fs.readFileSync(fullPath, "utf8");
-
-      // 제어문자 및 널 문자 청소
-      fileContents = fileContents.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
+      const fileContents = fs.readFileSync(fullPath, "utf8");
 
       const { data, content } = matter(fileContents);
 
-      allPosts.push({
+      return {
         slug,
         title: data.title || slug,
-        date: formatDateString(data.date),
+        date: formatPostDate(data.date),
         summary: data.summary || "",
         category: data.category || "일반",
         tags: Array.isArray(data.tags) ? data.tags : [],
-        content: content || "",
-      });
-    } catch (err) {
-      console.warn(`[포스트 파싱 경고] ${fileName} 파일을 읽는 중 오류가 발생하여 건너뜁니다:`, err);
-    }
-  }
+        content,
+      };
+    });
 
-  // 날짜 기준 내림차순(최신순) 정렬
-  return allPosts.sort((a, b) => b.date.localeCompare(a.date));
+  // 날짜 기준 최신순 정렬
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-// 특정 slug를 가진 포스트의 상세 정보를 가져오는 함수
 export function getPostBySlug(slug: string): PostData | null {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
-
   if (!fs.existsSync(fullPath)) {
     return null;
   }
 
-  try {
-    let fileContents = fs.readFileSync(fullPath, "utf8");
-    fileContents = fileContents.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
-    const { data, content } = matter(fileContents);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
 
-    return {
-      slug,
-      title: data.title || slug,
-      date: formatDateString(data.date),
-      summary: data.summary || "",
-      category: data.category || "일반",
-      tags: Array.isArray(data.tags) ? data.tags : [],
-      content: content || "",
-    };
-  } catch (err) {
-    console.error(`[포스트 상세 오류] ${slug}.md 파일을 읽는 중 오류 발생:`, err);
-    return null;
-  }
+  return {
+    slug,
+    title: data.title || slug,
+    date: formatPostDate(data.date),
+    summary: data.summary || "",
+    category: data.category || "일반",
+    tags: Array.isArray(data.tags) ? data.tags : [],
+    content,
+  };
 }
