@@ -97,9 +97,9 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
             <span>2026 강북 · 도봉 · 노원 구민을 위한 실시간 생활 혜택 차트</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
-            우리 동네에서 누리는 <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-300">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight sm:leading-snug">
+            <span>우리 동네에서 누리는</span>
+            <span className="block mt-2 sm:mt-3 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-300">
               알짜 복지 & 축제 혜택
             </span>
           </h1>
