@@ -113,7 +113,7 @@ export default async function BlogPostPage({
   const featuredImage = getPostFeaturedImage(post);
   const secondaryImage = getPostSecondaryImage(post);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-local-info-n.pages.dev";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
 
   // BlogPosting JSON-LD 스키마
   const blogPostingSchema = {
