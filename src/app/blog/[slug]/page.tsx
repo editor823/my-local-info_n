@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBanner from "@/components/AdBanner";
 import CoupangBanner from "@/components/CoupangBanner";
-import { getAllPosts, getPostBySlug, getPostFeaturedImage } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getPostFeaturedImage, getPostSecondaryImage } from "@/lib/posts";
 import localInfoData from "../../../../public/data/local-info.json";
 
 export async function generateMetadata({
@@ -111,6 +111,7 @@ export default async function BlogPostPage({
   const sourceLink = matchedItem?.link || "https://www.data.go.kr";
 
   const featuredImage = getPostFeaturedImage(post);
+  const secondaryImage = getPostSecondaryImage(post);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-local-info-n.pages.dev";
 
@@ -244,12 +245,60 @@ export default async function BlogPostPage({
             </div>
           </div>
 
-          {/* 마크다운 렌더링 본문 */}
-          <div className="article-content max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
-          </div>
+          {/* 마크다운 렌더링 본문 (중간에 2번째 사진 자동 삽입) */}
+          {(() => {
+            const sections = post.content.split("\n### ");
+            if (sections.length > 2) {
+              const midIndex = Math.floor(sections.length / 2);
+              const part1 = sections.slice(0, midIndex).join("\n### ");
+              const part2 = "### " + sections.slice(midIndex).join("\n### ");
+
+              return (
+                <>
+                  <div className="article-content max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {part1}
+                    </ReactMarkdown>
+                  </div>
+
+                  {/* 본문 중간 2번째 고화질 관련 이미지 */}
+                  <figure className="my-8 space-y-2">
+                    <div className="relative w-full h-60 sm:h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-100">
+                      <img
+                        src={secondaryImage}
+                        alt={`${post.title} 상세 안내 이미지`}
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-medium">
+                        <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px]">
+                          💡 핵심 안내 & 상세 팁
+                        </span>
+                        <span className="text-[10px] text-white/70">
+                          Photo by Unsplash
+                        </span>
+                      </div>
+                    </div>
+                  </figure>
+
+                  <div className="article-content max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {part2}
+                    </ReactMarkdown>
+                  </div>
+                </>
+              );
+            }
+
+            return (
+              <div className="article-content max-w-none">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {post.content}
+                </ReactMarkdown>
+              </div>
+            );
+          })()}
 
           {/* 본문 하단 애드센스 광고 영역 */}
           <AdBanner className="my-8" />

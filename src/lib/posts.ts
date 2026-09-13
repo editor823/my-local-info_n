@@ -46,6 +46,33 @@ export function getPostFeaturedImage(post: { title: string; category: string; im
   return "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80";
 }
 
+// 본문 중간에 들어갈 2번째 서브 이미지 매칭 헬퍼
+export function getPostSecondaryImage(post: { title: string; category: string }): string {
+  const titleLower = post.title.toLowerCase();
+
+  if (titleLower.includes("축제") || titleLower.includes("페스티벌") || titleLower.includes("문화제")) {
+    return "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80"; // 축제 거리 / 즐거운 군중
+  }
+  if (titleLower.includes("교육") || titleLower.includes("장학") || titleLower.includes("학습") || titleLower.includes("학교")) {
+    return "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"; // 필기 / 열공 / 배움
+  }
+  if (titleLower.includes("보험") || titleLower.includes("안심") || titleLower.includes("안전") || titleLower.includes("의료")) {
+    return "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80"; // 청진기 / 든든한 의료
+  }
+  if (titleLower.includes("출산") || titleLower.includes("육아") || titleLower.includes("아동") || titleLower.includes("아이")) {
+    return "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=1200&q=80"; // 행복한 아이 미소
+  }
+  if (titleLower.includes("화폐") || titleLower.includes("지원금") || titleLower.includes("수당") || titleLower.includes("환급")) {
+    return "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80"; // 혜택 계산 / 서류 검토
+  }
+  if (titleLower.includes("산책") || titleLower.includes("벚꽃") || titleLower.includes("공원") || titleLower.includes("숲")) {
+    return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"; // 힐링 자연 산책
+  }
+
+  // 기본 서브 이미지 (따뜻한 생활 / 커뮤니티)
+  return "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80";
+}
+
 // 날짜 값을 YYYY-MM-DD 형식의 문자열로 안전하게 변환
 function formatPostDate(dateVal: unknown): string {
   if (!dateVal) return "";
