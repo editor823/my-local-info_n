@@ -263,7 +263,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                   {/* 제목 및 내용 */}
                   <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
-                    <Link href={detailHref}>{item.title}</Link>
+                    {item.slug ? (
+                      <Link href={`/blog/${item.slug}`}>{item.title}</Link>
+                    ) : (
+                      <a href={item.link || "https://www.gov.kr"} target="_blank" rel="noopener noreferrer">
+                        {item.title}
+                      </a>
+                    )}
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
                     {item.summary}
@@ -279,12 +285,23 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                     </div>
                   </div>
 
-                  <Link
-                    href={detailHref}
-                    className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                  >
-                    상세 혜택 분석 보기 →
-                  </Link>
+                  {item.slug ? (
+                    <Link
+                      href={`/blog/${item.slug}`}
+                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
+                    >
+                      상세 혜택 분석 보기 →
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.link || "https://www.gov.kr"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center w-full py-2.5 bg-slate-100 hover:bg-emerald-600 text-slate-700 hover:text-white font-bold text-xs rounded-xl transition-all"
+                    >
+                      공식 신청처 바로가기 ↗
+                    </a>
+                  )}
                 </div>
               </div>
             );
@@ -404,7 +421,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                     {/* 제목 */}
                     <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
-                      <Link href={detailHref}>{item.title}</Link>
+                      {item.slug ? (
+                        <Link href={`/blog/${item.slug}`}>{item.title}</Link>
+                      ) : (
+                        <a href={item.link || "https://www.gov.kr"} target="_blank" rel="noopener noreferrer">
+                          {item.title}
+                        </a>
+                      )}
                     </h3>
 
                     {/* 요약 */}
@@ -422,13 +445,25 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                       </p>
                     </div>
 
-                    <Link
-                      href={detailHref}
-                      className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
-                    >
-                      <span>자세히 보기</span>
-                      <span>&rarr;</span>
-                    </Link>
+                    {item.slug ? (
+                      <Link
+                        href={`/blog/${item.slug}`}
+                        className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                      >
+                        <span>자세히 보기</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.link || "https://www.gov.kr"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 bg-slate-100 group-hover:bg-emerald-600 text-slate-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                      >
+                        <span>공식 신청처</span>
+                        <span>↗</span>
+                      </a>
+                    )}
                   </div>
                 </article>
               );

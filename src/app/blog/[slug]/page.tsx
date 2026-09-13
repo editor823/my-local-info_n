@@ -19,7 +19,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "게시글을 찾을 수 없습니다 | 성남시 생활 정보",
+      title: "게시글을 찾을 수 없습니다 | 강북·도봉·노원 생활 혜택",
       description: "요청하신 블로그 포스트를 찾을 수 없습니다.",
     };
   }
@@ -27,7 +27,7 @@ export async function generateMetadata({
   const featuredImage = getPostFeaturedImage(post);
 
   return {
-    title: `${post.title} | 성남시 생활 정보`,
+    title: `${post.title} | 강북·도봉·노원 생활 혜택`,
     description: post.summary || post.title,
     openGraph: {
       title: post.title,

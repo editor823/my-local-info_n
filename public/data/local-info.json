@@ -78,7 +78,8 @@
       "location": "서울특별시 강북구",
       "target": "○국가유공자 및 선순위유족의 유족 1인\r\n ※ 지급순위 : 1순위 배우자, 2순위 자녀, 3순위 부모",
       "summary": "사망하신 국가보훈대상자의 유족에게 사망위로금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000102"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000102",
+      "slug": "gangbuk-veterans-support"
     },
     {
       "id": "308000000106",
@@ -259,7 +260,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 강북구 소상공인 및 강북구민",
       "summary": "강북구 소상공인 및 강북구민을 위한 5% 할인 판매 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000127"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000127",
+      "slug": "gangbuk-pay-local-currency"
     },
     {
       "id": "308000000128",
@@ -272,7 +274,7 @@
       "target": "○ 엽산제 : 임신 12주 이하의 보건소 등록 임산부\r\n\r\n○ 철분제 : 임신 16주 이상의 보건소 등록 임산부\r\n\r\n○ 임신초기검사 : 관내 임신 12주이내 임신부(8시간 금식 필요)\r\n\r\n○ 기형아 검사(쿼드) : 관내 임신 16~18주 임신부\r\n\r\n○ 임신성 당뇨검사 : 관내 임신 24~28주 임신부",
       "summary": "임신부 등을 대상으로 엽산 및 철분제 지원 ,  임신초기검사, 기형아(쿼드) 검사 등 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000128",
-      "slug": "gangbuk-pay-local-currency"
+      "slug": "gangbuk-maternal-health-support"
     },
     {
       "id": "308000000129",
@@ -357,7 +359,7 @@
       "target": "○ 만65세 이상 기초생활수급자, 차상위\r\n\r\n○ 만65세 이상 기초생활수급자, 독거어르신",
       "summary": "수급자 어르신 등을 대상으로 위생용품, 요구르트 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000130",
-      "slug": "dobong-childbirth-support-allowance"
+      "slug": "dobong-senior-support"
     },
     {
       "id": "309000000131",
@@ -441,7 +443,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 도봉구 모든 출산 가정(신청일 기준 도봉구에 6개월 이상 주민등록된 산모)",
       "summary": "출산가정에 산모신생아 건강관리 서비스 본인부담금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000138"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000138",
+      "slug": "dobong-childbirth-support-allowance"
     },
     {
       "id": "309000000139",
@@ -525,7 +528,8 @@
       "location": "서울특별시 노원구",
       "target": "○ 노원사랑상품권(모바일 전용) 구매자",
       "summary": "노원사랑상품권 할인 구매를 지원(1인당 월 할인구매 한도 : 50만원)",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000102"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000102",
+      "slug": "nowon-pay-local-currency"
     },
     {
       "id": "310000000103",
@@ -694,7 +698,7 @@
       "target": "○ 노원구 거주 취약계층 북한이탈주민",
       "summary": "북한이탈주민에게 직업훈련 교육비, 자녀방문학습지 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000123",
-      "slug": "nowon-pay-local-currency"
+      "slug": "nowon-north-korean-defectors-support"
     },
     {
       "id": "310000000124",
@@ -730,7 +734,8 @@
       "location": "서울특별시 노원구",
       "target": "노원구에 주민등록이 되어있는 주민(외국인 포함)",
       "summary": "각종 사고로 피해가 발생한 경우 그 피해를 보상(포괄적 상해의료비  및 장례비)",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000376"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000376",
+      "slug": "2026-09-13-nowon-safety-insurance"
     }
   ]
 }

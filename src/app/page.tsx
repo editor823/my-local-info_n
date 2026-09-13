@@ -28,7 +28,8 @@ export default function Home() {
       name: event.location || "행사장",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "성남시",
+        addressLocality: event.location?.includes("도봉") ? "도봉구" : event.location?.includes("노원") ? "노원구" : "강북구",
+        addressRegion: "서울특별시",
         addressCountry: "KR",
       },
     },
@@ -43,7 +44,7 @@ export default function Home() {
     description: benefit.summary || benefit.name || benefit.title,
     provider: {
       "@type": "GovernmentOrganization",
-      name: benefit.location || "성남시",
+      name: benefit.location || "서울특별시",
     },
   }));
 
