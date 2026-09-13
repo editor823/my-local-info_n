@@ -34,8 +34,8 @@ export default function ContactPage() {
             <p className="text-xs text-slate-500">
               가장 빠른 피드백을 원하시는 경우 아래 이메일로 메일을 보내주세요.
             </p>
-            <a href="mailto:editor823@gmail.com" className="text-sm font-extrabold text-blue-600 hover:underline pt-2 block">
-              editor823@gmail.com
+            <a href="mailto:tkdgus8231@gmail.com" className="text-sm font-extrabold text-emerald-600 hover:underline pt-2 block">
+              tkdgus8231@gmail.com
             </a>
           </div>
 
