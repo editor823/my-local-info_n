@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBanner from "@/components/AdBanner";
+import CoupangBanner from "@/components/CoupangBanner";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import localInfoData from "../../../../public/data/local-info.json";
 
@@ -214,6 +215,9 @@ export default async function BlogPostPage({
 
           {/* 본문 하단 애드센스 광고 영역 */}
           <AdBanner className="my-8" />
+
+          {/* 본문 하단 쿠팡 파트너스 배너 영역 */}
+          <CoupangBanner className="my-6" />
 
           {/* 원문 출처 링크 및 AI 생성 정보 공개 영역 */}
           <div className="space-y-3 pt-4 border-t border-slate-100">

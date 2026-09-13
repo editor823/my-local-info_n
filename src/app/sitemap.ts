@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-local-info-n.pages.dev";
 
