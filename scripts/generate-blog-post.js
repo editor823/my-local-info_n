@@ -137,6 +137,7 @@ date: "${todayStr}"
 summary: (이 글의 핵심 혜택을 명확히 요약한 1~2문장)
 category: "${latestItem.category || "혜택"}"
 tags: ["${districtName}", "생활정보", "서울시지원"]
+image: (이 글의 주제에 맞는 Unsplash 이미지 URL 1개. 예: https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80)
 ---
 
 (본문 내용: 마크다운 소제목 ###, 글머리 기호, 표 또는 체크리스트를 풍부하게 활용하여 1,500자 이상으로 길고 알차게 작성)

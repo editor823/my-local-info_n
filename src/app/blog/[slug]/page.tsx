@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBanner from "@/components/AdBanner";
 import CoupangBanner from "@/components/CoupangBanner";
-import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getPostFeaturedImage } from "@/lib/posts";
 import localInfoData from "../../../../public/data/local-info.json";
 
 export async function generateMetadata({
@@ -24,6 +24,8 @@ export async function generateMetadata({
     };
   }
 
+  const featuredImage = getPostFeaturedImage(post);
+
   return {
     title: `${post.title} | 성남시 생활 정보`,
     description: post.summary || post.title,
@@ -32,6 +34,20 @@ export async function generateMetadata({
       description: post.summary || post.title,
       type: "article",
       publishedTime: post.date,
+      images: [
+        {
+          url: featuredImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary || post.title,
+      images: [featuredImage],
     },
   };
 }
@@ -94,6 +110,8 @@ export default async function BlogPostPage({
   );
   const sourceLink = matchedItem?.link || "https://www.data.go.kr";
 
+  const featuredImage = getPostFeaturedImage(post);
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-local-info-n.pages.dev";
 
   // BlogPosting JSON-LD 스키마
@@ -102,6 +120,7 @@ export default async function BlogPostPage({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.summary || post.title,
+    image: featuredImage,
     datePublished: post.date,
     dateModified: post.date,
     mainEntityOfPage: {
@@ -204,6 +223,25 @@ export default async function BlogPostPage({
                 ))}
               </div>
             )}
+          </div>
+
+          {/* 대표 시각 이미지 (고화질 맞춤형 배너) */}
+          <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-100">
+            <img
+              src={featuredImage}
+              alt={post.title}
+              className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-medium">
+              <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px]">
+                🌿 {post.category} 이야기
+              </span>
+              <span className="text-[10px] text-white/70">
+                Photo by Unsplash
+              </span>
+            </div>
           </div>
 
           {/* 마크다운 렌더링 본문 */}
