@@ -5,7 +5,7 @@ interface CoupangBannerProps {
 }
 
 export default function CoupangBanner({ className = "" }: CoupangBannerProps) {
-  const partnerId = process.env.NEXT_PUBLIC_COUPANG_PARTNER_ID;
+  const partnerId = process.env.NEXT_PUBLIC_COUPANG_PARTNER_ID || "g0wjZqcMNM";
 
   // partnerId가 없거나 "나중에_입력" 또는 빈 문자열이면 렌더링하지 않음
   if (!partnerId || partnerId.trim() === "" || partnerId.trim() === "나중에_입력") {
