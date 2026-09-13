@@ -72,6 +72,12 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
   const handleSearchSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    if (typeof window !== "undefined") {
+      const targetElement = document.getElementById("content-list");
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const handleTagClick = (tag: string) => {
@@ -79,7 +85,14 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
       setActiveDistrict(tag);
       setSearchTerm("");
     } else {
+      setActiveDistrict("all");
       setSearchTerm(tag);
+    }
+    if (typeof window !== "undefined") {
+      const targetElement = document.getElementById("content-list");
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -290,13 +303,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
           <div>
             <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-              <span>📋</span> {activeDistrict === "all" ? "강북·도봉·노원 전체" : activeDistrict} 생활 정보 목록
+              <span>📋</span> {term ? `'${searchTerm}' 검색 결과` : `${activeDistrict === "all" ? "강북·도봉·노원 전체" : activeDistrict} 생활 정보 목록`}
               <span className="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold">
                 총 {filteredItems.length}건
               </span>
             </h2>
             <p className="text-xs text-slate-500 mt-1">
-              선택한 {activeDistrict === "all" ? "3개 자치구" : activeDistrict}의 복지 지원 및 축제·행사 데이터입니다.
+              {term ? `'${searchTerm}' 키워드가 포함된 추천 혜택 및 행사 목록입니다.` : `선택한 ${activeDistrict === "all" ? "3개 자치구" : activeDistrict}의 복지 지원 및 축제·행사 데이터입니다.`}
             </p>
           </div>
 
