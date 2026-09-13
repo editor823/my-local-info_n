@@ -16,3 +16,85 @@ body {
   background: #f8fafc;
   color: #1e293b;
 }
+
+/* 블로그 본문 가독성 강화 스타일 (글자 크기 & 여백 최적화) */
+.article-content {
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.85; /* 편안한 줄 간격 */
+  color: #334155;
+}
+
+.article-content p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.article-content h2 {
+  font-size: 1.625rem; /* 26px */
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 2.75rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.article-content h3 {
+  font-size: 1.35rem; /* 21.6px */
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.015em;
+}
+
+.article-content h4 {
+  font-size: 1.15rem; /* 18.4px */
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-content ul,
+.article-content ol {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.8;
+}
+
+.article-content ul {
+  list-style-type: disc;
+}
+
+.article-content ol {
+  list-style-type: decimal;
+}
+
+.article-content hr {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.article-content blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: #f1f5f9;
+  border-left: 4px solid #10b981;
+  border-radius: 0.75rem;
+  color: #475569;
+}
+
+.article-content strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+

@@ -97,7 +97,7 @@ export default async function BlogPostPage({
           </div>
 
           {/* 마크다운 렌더링 본문 */}
-          <div className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-headings:tracking-tight prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline leading-relaxed text-sm sm:text-base">
+          <div className="article-content max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>
