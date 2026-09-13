@@ -67,6 +67,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta
+          name="naver-site-verification"
+          content="f154c36e7cd5c13061c300445824803236c35730"
+        />
         {isAdsenseActive && (
           <script
             async
