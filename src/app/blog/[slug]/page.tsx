@@ -1,9 +1,39 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AdBanner from "@/components/AdBanner";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import localInfoData from "../../../../public/data/local-info.json";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "게시글을 찾을 수 없습니다 | 성남시 생활 정보",
+      description: "요청하신 블로그 포스트를 찾을 수 없습니다.",
+    };
+  }
+
+  return {
+    title: `${post.title} | 성남시 생활 정보`,
+    description: post.summary || post.title,
+    openGraph: {
+      title: post.title,
+      description: post.summary || post.title,
+      type: "article",
+      publishedTime: post.date,
+    },
+  };
+}
 
 export function generateStaticParams() {
   const posts = getAllPosts();
@@ -50,8 +80,83 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
+  // local-info.json에서 원문 출처 링크 검색 (slug 또는 제목 매칭)
+  const allLocalItems = [
+    ...(localInfoData.events || []),
+    ...(localInfoData.benefits || []),
+  ];
+  const matchedItem = allLocalItems.find(
+    (item: { slug?: string; title?: string; name?: string; link?: string }) =>
+      (item.slug && item.slug === slug) ||
+      (item.title && post.title.includes(item.title)) ||
+      (item.name && post.title.includes(item.name))
+  );
+  const sourceLink = matchedItem?.link || "https://www.data.go.kr";
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-local-info-n.pages.dev";
+
+  // BlogPosting JSON-LD 스키마
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.summary || post.title,
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/blog/${slug}/`,
+    },
+    author: {
+      "@type": "Organization",
+      name: "성남시 생활 정보",
+      url: siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "성남시 생활 정보",
+      url: siteUrl,
+    },
+  };
+
+  // BreadcrumbList JSON-LD 스키마 (홈 > 블로그 > 글 제목)
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "홈",
+        item: `${siteUrl}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "블로그",
+        item: `${siteUrl}/blog/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${siteUrl}/blog/${slug}/`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">
+      {/* 구조화 데이터 (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* 1. 글로벌 헤더 */}
       <Header />
 
@@ -71,11 +176,15 @@ export default async function BlogPostPage({
         <article className="bg-white rounded-3xl p-6 sm:p-10 border border-emerald-100/80 shadow-sm space-y-6">
           {/* 머리글 정보 */}
           <div className="space-y-3 pb-6 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <span className="bg-emerald-50 text-emerald-800 font-bold text-xs px-3 py-1 rounded-full border border-emerald-200">
+            <div className="flex items-center gap-3 text-xs text-slate-400 font-medium">
+              <span className="bg-emerald-50 text-emerald-800 font-bold px-3 py-1 rounded-full border border-emerald-200">
                 {post.category}
               </span>
-              <time className="text-xs text-slate-400 font-medium">📅 발행일: {post.date}</time>
+              <time>📅 발행일: {post.date}</time>
+              <span>·</span>
+              <time className="text-emerald-700 font-semibold">
+                최종 업데이트: {post.date}
+              </time>
             </div>
 
             <h1 className="text-2xl sm:text-4xl font-black text-slate-900 leading-tight tracking-tight">
@@ -103,14 +212,50 @@ export default async function BlogPostPage({
             </ReactMarkdown>
           </div>
 
-          {/* 정보 확인 안내 박스 */}
-          <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-950 leading-relaxed space-y-1">
-            <p className="font-bold flex items-center gap-1.5 text-emerald-800">
-              <span>🌿</span> 열린 공공데이터 안내
-            </p>
-            <p>
-              본 글은 행정안전부 공공데이터포털(data.go.kr) 및 서울시 강북구·도봉구·노원구 자치단체 공식 고시 자료를 바탕으로 알기 쉽게 재구성한 생활 정보입니다. 주관 기관의 사정 및 예산 소진 상황에 따라 신청 조건이 변동될 수 있으니 신청 전 해당 기관의 최종 공고문을 꼭 확인해 주세요.
-            </p>
+          {/* 본문 하단 애드센스 광고 영역 */}
+          <AdBanner className="my-8" />
+
+          {/* 원문 출처 링크 및 AI 생성 정보 공개 영역 */}
+          <div className="space-y-3 pt-4 border-t border-slate-100">
+            {/* 원문 출처 링크 표시 영역 */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-slate-50 border border-slate-200 rounded-2xl p-4">
+              <div className="space-y-0.5">
+                <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                  <span>🏛️</span> 원문 출처 안내
+                </span>
+                <p className="text-xs text-slate-500">
+                  신청 자격, 필요 서류 및 상세 공고는 공식 출처 웹사이트에서 확인하실 수 있습니다.
+                </p>
+              </div>
+              <a
+                href={sourceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors shadow-sm whitespace-nowrap"
+              >
+                <span>원문 출처 바로가기</span>
+                <span className="text-xs">↗</span>
+              </a>
+            </div>
+
+            {/* AI 생성 정보 공개 안내 문구 */}
+            <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-950 leading-relaxed space-y-1">
+              <p className="font-bold flex items-center gap-1.5 text-emerald-800">
+                <span>🤖</span> AI 생성 정보 공개
+              </p>
+              <p>
+                이 글은 공공데이터포털(
+                <a
+                  href="https://www.data.go.kr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline font-bold text-emerald-800 hover:text-emerald-950"
+                >
+                  data.go.kr
+                </a>
+                )의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
+              </p>
+            </div>
           </div>
 
           {/* 하단 네비게이션 버튼 */}

@@ -10,12 +10,61 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const events = localInfoData.events;
-  const benefits = localInfoData.benefits;
+  const events = localInfoData.events || [];
+  const benefits = localInfoData.benefits || [];
   const lastUpdated = localInfoData.lastUpdated;
+
+  // Event 스키마 목록
+  const eventSchemas = events.map((event) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.name || event.title,
+    startDate: event.startDate,
+    endDate: event.endDate || event.startDate,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: event.location || "행사장",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "성남시",
+        addressCountry: "KR",
+      },
+    },
+    description: event.summary || event.title,
+  }));
+
+  // GovernmentService 스키마 목록
+  const benefitSchemas = benefits.map((benefit) => ({
+    "@context": "https://schema.org",
+    "@type": "GovernmentService",
+    name: benefit.name || benefit.title,
+    description: benefit.summary || benefit.name || benefit.title,
+    provider: {
+      "@type": "GovernmentOrganization",
+      name: benefit.location || "성남시",
+    },
+  }));
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans selection:bg-emerald-100 selection:text-emerald-900">
+      {/* 구조화 데이터 (JSON-LD) */}
+      {eventSchemas.map((schema, idx) => (
+        <script
+          key={`event-${idx}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      {benefitSchemas.map((schema, idx) => (
+        <script
+          key={`benefit-${idx}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       {/* 1. 카드고릴라 스타일 상단 글로벌 내비게이션 */}
       <Header />
 

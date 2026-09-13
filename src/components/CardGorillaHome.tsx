@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 interface InfoItem {
   id: string;
@@ -277,6 +278,11 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
           })}
         </div>
       </section>
+
+      {/* 행사 섹션과 혜택 섹션 사이 애드센스 광고 영역 */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <AdBanner className="my-6" />
+      </div>
 
       {/* 4. 메인 콘텐츠 리스트 (2열 카드 그리드 레이아웃) */}
       <section id="content-list" className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">

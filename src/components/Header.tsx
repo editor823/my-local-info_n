@@ -74,6 +74,12 @@ export default function Header() {
             >
               <span className="text-emerald-500">✍️</span> 혜택 매거진
             </Link>
+            <Link
+              href="/about"
+              className="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-emerald-50/80 transition-colors flex items-center gap-1.5"
+            >
+              <span className="text-emerald-600">ℹ️</span> 소개
+            </Link>
           </nav>
         </div>
 

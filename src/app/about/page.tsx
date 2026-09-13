@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "서비스 소개 | 우리 동네 이야기",
-  description: "강북구, 도봉구, 노원구 구민을 위한 맞춤형 축제, 문화 행사, 정부 지원금 정보를 알기 쉽게 정리하여 전해드리는 생활 정보 가이드입니다.",
+  title: "서비스 소개 | 성남시 생활 정보",
+  description: "지역 주민을 위한 생활 정보 제공 목적, 공공데이터포털 데이터 출처, AI 콘텐츠 생성 방식에 대해 안내합니다.",
 };
 
 export default function AboutPage() {
@@ -15,54 +15,57 @@ export default function AboutPage() {
 
       <main className="max-w-3xl mx-auto px-4 py-12 flex-1 space-y-8">
         <div className="border-b border-slate-200 pb-6">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">
+          <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
             About Us
           </span>
           <h1 className="text-3xl font-extrabold text-[#0f172a] mt-3">
-            우리 동네 이야기 서비스 소개
+            서비스 소개
           </h1>
           <p className="text-slate-500 mt-2 text-sm leading-relaxed">
-            바쁜 일상 속에서 놓치기 쉬운 서울 강북구, 도봉구, 노원구의 유용한 생활 소식과 맞춤 혜택을 한곳에 모았습니다.
+            지역 주민을 위한 맞춤형 생활 정보, 문화 행사, 복지 지원금 혜택을 빠르고 알기 쉽게 전해드립니다.
           </p>
         </div>
 
-        <section className="space-y-4 text-sm sm:text-base leading-relaxed">
-          <h2 className="text-xl font-bold text-[#0f172a]">1. 서비스 운영 목적</h2>
-          <p>
-            대한민국 정부 및 서울시 각 자치구(강북구, 도봉구, 노원구)에서는 매달 수많은 청년 지원금, 출산·육아 혜택, 문화 예술 축제를 제공하고 있습니다. 하지만 정보가 여러 부처와 웹사이트에 흩어져 있어 제때 혜택을 받지 못하거나 행사를 놓치는 경우가 많습니다.
-          </p>
-          <p>
-            <strong>우리 동네 이야기</strong>는 이러한 불편을 해소하기 위해 행정안전부 공공데이터포털(data.go.kr)에 공개된 열린 데이터를 바탕으로, 시민들에게 꼭 필요한 생활 밀착형 정보를 알기 쉽게 재구성하여 제공하는 <strong>비공식 민간 정보 포털</strong>입니다.
+        {/* 1. 사이트 운영 목적 */}
+        <section className="space-y-3 text-sm sm:text-base leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 className="text-xl font-bold text-[#0f172a] flex items-center gap-2">
+            <span>🎯</span> 사이트 운영 목적
+          </h2>
+          <p className="text-slate-600">
+            본 사이트는 <strong>지역 주민을 위한 실생활 밀착형 정보 제공</strong>을 목적으로 운영됩니다. 각 지자체 및 정부 기관에서 제공하는 다양한 복지 혜택, 보조금, 생활 지원금, 그리고 다채로운 문화 행사와 축제 소식을 주민 여러분이 놓치지 않고 편리하게 누리실 수 있도록 돕습니다.
           </p>
         </section>
 
-
-        <section className="space-y-4 text-sm sm:text-base leading-relaxed">
-          <h2 className="text-xl font-bold text-[#0f172a]">2. 데이터 출처 및 신뢰성</h2>
-          <p>
-            본 웹사이트에서 안내하는 모든 축제, 행사 및 지원 혜택 정보는 공공데이터포털(data.go.kr)과 정부 부처의 공식 발표 자료를 바탕으로 수집·검증 후 작성됩니다.
+        {/* 2. 데이터 출처 */}
+        <section className="space-y-3 text-sm sm:text-base leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 className="text-xl font-bold text-[#0f172a] flex items-center gap-2">
+            <span>🏛️</span> 데이터 출처
+          </h2>
+          <p className="text-slate-600">
+            본 서비스의 모든 정보는 대한민국 행정안전부 <strong>공공데이터포털(<a href="https://www.data.go.kr" target="_blank" rel="noopener noreferrer" className="text-emerald-600 underline font-semibold hover:text-emerald-700">data.go.kr</a>)</strong> 및 각 지방자치단체, 정부24 등 공공기관의 공식 개방 데이터를 바탕으로 수집·활용하고 있습니다.
           </p>
-          <div className="bg-emerald-50/70 border border-emerald-200 rounded-xl p-4 text-xs sm:text-sm text-emerald-900 space-y-1">
-            <p className="font-bold">💡 알아두실 점</p>
+        </section>
+
+        {/* 3. 콘텐츠 생성 방식 */}
+        <section className="space-y-3 text-sm sm:text-base leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 className="text-xl font-bold text-[#0f172a] flex items-center gap-2">
+            <span>🤖</span> 콘텐츠 생성 방식 (AI 활용)
+          </h2>
+          <p className="text-slate-600">
+            복잡하고 어려운 행정 용어나 방대한 공고문을 주민의 눈높이에 맞추어 보다 쉽고 친절하게 전달하기 위해, <strong>최신 인공지능(AI) 기술을 보조적으로 활용</strong>하여 요약 및 해설 콘텐츠를 정기적으로 생성·가공합니다.
+          </p>
+          <div className="bg-emerald-50/70 border border-emerald-200 rounded-xl p-4 text-xs sm:text-sm text-emerald-900 space-y-1 mt-2">
+            <p className="font-bold">⚠️ 이용 안내 및 주의사항</p>
             <p>
-              지자체 및 정부 정책은 주관 기관의 사정에 따라 일정이나 세부 자격 요건이 변경될 수 있으므로, 최종 신청 전 반드시 해당 기관의 공식 안내 페이지를 다시 한번 확인해 주시기 바랍니다.
+              AI가 생성한 요약 글은 이해를 돕기 위한 참고 자료이며, 기관의 정책 변경이나 예산 소진 등으로 세부 요건이 달라질 수 있습니다. 정확한 신청 자격 및 최신 공고 사항은 반드시 각 본문 하단에 제공되는 <strong>공식 원문 출처 링크</strong>를 통해 최종 확인하시기 바랍니다.
             </p>
           </div>
         </section>
 
-        <section className="space-y-4 text-sm sm:text-base leading-relaxed">
-          <h2 className="text-xl font-bold text-[#0f172a]">3. 사용자 중심의 가치</h2>
-          <ul className="list-disc list-inside space-y-2 text-slate-600">
-            <li><strong>한눈에 보는 일정:</strong> 복잡한 공고문 대신 핵심 날짜와 대상을 빠르게 파악할 수 있도록 돕습니다.</li>
-            <li><strong>친절한 해설:</strong> 어려운 행정 용어를 일상 언어로 풀어 설명합니다.</li>
-            <li><strong>투명하고 안전한 운영:</strong> 방문자의 개인정보를 소중히 여기며 관련 법령과 구글 정책을 철저히 준수합니다.</li>
-          </ul>
-        </section>
-
         <div className="pt-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
           <span>최종 수정일: 2026년 9월 13일</span>
-          <Link href="/contact" className="text-[#03c75a] font-bold hover:underline">
-            운영자에게 문의하기 →
+          <Link href="/blog" className="text-emerald-600 font-bold hover:underline">
+            혜택 매거진 읽기 →
           </Link>
         </div>
       </main>
@@ -71,4 +74,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
