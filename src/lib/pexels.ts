@@ -1,3 +1,5 @@
+import { getPostFeaturedImage, getPostSecondaryImage } from "@/lib/posts";
+
 /**
  * Pexels 이미지 정보 인터페이스
  */
@@ -123,26 +125,27 @@ export async function getPostPexelsImages(
 ): Promise<{ featured: PexelsImage; secondary: PexelsImage }> {
   const { primary, secondary } = getKeywordForPost(post.title, post.category);
 
-  // 기본 fallback 이미지 (API 호출 실패나 결과 없을 때 대비)
+  // 기본 fallback 이미지 (API 호출 실패나 결과 없을 때도 멋진 Pexels 고화질 사진 사용)
+  const defaultFeaturedUrl = getPostFeaturedImage(post);
+  const defaultSecondaryUrl = getPostSecondaryImage(post);
+
   const fallbackFeatured: PexelsImage = {
     id: 0,
-    url: post.image && post.image.trim() !== ""
-      ? post.image
-      : "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
-    medium: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-    thumbnail: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400&q=80",
+    url: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
+    medium: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
+    thumbnail: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
     alt: post.title,
-    photographer: "Official Photo",
+    photographer: "Pexels Creator",
     photographerUrl: "https://www.pexels.com",
   };
 
   const fallbackSecondary: PexelsImage = {
     id: 1,
-    url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
-    medium: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
-    thumbnail: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=400&q=80",
+    url: defaultSecondaryUrl,
+    medium: defaultSecondaryUrl,
+    thumbnail: defaultSecondaryUrl,
     alt: `${post.title} 안내`,
-    photographer: "Official Photo",
+    photographer: "Pexels Creator",
     photographerUrl: "https://www.pexels.com",
   };
 

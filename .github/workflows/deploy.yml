@@ -55,6 +55,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy out --project-name=my-local-info-n
