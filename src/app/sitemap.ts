@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
 
-  // 기본 정적 페이지 목록
+  // 기본 정적 페이지 목록 (구글 애드센스 심사 필수 페이지 포함)
   const routes: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}/`,
@@ -18,7 +18,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/blog/`,
       lastModified: new Date(),
       changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/events/`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/about/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/privacy/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/terms/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/contact/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
 

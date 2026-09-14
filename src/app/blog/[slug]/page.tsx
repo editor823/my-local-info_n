@@ -133,12 +133,12 @@ export default async function BlogPostPage({
     },
     author: {
       "@type": "Organization",
-      name: "성남시 생활 정보",
+      name: "우리 동네 이야기",
       url: siteUrl,
     },
     publisher: {
       "@type": "Organization",
-      name: "성남시 생활 정보",
+      name: "우리 동네 이야기",
       url: siteUrl,
     },
   };
@@ -342,13 +342,13 @@ export default async function BlogPostPage({
               </a>
             </div>
 
-            {/* AI 생성 정보 공개 안내 문구 */}
+            {/* 정보 출처 및 편집 신뢰성 안내 문구 */}
             <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-950 leading-relaxed space-y-1">
               <p className="font-bold flex items-center gap-1.5 text-emerald-800">
-                <span>🤖</span> AI 생성 정보 공개
+                <span>📋</span> 정보 출처 및 신뢰성 안내
               </p>
               <p>
-                이 글은 공공데이터포털(
+                본 가이드는 행정안전부 공공데이터포털(
                 <a
                   href="https://www.data.go.kr"
                   target="_blank"
@@ -357,7 +357,7 @@ export default async function BlogPostPage({
                 >
                   data.go.kr
                 </a>
-                )의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
+                ) 및 지자체 공식 고시 정보를 바탕으로 주민 여러분의 편의를 위해 작성되었습니다. 기관의 세부 지침 변경 또는 예산 현황에 따라 변동될 수 있으므로, 최종 신청 전 상단의 원문 출처를 확인해 주시기 바랍니다.
               </p>
             </div>
           </div>

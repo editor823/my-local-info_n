@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "서비스 소개 | 성남시 생활 정보",
-  description: "지역 주민을 위한 생활 정보 제공 목적, 공공데이터포털 데이터 출처, AI 콘텐츠 생성 방식에 대해 안내합니다.",
+  title: "서비스 소개 | 우리 동네 이야기 (강북·도봉·노원)",
+  description: "서울 강북구, 도봉구, 노원구 구민을 위한 생활 정보 제공 목적, 공공데이터포털 데이터 출처, 콘텐츠 큐레이션 및 검수 방식에 대해 안내합니다.",
 };
 
 export default function AboutPage() {
@@ -46,18 +46,18 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* 3. 콘텐츠 생성 방식 */}
+        {/* 3. 콘텐츠 수집 및 큐레이션 방식 */}
         <section className="space-y-3 text-sm sm:text-base leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-xl font-bold text-[#0f172a] flex items-center gap-2">
-            <span>🤖</span> 콘텐츠 생성 방식 (AI 활용)
+            <span>✍️</span> 전문 에디터 검수 및 콘텐츠 큐레이션 방식
           </h2>
           <p className="text-slate-600">
-            복잡하고 어려운 행정 용어나 방대한 공고문을 주민의 눈높이에 맞추어 보다 쉽고 친절하게 전달하기 위해, <strong>최신 인공지능(AI) 기술을 보조적으로 활용</strong>하여 요약 및 해설 콘텐츠를 정기적으로 생성·가공합니다.
+            복잡하고 어려운 공고문이나 방대한 지침을 주민분들의 눈높이에 맞추어 보다 쉽고 친절하게 전달하기 위해, 공공데이터 원본을 기반으로 <strong>핵심 혜택, 신청 대상 요건, 구비 서류, 신청 팁</strong>을 전문 에디터가 체계적으로 분석·정리하여 제공합니다.
           </p>
           <div className="bg-emerald-50/70 border border-emerald-200 rounded-xl p-4 text-xs sm:text-sm text-emerald-900 space-y-1 mt-2">
-            <p className="font-bold">⚠️ 이용 안내 및 주의사항</p>
+            <p className="font-bold">💡 이용 안내 및 신뢰성 고지</p>
             <p>
-              AI가 생성한 요약 글은 이해를 돕기 위한 참고 자료이며, 기관의 정책 변경이나 예산 소진 등으로 세부 요건이 달라질 수 있습니다. 정확한 신청 자격 및 최신 공고 사항은 반드시 각 본문 하단에 제공되는 <strong>공식 원문 출처 링크</strong>를 통해 최종 확인하시기 바랍니다.
+              본 사이트의 모든 안내 글은 구민의 알 권리와 편의를 돕기 위한 정보 제공 목적이며, 기관의 정책 개정이나 예산 소진 등으로 세부 일정이나 지원 기준이 변동될 수 있습니다. 신청 전 반드시 각 글 하단에 첨부된 <strong>공식 원문 출처(정부24, 지자체 홈페이지) 링크</strong>를 통해 최신 공고를 확인하시기 바랍니다.
             </p>
           </div>
         </section>

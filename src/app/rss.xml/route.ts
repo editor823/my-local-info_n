@@ -23,9 +23,9 @@ export async function GET() {
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>성남시 생활 정보 | 행사·혜택·지원금 안내</title>
+    <title>우리 동네 이야기 | 강북·도봉·노원 지원금 &amp; 축제 정보</title>
     <link>${siteUrl}</link>
-    <description>성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.</description>
+    <description>서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 복지 혜택 및 지역 축제 소식을 전해드립니다.</description>
     <language>ko</language>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
     ${rssItems}

@@ -3,11 +3,11 @@ import "./globals.css";
 import Chatbot from "@/components/Chatbot";
 
 export const metadata: Metadata = {
-  title: "성남시 생활 정보 | 행사·혜택·지원금 안내",
-  description: "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+  title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
+  description: "서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 신청 방법 및 지역 축제·문화 행사 정보를 빠르고 정확하게 전해드립니다.",
   openGraph: {
-    title: "성남시 생활 정보 | 행사·혜택·지원금 안내",
-    description: "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+    title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
+    description: "서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 신청 방법 및 지역 축제·문화 행사 정보를 빠르고 정확하게 전해드립니다.",
     type: "website",
     locale: "ko_KR",
   },
@@ -25,9 +25,9 @@ export default function RootLayout({
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "성남시 생활 정보",
+    name: "우리 동네 이야기",
     url: siteUrl,
-    description: "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보",
+    description: "서울 강북구·도봉구·노원구 구민을 위한 지역 행사, 축제, 지원금, 혜택 정보",
   };
 
   // BreadcrumbList 스키마 (홈 > 블로그)
