@@ -128,7 +128,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 65세 이상「노인장기요양보험법」제15조 제2항에 따른 장기요양인정 수급자로 판정을 받지 못한 등급 외 A, B에 해당하는 어르신으로,\r\n  「국민기초생활 보장법」에 따른 생계급여 또는 의료급여 수급자",
       "summary": "장기요양등급 외 판정 저소득 어르신 중 생계급여 또는 의료급여 수급자에게 보행기 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000112"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000112",
+      "slug": "gangbuk-senior-walker-support"
     },
     {
       "id": "308000000113",
@@ -140,7 +141,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 기초 생계급여, 의료급여 자격 수급자 가구",
       "summary": "기초생계급여수급자 등에게 명절위문금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000113"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000113",
+      "slug": "gangbuk-low-income-holiday-allowance"
     },
     {
       "id": "308000000114",
@@ -152,7 +154,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 강북구 거주 65세 이상 저소득 독거노인(기초생활수급자, 차상위), 장애정도가 심한 장애인",
       "summary": "강북구 거주 저소득 독거노인, 장애정도가 심한 장애인에 맞춤형 세탁서비스 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000114"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000114",
+      "slug": "gangbuk-custom-laundry-service"
     },
     {
       "id": "308000000116",
@@ -164,7 +167,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 매년 1월 1일 현재 서울특별시 강북구에 1년 이상 주민등록을 두고 거주하는 효행가정\r\n   - 효행가정 : 효행대상자와 그 직계비속이 서울특별시 강북구에서 동일한 세대를 이루고 생계를 같이하는 가정\r\n   - 효행대상자 : 효도지원금을 지급하는 날이 속하는 해 12월 31일 기준으로 만 100세가 되는 사람",
       "summary": "효행가정에 효도지원금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116",
+      "slug": "gangbuk-filial-piety-allowance"
     },
     {
       "id": "308000000118",
