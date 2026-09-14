@@ -234,7 +234,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         {/* 4열 와이드 그리드 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topHighlights.map((item, idx) => {
-            const detailHref = item.slug ? `/blog/${item.slug}` : "/blog";
+            const postSlug = item.slug || `info-${item.id}`;
+            const detailHref = `/blog/${postSlug}`;
             const districtInfo = getDistrictBadge(item.location);
             const rankBadges = [
               "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white",
@@ -263,13 +264,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                   {/* 제목 및 내용 */}
                   <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
-                    {item.slug ? (
-                      <Link href={`/blog/${item.slug}`}>{item.title}</Link>
-                    ) : (
-                      <a href={item.link || "https://www.gov.kr"} target="_blank" rel="noopener noreferrer">
-                        {item.title}
-                      </a>
-                    )}
+                    <Link href={detailHref}>{item.title}</Link>
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
                     {item.summary}
@@ -285,23 +280,12 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                     </div>
                   </div>
 
-                  {item.slug ? (
-                    <Link
-                      href={`/blog/${item.slug}`}
-                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                    >
-                      상세 혜택 분석 보기 →
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.link || "https://www.gov.kr"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center w-full py-2.5 bg-slate-100 hover:bg-emerald-600 text-slate-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                    >
-                      공식 신청처 바로가기 ↗
-                    </a>
-                  )}
+                  <Link
+                    href={detailHref}
+                    className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
+                  >
+                    상세 혜택 분석 보기 →
+                  </Link>
                 </div>
               </div>
             );
@@ -388,7 +372,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             {filteredItems.map((item, index) => {
-              const detailHref = item.slug ? `/blog/${item.slug}` : "/blog";
+              const postSlug = item.slug || `info-${item.id}`;
+              const detailHref = `/blog/${postSlug}`;
               const isEvent = item.type === "event";
               const districtInfo = getDistrictBadge(item.location);
 
@@ -421,13 +406,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                     {/* 제목 */}
                     <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
-                      {item.slug ? (
-                        <Link href={`/blog/${item.slug}`}>{item.title}</Link>
-                      ) : (
-                        <a href={item.link || "https://www.gov.kr"} target="_blank" rel="noopener noreferrer">
-                          {item.title}
-                        </a>
-                      )}
+                      <Link href={detailHref}>{item.title}</Link>
                     </h3>
 
                     {/* 요약 */}
@@ -445,25 +424,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                       </p>
                     </div>
 
-                    {item.slug ? (
-                      <Link
-                        href={`/blog/${item.slug}`}
-                        className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
-                      >
-                        <span>자세히 보기</span>
-                        <span>&rarr;</span>
-                      </Link>
-                    ) : (
-                      <a
-                        href={item.link || "https://www.gov.kr"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-slate-100 group-hover:bg-emerald-600 text-slate-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
-                      >
-                        <span>공식 신청처</span>
-                        <span>↗</span>
-                      </a>
-                    )}
+                    <Link
+                      href={detailHref}
+                      className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                    >
+                      <span>자세히 보기</span>
+                      <span>&rarr;</span>
+                    </Link>
                   </div>
                 </article>
               );

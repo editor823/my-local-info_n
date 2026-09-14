@@ -98,14 +98,15 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
-  // local-info.json에서 원문 출처 링크 검색 (slug 또는 제목 매칭)
+  // local-info.json에서 원문 출처 링크 검색 (slug 또는 id 또는 제목 매칭)
   const allLocalItems = [
     ...(localInfoData.events || []),
     ...(localInfoData.benefits || []),
   ];
   const matchedItem = allLocalItems.find(
-    (item: { slug?: string; title?: string; name?: string; link?: string }) =>
+    (item: { id?: string; slug?: string; title?: string; name?: string; link?: string }) =>
       (item.slug && item.slug === slug) ||
+      (item.id && `info-${item.id}` === slug) ||
       (item.title && post.title.includes(item.title)) ||
       (item.name && post.title.includes(item.name))
   );

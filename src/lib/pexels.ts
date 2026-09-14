@@ -108,6 +108,22 @@ export function getKeywordForPost(title: string, category = ""): { primary: stri
   if (t.includes("지원금") || t.includes("화폐") || t.includes("상품권") || t.includes("수당") || t.includes("세금") || t.includes("장려금") || t.includes("월세")) {
     return { primary: "korean money finance budget savings", secondary: "digital wallet mobile payment money" };
   }
+  // 치아, 구강, 치과
+  if (t.includes("치아") || t.includes("구강") || t.includes("치과")) {
+    return { primary: "dental clinic dentist smiling healthy teeth", secondary: "dental care toothbrush checkup" };
+  }
+  // 장애인, 보장구, 휠체어, 이동기기
+  if (t.includes("장애") || t.includes("보장구") || t.includes("휠체어") || t.includes("보조기기")) {
+    return { primary: "accessibility wheelchair rehabilitation support", secondary: "caregiver helping rehabilitation therapy" };
+  }
+  // 집수리, 주거, 환경개선, 태양광
+  if (t.includes("주거") || t.includes("집수리") || t.includes("태양광") || t.includes("에너지") || t.includes("가스")) {
+    return { primary: "modern eco home interior house renovation", secondary: "clean living room solar eco house" };
+  }
+  // 다문화, 외국인
+  if (t.includes("다문화") || t.includes("글로벌")) {
+    return { primary: "diverse multiracial friends community smiling", secondary: "global cultural celebration togetherness" };
+  }
   // 수산, 어업, 바다, 선박
   if (t.includes("수산") || t.includes("어업") || t.includes("어선") || t.includes("바다") || t.includes("해양")) {
     return { primary: "ocean fishing boat sea port", secondary: "fresh seafood fish harbor" };

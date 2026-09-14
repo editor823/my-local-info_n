@@ -51,6 +51,22 @@ export function getPostFeaturedImage(post: { title: string; category?: string; i
   if (titleLower.includes("어르신") || titleLower.includes("노인") || titleLower.includes("실버") || titleLower.includes("보훈")) {
     return "https://images.pexels.com/photos/7551676/pexels-photo-7551676.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 활기찬 어르신
   }
+  // 치아, 구강, 건강
+  if (titleLower.includes("치아") || titleLower.includes("구강") || titleLower.includes("진료")) {
+    return "https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 치과 / 건강검진
+  }
+  // 장애인, 보조기기, 휠체어
+  if (titleLower.includes("장애") || titleLower.includes("보조기기") || titleLower.includes("보장구")) {
+    return "https://images.pexels.com/photos/4064234/pexels-photo-4064234.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 배리어프리 / 재활 보조
+  }
+  // 주거, 집수리, 환경개선, 태양광
+  if (titleLower.includes("주거") || titleLower.includes("집수리") || titleLower.includes("태양광") || titleLower.includes("환경")) {
+    return "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 깔끔하고 아늑한 집
+  }
+  // 다문화, 외국인, 멘토
+  if (titleLower.includes("다문화") || titleLower.includes("멘토") || titleLower.includes("이탈주민")) {
+    return "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 함께하는 따뜻한 공동체
+  }
   // 수산, 어업
   if (titleLower.includes("수산") || titleLower.includes("어업") || titleLower.includes("선박") || titleLower.includes("바다")) {
     return "https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=1200"; // 바다 / 어선
@@ -99,23 +115,103 @@ function formatPostDate(dateVal: unknown): string {
   return String(dateVal);
 }
 
-export function getAllPosts(): PostData[] {
-  // src/content/posts 폴더가 없으면 빈 배열 반환
-  if (!fs.existsSync(postsDirectory)) {
+function getLocalInfoPosts(): PostData[] {
+  try {
+    const localInfoPath = path.join(process.cwd(), "public/data/local-info.json");
+    if (!fs.existsSync(localInfoPath)) return [];
+    const localInfo = JSON.parse(fs.readFileSync(localInfoPath, "utf8"));
+    const items = [...(localInfo.benefits || []), ...(localInfo.events || [])];
+    
+    return items.map((item: any) => {
+      const slug = item.slug || `info-${item.id}`;
+      const title = item.title || item.name || "상세 생활 혜택 안내";
+      const summary = item.summary || `${item.location || ""} 구민을 위한 ${item.category || "맞춤 혜택"} 안내입니다.`;
+      const category = item.category || "혜택";
+      const tags = [
+        item.location ? item.location.replace("서울특별시 ", "") : "서울시",
+        category,
+        "생활정보",
+        "지원금"
+      ].filter(Boolean);
+
+      const content = `
+안녕하세요, 지역 구민 여러분! 우리 동네의 꼭 필요한 실속 지원 사업과 맞춤형 복지 정책을 알기 쉽게 정리해 드리는 전문 에디터입니다.
+
+오늘 소개해 드릴 지원 제도는 **‘${title}’**입니다. 본 사업은 **${item.location || "서울특별시"}** 주민들의 복지 증진과 실질적인 생활 안정을 지원하기 위해 마련되었습니다.
+
+아래에서 **지원 대상 자격, 신청 기간, 지원 내용, 신청 방법**을 꼼꼼히 확인해 보시고 꼭 혜택을 챙겨가시기 바랍니다!
+
+---
+
+### 💡 이 혜택, 왜 꼭 챙겨야 할까요? (핵심 포인트 3가지)
+
+**1. 구민 맞춤형 든든한 생활 지원 혜택**  
+어려운 시기 가계 부담을 덜어드리고 취약계층 및 대상 주민분들의 삶의 질을 높여드리기 위해 관할 지자체에서 책임지고 지원하는 공식 복지 사업입니다.
+
+**2. 투명하고 간편한 공공 서비스 연계**  
+정부24 및 관할 동 주민센터(행정복지센터)와 연계되어 안전하고 신속하게 접수 및 혜택 지원이 이루어집니다.
+
+**3. 놓치기 쉬운 지역 밀착형 틈새 복지**  
+우리 동네 주민이라면 누릴 수 있는 고유한 혜택으로, 신청 자격에 해당되는지 미리 확인하시면 큰 혜택을 누리실 수 있습니다.
+
+---
+
+### 📋 지원 대상 및 지원 내용
+
+*   **사업명**: ${title}
+*   **관할 및 접수처**: ${item.location || "관할 자치구"}
+*   **운영 및 신청 기간**: ${item.endDate === "상시" ? "연중 상시 운영 (예산 소진 시까지)" : `${item.startDate || "시작일"} ~ ${item.endDate || "마감일"}`}
+*   **지원 대상**:
+${item.target ? item.target.split("\n").map((line: string) => `    ${line}`).join("\n") : "    관내 거주 구민 및 기준 요건 충족 대상자"}
+*   **주요 혜택 및 내용**:
+    ${item.summary || "상세 지원 기준 및 신청 절차에 따라 맞춤형 복지 혜택 제공"}
+
+---
+
+### 📝 신청 방법 및 필수 안내 사항
+
+본 혜택은 관할 주민센터 방문 접수 또는 정부24(보조금24) 온라인 공식 신청처를 통해 접수하실 수 있습니다.
+
+1. **신청 자격 확인**: 위 지원 대상 기준(연령, 소득, 거주지 등)을 꼼꼼하게 확인합니다.
+2. **구비 서류 준비**: 신분증 및 주민등록등본, 필요 증빙 서류(해당자)를 준비합니다.
+3. **접수 및 신청**: 아래의 [원문 출처 바로가기 ↗] 버튼을 클릭하시거나 관할 동 주민센터를 방문하여 신청서를 제출합니다.
+`;
+
+      const post: PostData = {
+        slug,
+        title,
+        date: item.startDate || "2026-09-14",
+        summary,
+        category,
+        tags,
+        content,
+      };
+
+      post.image = getPostFeaturedImage(post);
+      return post;
+    });
+  } catch (err) {
+    console.error("Failed to load local-info posts:", err);
     return [];
   }
+}
 
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => {
+export function getAllPosts(): PostData[] {
+  const existingSlugs = new Set<string>();
+  const allPostsData: PostData[] = [];
+
+  // 1. src/content/posts 폴더의 마크다운 글 먼저 읽기 (우선순위 최고)
+  if (fs.existsSync(postsDirectory)) {
+    const fileNames = fs.readdirSync(postsDirectory);
+    for (const fileName of fileNames) {
+      if (!fileName.endsWith(".md")) continue;
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       const { data, content } = matter(fileContents);
 
-      const postItem = {
+      const postItem: PostData = {
         slug,
         title: data.title || slug,
         date: formatPostDate(data.date),
@@ -126,33 +222,53 @@ export function getAllPosts(): PostData[] {
         image: data.image || "",
       };
 
-      // 썸네일/대표 이미지가 없으면 글 주제에 맞는 Pexels 고화질 이미지 매칭
       postItem.image = getPostFeaturedImage(postItem);
+      existingSlugs.add(slug);
+      allPostsData.push(postItem);
+    }
+  }
 
-      return postItem;
-    });
+  // 2. local-info.json의 모든 항목 중 아직 마크다운이 없는 항목을 자동으로 포스트로 추가
+  const localPosts = getLocalInfoPosts();
+  for (const lp of localPosts) {
+    if (!existingSlugs.has(lp.slug)) {
+      existingSlugs.add(lp.slug);
+      allPostsData.push(lp);
+    }
+  }
 
   // 날짜 기준 최신순 정렬
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPostBySlug(slug: string): PostData | null {
+  // 1. 마크다운 파일 존재 여부 확인
   const fullPath = path.join(postsDirectory, `${slug}.md`);
-  if (!fs.existsSync(fullPath)) {
-    return null;
+  if (fs.existsSync(fullPath)) {
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContents);
+
+    const postItem: PostData = {
+      slug,
+      title: data.title || slug,
+      date: formatPostDate(data.date),
+      summary: data.summary || "",
+      category: data.category || "일반",
+      tags: Array.isArray(data.tags) ? data.tags : [],
+      content,
+      image: data.image || "",
+    };
+    postItem.image = getPostFeaturedImage(postItem);
+    return postItem;
   }
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  // 2. 마크다운 파일이 없으면 local-info.json에서 자동 매칭
+  const localPosts = getLocalInfoPosts();
+  const matched = localPosts.find((p) => p.slug === slug);
+  if (matched) {
+    return matched;
+  }
 
-  return {
-    slug,
-    title: data.title || slug,
-    date: formatPostDate(data.date),
-    summary: data.summary || "",
-    category: data.category || "일반",
-    tags: Array.isArray(data.tags) ? data.tags : [],
-    content,
-    image: data.image || "",
-  };
+  return null;
 }
+
