@@ -16,7 +16,7 @@ export interface PostData {
 }
 
 // 글 제목/카테고리에 맞는 Pexels 고화질 무료 이미지 매칭 헬퍼
-export function getPostFeaturedImage(post: { title: string; category: string; image?: string }): string {
+export function getPostFeaturedImage(post: { title: string; category?: string; image?: string }): string {
   if (post.image && post.image.trim() !== "") {
     return post.image;
   }
@@ -61,7 +61,7 @@ export function getPostFeaturedImage(post: { title: string; category: string; im
 }
 
 // 본문 중간에 들어갈 2번째 서브 이미지 매칭 헬퍼
-export function getPostSecondaryImage(post: { title: string; category: string }): string {
+export function getPostSecondaryImage(post: { title: string; category?: string }): string {
   const titleLower = post.title.toLowerCase();
 
   if (titleLower.includes("축제") || titleLower.includes("페스티벌") || titleLower.includes("문화제")) {
