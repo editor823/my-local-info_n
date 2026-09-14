@@ -6,7 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBanner from "@/components/AdBanner";
 import CoupangBanner from "@/components/CoupangBanner";
-import { getAllPosts, getPostBySlug, getPostFeaturedImage, getPostSecondaryImage } from "@/lib/posts";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { getPostPexelsImages } from "@/lib/pexels";
 import localInfoData from "../../../../public/data/local-info.json";
 
 export async function generateMetadata({
@@ -24,7 +25,7 @@ export async function generateMetadata({
     };
   }
 
-  const featuredImage = getPostFeaturedImage(post);
+  const { featured } = await getPostPexelsImages(post);
 
   return {
     title: `${post.title} | 강북·도봉·노원 생활 혜택`,
@@ -36,7 +37,7 @@ export async function generateMetadata({
       publishedTime: post.date,
       images: [
         {
-          url: featuredImage,
+          url: featured.url,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -47,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.summary || post.title,
-      images: [featuredImage],
+      images: [featured.url],
     },
   };
 }
@@ -110,8 +111,9 @@ export default async function BlogPostPage({
   );
   const sourceLink = matchedItem?.link || "https://www.data.go.kr";
 
-  const featuredImage = getPostFeaturedImage(post);
-  const secondaryImage = getPostSecondaryImage(post);
+  const { featured: featuredImgData, secondary: secondaryImgData } = await getPostPexelsImages(post);
+  const featuredImage = featuredImgData.url;
+  const secondaryImage = secondaryImgData.url;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
 
@@ -226,7 +228,7 @@ export default async function BlogPostPage({
             )}
           </div>
 
-          {/* 대표 시각 이미지 (고화질 맞춤형 배너) */}
+          {/* 대표 시각 이미지 (Pexels 고화질 맞춤형 배너) */}
           <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-100">
             <img
               src={featuredImage}
@@ -239,9 +241,14 @@ export default async function BlogPostPage({
               <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px]">
                 🌿 {post.category} 이야기
               </span>
-              <span className="text-[10px] text-white/70">
-                Photo by Unsplash
-              </span>
+              <a
+                href={featuredImgData.photographerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[10px] text-white/80 hover:text-white underline decoration-dotted"
+              >
+                Photo by {featuredImgData.photographer} (Pexels)
+              </a>
             </div>
           </div>
 
@@ -275,9 +282,14 @@ export default async function BlogPostPage({
                         <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px]">
                           💡 핵심 안내 & 상세 팁
                         </span>
-                        <span className="text-[10px] text-white/70">
-                          Photo by Unsplash
-                        </span>
+                        <a
+                          href={secondaryImgData.photographerUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-[10px] text-white/80 hover:text-white underline decoration-dotted"
+                        >
+                          Photo by {secondaryImgData.photographer} (Pexels)
+                        </a>
                       </div>
                     </div>
                   </figure>

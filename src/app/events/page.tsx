@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import localInfoData from "../../../public/data/local-info.json";
+import { getPostFeaturedImage } from "@/lib/posts";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -46,12 +47,33 @@ export default function EventsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event) => {
             const detailHref = event.slug ? `/blog/${event.slug}` : "#";
+            const eventImage = getPostFeaturedImage({ title: event.title, category: event.category });
             return (
               <article
                 key={event.id}
-                className="bg-white rounded-2xl p-6 border border-emerald-100/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-2xl overflow-hidden border border-emerald-100/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
-                <div className="space-y-4">
+                {/* 썸네일 배너 */}
+                <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-slate-100">
+                  <img
+                    src={eventImage}
+                    alt={event.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-black/50 backdrop-blur-md text-white font-bold text-[11px] px-3 py-1 rounded-full border border-white/20">
+                      {event.category}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+                      🗓️ {event.startDate} ~ {event.endDate}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-4">
                   {/* 상단 날짜 및 뱃지 */}
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-extrabold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full border border-emerald-200">

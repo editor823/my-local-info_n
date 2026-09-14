@@ -109,23 +109,44 @@ export default function BlogListClient({ posts }: Props) {
           {filteredPosts.map((post) => (
             <article
               key={post.slug}
-              className="bg-white rounded-2xl p-6 border border-emerald-100/90 shadow-sm hover:shadow-md hover:border-emerald-300 hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
+              className="bg-white rounded-2xl overflow-hidden border border-emerald-100/90 shadow-sm hover:shadow-md hover:border-emerald-300 hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="bg-emerald-50 text-emerald-800 font-bold text-[11px] px-2.5 py-0.5 rounded-full border border-emerald-200">
-                    {post.category}
-                  </span>
-                  <time className="text-xs text-slate-400 font-medium">📅 {post.date}</time>
+                {/* 썸네일 이미지 (Pexels) */}
+                {post.image && (
+                  <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-100">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-black/50 backdrop-blur-md text-white font-bold text-[11px] px-2.5 py-1 rounded-full border border-white/20">
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-5 sm:p-6 pb-2">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    {!post.image && (
+                      <span className="bg-emerald-50 text-emerald-800 font-bold text-[11px] px-2.5 py-0.5 rounded-full border border-emerald-200">
+                        {post.category}
+                      </span>
+                    )}
+                    <time className="text-xs text-slate-400 font-medium ml-auto">📅 {post.date}</time>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 leading-snug line-clamp-2">
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                    {post.summary}
+                  </p>
                 </div>
-
-                <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 leading-snug line-clamp-2">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                </h3>
-
-                <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
-                  {post.summary}
-                </p>
               </div>
 
               <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
