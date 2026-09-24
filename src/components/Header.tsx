@@ -13,15 +13,15 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-4 text-emerald-300/80">
-            <Link href="/about" className="hover:text-emerald-100 transition-colors">
+            <Link href="/about/" className="hover:text-emerald-100 transition-colors">
               서비스 소개
             </Link>
             <span>·</span>
-            <Link href="/privacy" className="hover:text-emerald-100 transition-colors">
+            <Link href="/privacy/" className="hover:text-emerald-100 transition-colors">
               개인정보처리방침
             </Link>
             <span>·</span>
-            <Link href="/contact" className="hover:text-emerald-100 transition-colors">
+            <Link href="/contact/" className="hover:text-emerald-100 transition-colors">
               문의/제보
             </Link>
           </div>
@@ -63,19 +63,19 @@ export default function Header() {
               <span className="text-emerald-600">🌿</span> 구민 인기 혜택
             </Link>
             <Link
-              href="/events"
+              href="/events/"
               className="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-emerald-50/80 transition-colors flex items-center gap-1.5"
             >
               <span className="text-teal-600">🎪</span> 축제 캘린더
             </Link>
             <Link
-              href="/blog"
+              href="/blog/"
               className="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-emerald-50/80 transition-colors flex items-center gap-1.5"
             >
               <span className="text-emerald-500">✍️</span> 혜택 매거진
             </Link>
             <Link
-              href="/about"
+              href="/about/"
               className="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-emerald-50/80 transition-colors flex items-center gap-1.5"
             >
               <span className="text-emerald-600">ℹ️</span> 소개
@@ -86,7 +86,7 @@ export default function Header() {
         {/* 우측 바로가기 버튼 */}
         <div className="flex items-center gap-2">
           <Link
-            href="/blog"
+            href="/blog/"
             className="text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-600/20 flex items-center gap-1.5"
           >
             <span>전체 혜택 보기</span>

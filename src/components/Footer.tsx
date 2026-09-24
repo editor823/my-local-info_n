@@ -14,19 +14,19 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-slate-500">
-          <Link href="/about" className="hover:text-emerald-600 transition-colors">
+          <Link href="/about/" className="hover:text-emerald-600 transition-colors">
             서비스 소개
           </Link>
           <span className="text-slate-300">|</span>
-          <Link href="/privacy" className="hover:text-emerald-600 transition-colors">
+          <Link href="/privacy/" className="hover:text-emerald-600 transition-colors">
             개인정보처리방침
           </Link>
           <span className="text-slate-300">|</span>
-          <Link href="/terms" className="hover:text-emerald-600 transition-colors">
+          <Link href="/terms/" className="hover:text-emerald-600 transition-colors">
             이용약관
           </Link>
           <span className="text-slate-300">|</span>
-          <Link href="/contact" className="hover:text-emerald-600 transition-colors">
+          <Link href="/contact/" className="hover:text-emerald-600 transition-colors">
             문의하기
           </Link>
         </nav>
