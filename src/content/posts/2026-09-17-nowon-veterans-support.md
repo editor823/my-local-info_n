@@ -4,7 +4,7 @@ date: "2026-09-17"
 summary: "노원구에 거주하는 국가유공자 및 수권유족분들을 위한 2026년 보훈예우수당, 참전배우자 복지수당, 사망위로금 혜택 총정리! 신청 자격과 구비 서류를 확인하세요."
 category: "혜택"
 tags: ["노원구", "국가유공자 위문 지원", "생활정보", "지원금", "신청방법"]
-image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb0?auto=format&fit=crop&w=1200&q=80"
+image: "https://images.pexels.com/photos/7551676/pexels-photo-7551676.jpeg?auto=compress&cs=tinysrgb&w=1200"
 ---
 
 ### 1. 안녕하세요, 노원구 주민 여러분!

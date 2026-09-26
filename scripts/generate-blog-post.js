@@ -145,7 +145,6 @@ date: "${todayStr}"
 summary: (구글 검색 스니펫에 노출될 클릭 유도형 1~2문장 요약)
 category: "${latestItem.category || "혜택"}"
 tags: ["${districtName}", "${targetName}", "생활정보", "지원금", "복지혜택"]
-image: (이 글의 주제에 어울리는 고화질 Unsplash 이미지 URL 1개. 예: https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80)
 ---
 
 (본문 내용: 마크다운 소제목 ###, 체크리스트, 표, 꿀팁 박스 인용구 등을 다채롭게 활용하여 1,800자 이상 정성스럽게 작성)

@@ -141,15 +141,22 @@ export async function getPostPexelsImages(
 ): Promise<{ featured: PexelsImage; secondary: PexelsImage }> {
   const { primary, secondary } = getKeywordForPost(post.title, post.category);
 
-  // 기본 fallback 이미지 (API 호출 실패나 결과 없을 때도 멋진 Pexels 고화질 사진 사용)
   const defaultFeaturedUrl = getPostFeaturedImage(post);
   const defaultSecondaryUrl = getPostSecondaryImage(post);
 
+  // post.image가 있고, pexels 도메인이거나 로컬 이미지 등 안전한 경우에만 우선 사용
+  const isSafeCustomImage =
+    post.image &&
+    post.image.trim() !== "" &&
+    (post.image.includes("images.pexels.com") || post.image.startsWith("/"));
+
+  const customFeaturedUrl = isSafeCustomImage ? post.image! : defaultFeaturedUrl;
+
   const fallbackFeatured: PexelsImage = {
     id: 0,
-    url: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
-    medium: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
-    thumbnail: post.image && post.image.trim() !== "" ? post.image : defaultFeaturedUrl,
+    url: customFeaturedUrl,
+    medium: customFeaturedUrl,
+    thumbnail: customFeaturedUrl,
     alt: post.title,
     photographer: "Pexels Creator",
     photographerUrl: "https://www.pexels.com",
@@ -165,8 +172,8 @@ export async function getPostPexelsImages(
     photographerUrl: "https://www.pexels.com",
   };
 
-  // 1. 직접 지정된 이미지가 있다면 우선 사용
-  if (post.image && post.image.trim() !== "") {
+  // 1. 직접 지정된 검증된 이미지가 있다면 우선 사용
+  if (isSafeCustomImage) {
     return { featured: fallbackFeatured, secondary: fallbackSecondary };
   }
 
