@@ -27,12 +27,18 @@ export async function generateMetadata({
 
   const { featured } = await getPostPexelsImages(post);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
+
   return {
     title: `${post.title} | 강북·도봉·노원 생활 혜택`,
     description: post.summary || post.title,
+    alternates: {
+      canonical: `/blog/${slug}/`,
+    },
     openGraph: {
       title: post.title,
       description: post.summary || post.title,
+      url: `${siteUrl}/blog/${slug}/`,
       type: "article",
       publishedTime: post.date,
       images: [

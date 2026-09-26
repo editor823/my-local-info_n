@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "개인정보처리방침 | 우리 동네 이야기",
   description: "우리 동네 이야기의 개인정보 수집, 이용, 쿠키 정책 및 제3자(Google AdSense 등) 서비스 안내입니다.",
+  alternates: {
+    canonical: "/privacy/",
+  },
 };
 
 export default function PrivacyPage() {

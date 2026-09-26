@@ -6,6 +6,9 @@ import BlogListClient from "@/components/BlogListClient";
 export const metadata = {
   title: "혜택 매거진 & 블로그 | 우리 동네 이야기",
   description: "강북구·도봉구·노원구 지원금 신청 가이드, 축제 후기 및 알짜 생활 팁을 전해드리는 정보 매거진입니다.",
+  alternates: {
+    canonical: "/blog/",
+  },
 };
 
 export default function BlogListPage() {

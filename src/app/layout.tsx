@@ -2,14 +2,44 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Chatbot from "@/components/Chatbot";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
+
 export const metadata: Metadata = {
-  title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
+    template: "%s | 우리 동네 이야기",
+  },
   description: "서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 신청 방법 및 지역 축제·문화 행사 정보를 빠르고 정확하게 전해드립니다.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
+    siteName: "우리 동네 이야기",
     title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
     description: "서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 신청 방법 및 지역 축제·문화 행사 정보를 빠르고 정확하게 전해드립니다.",
+    url: siteUrl,
     type: "website",
     locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 가이드",
+    description: "서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 신청 방법 및 지역 축제·문화 행사 정보를 빠르고 정확하게 전해드립니다.",
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 

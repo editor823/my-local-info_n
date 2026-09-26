@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "서비스 소개 | 우리 동네 이야기 (강북·도봉·노원)",
   description: "서울 강북구, 도봉구, 노원구 구민을 위한 생활 정보 제공 목적, 공공데이터포털 데이터 출처, 콘텐츠 큐레이션 및 검수 방식에 대해 안내합니다.",
+  alternates: {
+    canonical: "/about/",
+  },
 };
 
 export default function AboutPage() {

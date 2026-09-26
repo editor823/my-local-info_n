@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "문의하기 | 우리 동네 이야기",
   description: "서비스 관련 제휴, 콘텐츠 오류 신고, 기타 건의 사항을 남겨주세요.",
+  alternates: {
+    canonical: "/contact/",
+  },
 };
 
 export default function ContactPage() {

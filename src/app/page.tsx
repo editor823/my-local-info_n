@@ -7,6 +7,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 순위",
   description: "강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 비교 및 실시간 인기 순위와 축제 정보 아카이브!",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function Home() {

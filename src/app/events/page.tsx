@@ -8,6 +8,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "축제 & 문화행사 소식 | 우리 동네 이야기",
   description: "강북구·도봉구·노원구에서 열리는 주요 축제, 문화 공연, 플리마켓, 가족 체험 행사 일정을 한눈에 모아보세요.",
+  alternates: {
+    canonical: "/events/",
+  },
 };
 
 export default function EventsPage() {
