@@ -235,7 +235,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topHighlights.map((item, idx) => {
             const postSlug = item.slug || `info-${item.id}`;
-            const detailHref = `/blog/${postSlug}`;
+            const detailHref = `/blog/${postSlug}/`;
             const districtInfo = getDistrictBadge(item.location);
             const rankBadges = [
               "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white",
@@ -373,7 +373,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             {filteredItems.map((item, index) => {
               const postSlug = item.slug || `info-${item.id}`;
-              const detailHref = `/blog/${postSlug}`;
+              const detailHref = `/blog/${postSlug}/`;
               const isEvent = item.type === "event";
               const districtInfo = getDistrictBadge(item.location);
 

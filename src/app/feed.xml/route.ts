@@ -32,7 +32,7 @@ export async function GET() {
     <link>${siteUrl}</link>
     <description>서울 강북구, 도봉구, 노원구 구민을 위한 맞춤형 복지 혜택 및 지역 축제 소식을 전해드립니다.</description>
     <language>ko</language>
-    <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     ${rssItems}
   </channel>
 </rss>`;

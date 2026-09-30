@@ -140,7 +140,7 @@ export default function BlogListClient({ posts }: Props) {
                   </div>
 
                   <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 leading-snug line-clamp-2">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    <Link href={`/blog/${post.slug}/`}>{post.title}</Link>
                   </h3>
 
                   <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
@@ -162,7 +162,7 @@ export default function BlogListClient({ posts }: Props) {
                 </div>
 
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}/`}
                   className="text-emerald-600 font-bold hover:underline inline-flex items-center gap-1 shrink-0"
                 >
                   상세 읽기 &rarr;

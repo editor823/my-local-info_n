@@ -54,12 +54,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // src/content/posts/ 폴더의 모든 마크다운 글 자동 포함
   const posts = getAllPosts();
-  const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}/`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
+  const postRoutes: MetadataRoute.Sitemap = posts.map((post) => {
+    let date = new Date();
+    if (post.date) {
+      const parsed = new Date(post.date);
+      if (!isNaN(parsed.getTime())) {
+        date = parsed;
+      }
+    }
+    return {
+      url: `${siteUrl}/blog/${post.slug}/`,
+      lastModified: date,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    };
+  });
 
   return [...routes, ...postRoutes];
 }

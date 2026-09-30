@@ -6,10 +6,24 @@ export default function robots(): MetadataRoute.Robots {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: [
+      {
+        userAgent: "Mediapartners-Google",
+        allow: "/",
+      },
+      {
+        userAgent: "Google-Display-Ads-Bot",
+        allow: "/",
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

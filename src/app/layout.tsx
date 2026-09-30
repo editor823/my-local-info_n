@@ -97,6 +97,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="우리 동네 이야기 RSS Feed"
+          href={`${siteUrl}/rss.xml`}
+        />
         <meta
           name="naver-site-verification"
           content="f154c36e7cd5c13061c300445824803236c35730"
