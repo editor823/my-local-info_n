@@ -149,7 +149,7 @@ tags: ["${districtName}", "${targetName}", "생활정보", "지원금", "복지�
 
 (본문 내용: 마크다운 소제목 ###, 체크리스트, 표, 꿀팁 박스 인용구 등을 다채롭게 활용하여 1,800자 이상 정성스럽게 작성)
 
-마지막 줄에 FILENAME: YYYY-MM-DD-keyword 형식으로 파일명을 출력해줘. 키워드는 간결한 영문 소문자 케밥케이스로.`;
+마지막 줄에 FILENAME: keyword 형식으로 파일명 키워드를 출력해줘. 키워드는 간결한 영문 소문자 케밥케이스로 (예: FILENAME: nowon-mini-solar).`;
 
   let responseText = "";
   try {
@@ -193,9 +193,10 @@ tags: ["${districtName}", "${targetName}", "생활정보", "지원금", "복지�
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (line.trim().startsWith("FILENAME:")) {
-        const parsedName = line.replace("FILENAME:", "").trim().replace(/\.md$/, "");
-        if (parsedName) {
-          filename = `${parsedName}.md`;
+        let slug = line.replace("FILENAME:", "").trim().replace(/\.md$/, "");
+        slug = slug.replace(/^\d{4}-\d{2}-\d{2}-?/, "").trim();
+        if (slug) {
+          filename = `${todayStr}-${slug}.md`;
         }
       } else {
         postLines.push(line);

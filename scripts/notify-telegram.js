@@ -82,8 +82,11 @@ async function main() {
 
     // 최신 글 탐색 (오늘 날짜로 시작하거나 내용의 date가 오늘인 글)
     for (const file of files) {
-      if (file.startsWith(todayKst)) {
-        const content = fs.readFileSync(path.join(postsDir, file), "utf-8");
+      const content = fs.readFileSync(path.join(postsDir, file), "utf-8");
+      const dateMatch = content.match(/date:\s*["']?(\d{4}-\d{2}-\d{2})["']?/);
+      const postDate = dateMatch ? dateMatch[1] : "";
+
+      if (file.startsWith(todayKst) || postDate === todayKst) {
         const titleMatch = content.match(/title:\s*["']?(.*?)["']?\r?\n/);
         const summaryMatch = content.match(/summary:\s*["']?(.*?)["']?\r?\n/);
         const categoryMatch = content.match(/category:\s*["']?(.*?)["']?\r?\n/);
