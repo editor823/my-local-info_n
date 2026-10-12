@@ -372,8 +372,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             {filteredItems.map((item, index) => {
-              const postSlug = item.slug || `info-${item.id}`;
-              const detailHref = `/blog/${postSlug}/`;
+              const hasPost = Boolean(item.slug);
+              const detailHref = hasPost ? `/blog/${item.slug}/` : (item.link || "https://www.gov.kr");
               const isEvent = item.type === "event";
               const districtInfo = getDistrictBadge(item.location);
 
@@ -406,7 +406,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                     {/* 제목 */}
                     <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
-                      <Link href={detailHref}>{item.title}</Link>
+                      {hasPost ? (
+                        <Link href={detailHref}>{item.title}</Link>
+                      ) : (
+                        <a href={detailHref} target="_blank" rel="noopener noreferrer">
+                          {item.title}
+                        </a>
+                      )}
                     </h3>
 
                     {/* 요약 */}
@@ -424,13 +430,25 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                       </p>
                     </div>
 
-                    <Link
-                      href={detailHref}
-                      className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
-                    >
-                      <span>자세히 보기</span>
-                      <span>&rarr;</span>
-                    </Link>
+                    {hasPost ? (
+                      <Link
+                        href={detailHref}
+                        className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                      >
+                        <span>자세히 보기</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={detailHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 bg-slate-100 hover:bg-emerald-600 text-slate-700 hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                      >
+                        <span>공식 신청</span>
+                        <span>↗</span>
+                      </a>
+                    )}
                   </div>
                 </article>
               );

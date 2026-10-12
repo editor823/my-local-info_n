@@ -49,7 +49,8 @@ export default function EventsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event) => {
-            const detailHref = `/blog/${event.slug || `info-${event.id}`}/`;
+            const hasPost = Boolean(event.slug);
+            const detailHref = hasPost ? `/blog/${event.slug}/` : (event.link || "https://www.gov.kr");
             const eventImage = getPostFeaturedImage({ title: event.title, category: event.category });
             return (
               <article
@@ -88,7 +89,13 @@ export default function EventsPage() {
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-black text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
-                    <Link href={detailHref}>{event.title}</Link>
+                    {hasPost ? (
+                      <Link href={detailHref}>{event.title}</Link>
+                    ) : (
+                      <a href={detailHref} target="_blank" rel="noopener noreferrer">
+                        {event.title}
+                      </a>
+                    )}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-slate-500 line-clamp-3 leading-relaxed">
@@ -109,13 +116,24 @@ export default function EventsPage() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Link
-                      href={detailHref}
-                      className="flex-1 text-center py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition-all shadow-sm shadow-emerald-600/20"
-                    >
-                      축제 상세 가이드 &rarr;
-                    </Link>
-                    {event.link && event.link !== "#" && (
+                    {hasPost ? (
+                      <Link
+                        href={detailHref}
+                        className="flex-1 text-center py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition-all shadow-sm shadow-emerald-600/20"
+                      >
+                        축제 상세 가이드 &rarr;
+                      </Link>
+                    ) : (
+                      <a
+                        href={detailHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition-all shadow-sm shadow-emerald-600/20"
+                      >
+                        공식 안내 ↗
+                      </a>
+                    )}
+                    {event.link && event.link !== "#" && hasPost && (
                       <a
                         href={event.link}
                         target="_blank"
