@@ -56,11 +56,25 @@ export async function searchPexelsImages(query: string, perPage = 5): Promise<Pe
       return [];
     }
 
-    const images: PexelsImage[] = data.photos.map((photo: any) => ({
+    interface RawPexelsPhoto {
+      id: number;
+      src: {
+        large2x?: string;
+        large?: string;
+        medium?: string;
+        small?: string;
+        tiny?: string;
+      };
+      alt?: string;
+      photographer?: string;
+      photographer_url?: string;
+    }
+
+    const images: PexelsImage[] = (data.photos as RawPexelsPhoto[]).map((photo) => ({
       id: photo.id,
-      url: photo.src.large2x || photo.src.large,
-      medium: photo.src.medium,
-      thumbnail: photo.src.small || photo.src.tiny,
+      url: photo.src.large2x || photo.src.large || "",
+      medium: photo.src.medium || "",
+      thumbnail: photo.src.small || photo.src.tiny || "",
       alt: photo.alt || `${query} image`,
       photographer: photo.photographer || "Pexels Creator",
       photographerUrl: photo.photographer_url || "https://www.pexels.com",
@@ -78,7 +92,7 @@ export async function searchPexelsImages(query: string, perPage = 5): Promise<Pe
  * 글 제목과 카테고리를 분석해 가장 적절한 영문 검색 키워드를 반환하는 함수
  */
 export function getKeywordForPost(title: string, category = ""): { primary: string; secondary: string } {
-  const t = title.toLowerCase();
+  const t = `${title} ${category}`.toLowerCase();
 
   // 축제, 문화, 행사
   if (t.includes("축제") || t.includes("페스티벌") || t.includes("문화") || t.includes("마켓") || t.includes("공연")) {

@@ -197,7 +197,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                 <button
                   key={dist.id}
                   type="button"
-                  onClick={() => setActiveDistrict(dist.id as any)}
+                  onClick={() => setActiveDistrict(dist.id as "all" | "강북구" | "도봉구" | "노원구")}
                   className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
                     isSelected
                       ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/30 scale-105 ring-2 ring-emerald-500 ring-offset-2"

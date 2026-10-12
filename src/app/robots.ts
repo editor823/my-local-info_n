@@ -20,10 +20,23 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
       {
+        userAgent: "Yeti",
+        allow: "/",
+      },
+      {
+        userAgent: "bingbot",
+        allow: "/",
+      },
+      {
+        userAgent: ["OAI-SearchBot", "PerplexityBot", "Claude-SearchBot"],
+        allow: "/",
+      },
+      {
         userAgent: "*",
         allow: "/",
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

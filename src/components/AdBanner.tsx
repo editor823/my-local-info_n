@@ -25,9 +25,10 @@ export default function AdBanner({
   useEffect(() => {
     if (isAdsenseActive) {
       try {
-        // @ts-ignore
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-      } catch (err) {
+        const win = window as unknown as { adsbygoogle?: unknown[] };
+        win.adsbygoogle = win.adsbygoogle || [];
+        win.adsbygoogle.push({});
+      } catch {
         // 중복 로드 또는 차단 시 무시
       }
     }

@@ -94,6 +94,40 @@ export default function Header() {
           </Link>
         </div>
       </div>
+
+      {/* 3. 모바일 전용 퀵 내비게이션 바 (모바일 크롤러 탐색 및 사용자 편의성 강화) */}
+      <nav aria-label="모바일 빠른 메뉴" className="md:hidden border-t border-emerald-50 bg-white/95 px-3 py-2 overflow-x-auto scrollbar-none flex items-center gap-1.5 text-xs font-bold text-slate-700">
+        <Link
+          href="/"
+          className="whitespace-nowrap px-3 py-1.5 rounded-lg bg-emerald-50/80 text-emerald-800 hover:bg-emerald-100 transition-colors"
+        >
+          홈
+        </Link>
+        <Link
+          href="/#rankings"
+          className="whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors"
+        >
+          인기 혜택
+        </Link>
+        <Link
+          href="/events/"
+          className="whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors"
+        >
+          축제 캘린더
+        </Link>
+        <Link
+          href="/blog/"
+          className="whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors"
+        >
+          혜택 매거진
+        </Link>
+        <Link
+          href="/about/"
+          className="whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors"
+        >
+          서비스 소개
+        </Link>
+      </nav>
     </header>
   );
 }

@@ -10,6 +10,15 @@ interface Message {
   time: string;
 }
 
+function getCurrentTime() {
+  const now = new Date();
+  return now.toLocaleTimeString("ko-KR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -17,20 +26,13 @@ export default function Chatbot() {
       id: "welcome",
       sender: "bot",
       text: "안녕하세요! 강북·도봉·노원 생활 정보 알리미입니다. 🌿\n궁금하신 질문을 아래 버튼에서 선택해주세요!",
-      time: getCurrentTime(),
+      time: "방금 전",
     },
   ]);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
 
-  function getCurrentTime() {
-    const now = new Date();
-    return now.toLocaleTimeString("ko-KR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  }
+  const messageIdRef = useRef(1);
 
   useEffect(() => {
     if (isOpen) {
@@ -39,8 +41,10 @@ export default function Chatbot() {
   }, [messages, isOpen]);
 
   const handleQuestionClick = (question: string, answer: string) => {
+    messageIdRef.current += 1;
+    const userMsgId = `user-${messageIdRef.current}`;
     const userMsg: Message = {
-      id: `user-${Date.now()}`,
+      id: userMsgId,
       sender: "user",
       text: question,
       time: getCurrentTime(),
@@ -49,8 +53,10 @@ export default function Chatbot() {
     setMessages((prev) => [...prev, userMsg]);
 
     setTimeout(() => {
+      messageIdRef.current += 1;
+      const botMsgId = `bot-${messageIdRef.current}`;
       const botMsg: Message = {
-        id: `bot-${Date.now()}`,
+        id: botMsgId,
         sender: "bot",
         text: answer,
         time: getCurrentTime(),

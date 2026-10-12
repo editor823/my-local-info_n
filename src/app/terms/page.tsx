@@ -64,8 +64,17 @@ export default function TermsPage() {
           </p>
         </section>
 
-        <div className="pt-6 border-t border-slate-200 text-xs text-slate-400">
-          본 약관은 2026년 9월 13일부터 적용됩니다.
+        <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+          <span>본 약관은 2026년 9월 13일부터 적용됩니다.</span>
+          <div className="flex items-center gap-3 font-semibold">
+            <Link href="/privacy/" className="hover:text-emerald-700 underline">
+              개인정보처리방침
+            </Link>
+            <span>·</span>
+            <Link href="/contact/" className="hover:text-emerald-700 underline">
+              문의 및 제보
+            </Link>
+          </div>
         </div>
       </main>
 

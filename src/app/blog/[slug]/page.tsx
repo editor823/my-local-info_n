@@ -177,6 +177,46 @@ export default async function BlogPostPage({
     ],
   };
 
+  // FAQPage JSON-LD 스키마 (화면의 PostFaqSection과 내용 일치)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `${post.title}의 신청 자격 요건은 어떻게 되나요?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "본 지원 사업은 관할 자치구(강북구·도봉구·노원구)에 주민등록을 둔 구민을 우선 대상으로 합니다. 가구 소득(2026년 기준 중위소득 기준) 및 연령, 대상 자격(어르신, 장애인, 한부모, 청년 등)을 충족해야 하며, 상세 기준은 관할 동 주민센터 또는 정부24에서 확인 가능합니다.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "신청 시 필요한 필수 구비 서류는 무엇인가요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "신청인 본인 신분증, 주민등록등본(최근 3개월 이내 발급본), 본인 명의 통장 사본이 기본 필요 서류입니다. 대리 신청의 경우 위임장과 대리인 신분증, 가족관계증명서가 추가로 요구될 수 있습니다.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "타 자치구 지원금이나 유사 복지 혜택과 중복 수혜가 가능한가요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "사업의 성격에 따라 중복 수급이 제한될 수 있습니다. 예를 들어 동일한 목적으로 지급되는 생계비나 바우처는 중복 지급이 제외될 수 있으므로, 접수 전 관할 동 주민센터 복지팀 담당자와 사전 상담하시는 것을 권장합니다.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "온라인 접수와 방문 접수 중 어떤 방법이 더 빠른가요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "정부24(gov.kr) 또는 복지로(bokjiro.go.kr)에 온라인 신청 창구가 열려 있는 경우 24시간 온라인 접수가 가장 간편합니다. 다만 증빙 서류 보완이 필요한 경우에는 관할 동 주민센터(행정복지센터)를 직접 방문하여 접수하시는 편이 서류 누락 방지에 유리합니다.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">
       {/* 구조화 데이터 (JSON-LD) */}
@@ -187,6 +227,10 @@ export default async function BlogPostPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* 1. 글로벌 헤더 */}

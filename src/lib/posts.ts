@@ -120,9 +120,23 @@ function getLocalInfoPosts(): PostData[] {
     const localInfoPath = path.join(process.cwd(), "public/data/local-info.json");
     if (!fs.existsSync(localInfoPath)) return [];
     const localInfo = JSON.parse(fs.readFileSync(localInfoPath, "utf8"));
+    interface LocalRawItem {
+      id?: string;
+      slug?: string;
+      title?: string;
+      name?: string;
+      summary?: string;
+      location?: string;
+      category?: string;
+      target?: string;
+      link?: string;
+      startDate?: string;
+      endDate?: string;
+      source?: string;
+    }
     const items = [...(localInfo.benefits || []), ...(localInfo.events || [])];
-    
-    return items.map((item: any) => {
+
+    return items.map((item: LocalRawItem) => {
       const slug = item.slug || `info-${item.id}`;
       const title = item.title || item.name || "상세 생활 혜택 안내";
       const summary = item.summary || `${item.location || ""} 구민을 위한 ${item.category || "맞춤 혜택"} 안내입니다.`;
