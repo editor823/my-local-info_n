@@ -40,6 +40,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Validate no duplicate posts
+        run: npm run check:duplicates
+
       - name: Commit and push changes (schedule or manual)
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |

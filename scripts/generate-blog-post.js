@@ -67,39 +67,109 @@ async function main() {
     return;
   }
 
-  // src/content/posts 폴더 확인 및 기존 글 검사
-  if (!fs.existsSync(postsDir)) {
-    fs.mkdirSync(postsDir, { recursive: true });
+  // [검수봇 1단계] 기존 글 메타데이터(파일명, 순수 슬러그, 제목, 태그) 정밀 분석
+  const existingFiles = fs.readdirSync(postsDir).filter((file) => file.endsWith(".md"));
+  
+  // 파일명에서 날짜(YYYY-MM-DD-)를 제거한 순수 슬러그 추출 헬퍼
+  function extractBaseSlug(filename) {
+    return filename
+      .replace(/\.md$/, "")
+      .replace(/^\d{4}-\d{2}-\d{2}-?/, "")
+      .toLowerCase()
+      .trim();
   }
 
-  const existingFiles = fs.readdirSync(postsDir).filter((file) => file.endsWith(".md"));
-  const existingContents = existingFiles.map((file) => {
+  // 핵심 키워드(불용어 제외 2글자 이상 의미 단어) 추출 헬퍼
+  const STOPWORDS = new Set([
+    "발행", "판매", "지원", "사업", "안내", "신청", "핵심", "총정리", "가이드", "혜택",
+    "서울", "서울시", "서울특별시", "강북", "강북구", "도봉", "도봉구", "노원", "노원구",
+    "2026", "2025", "2024", "알림", "모집", "선발", "운영", "실시", "및", "등"
+  ]);
+
+  function extractCoreKeywords(text) {
+    if (!text) return [];
+    return text
+      .replace(/[^\uAC00-\uD7A3a-zA-Z0-9\s]/g, " ")
+      .split(/\s+/)
+      .map((w) => w.trim())
+      .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
+  }
+
+  const existingPosts = existingFiles.map((file) => {
     try {
-      return fs.readFileSync(path.join(postsDir, file), "utf-8");
+      const content = fs.readFileSync(path.join(postsDir, file), "utf-8");
+      // 제목 추출 (frontmatter title)
+      const titleMatch = content.match(/^title:\s*["']?(.*?)["']?$/m);
+      const title = titleMatch ? titleMatch[1].trim() : "";
+      return {
+        file,
+        baseSlug: extractBaseSlug(file),
+        title,
+        coreKeywords: extractCoreKeywords(title),
+        content,
+      };
     } catch {
-      return "";
+      return { file, baseSlug: extractBaseSlug(file), title: "", coreKeywords: [], content: "" };
     }
   });
 
-  // 아직 블로그 글이 작성되지 않은 항목 찾기 (역순: 최신 등록순)
+  // 중복 여부 판별 검수 함수 (Slug 일치, 핵심 키워드 중복, 본문 포함 여부 3중 검사)
+  function isDuplicate(candidate) {
+    const candidateName = candidate.name || candidate.title || "";
+    if (!candidateName) return true;
+
+    const candidateSlug = (candidate.slug || candidate.id || "").toString().toLowerCase().trim();
+    const candidateKeywords = extractCoreKeywords(candidateName);
+
+    for (const post of existingPosts) {
+      // 1. Slug가 동일한 경우
+      if (candidateSlug && (post.baseSlug === candidateSlug || post.file.includes(candidateSlug))) {
+        return { duplicate: true, reason: `동일 슬러그 매칭 (${post.file})` };
+      }
+
+      // 2. 본문에 후보 전체 이름이 이미 포함된 경우
+      if (post.content.includes(candidateName)) {
+        return { duplicate: true, reason: `본문 내 키워드 완전 포함 (${post.file})` };
+      }
+
+      // 3. 핵심 고유명사 키워드가 기존 제목과 겹치는 경우 (예: '노원사랑상품권', '강북사랑상품권')
+      if (candidateKeywords.length > 0) {
+        const matchingKeywords = candidateKeywords.filter((k) =>
+          post.title.includes(k) || post.content.includes(k)
+        );
+        // 핵심 고유명사가 2개 이상 겹치거나, 핵심 단어가 1개뿐인데 그게 정확히 일치할 때
+        if (
+          (candidateKeywords.length >= 2 && matchingKeywords.length >= 2) ||
+          (candidateKeywords.length === 1 && matchingKeywords.length === 1 && matchingKeywords[0].length >= 4)
+        ) {
+          return { duplicate: true, reason: `핵심 주제 키워드 중복: [${matchingKeywords.join(", ")}] (${post.file})` };
+        }
+      }
+    }
+
+    return { duplicate: false };
+  }
+
+  // 아직 작성되지 않은 신규 항목만 선별 (역순: 최신 등록순)
   let latestItem = null;
   for (let i = availableItems.length - 1; i >= 0; i--) {
     const candidate = availableItems[i];
     const candidateName = candidate.name || candidate.title || "";
     if (!candidateName) continue;
 
-    const alreadyWritten = existingContents.some((content) =>
-      content.includes(candidateName)
-    );
-
-    if (!alreadyWritten) {
-      latestItem = candidate;
-      break;
+    const check = isDuplicate(candidate);
+    if (check.duplicate) {
+      // 중복으로 제외된 항목 로깅
+      // console.log(`[검수봇 통과 제외] ${candidateName} -> ${check.reason}`);
+      continue;
     }
+
+    latestItem = candidate;
+    break;
   }
 
   if (!latestItem) {
-    console.log("강북·도봉·노원 지역의 새로운 작성 대상 공공서비스가 없습니다 (이미 모두 작성됨).");
+    console.log("✅ [검수봇 완료] 강북·도봉·노원 지역의 새로운 작성 대상이 없습니다 (모든 주제가 이미 고품질 글로 작성됨). 중복 생성을 안전하게 방지합니다.");
     return;
   }
 
@@ -210,6 +280,25 @@ tags: ["${districtName}", "${targetName}", "생활정보", "지원금", "복지�
       .replace(/^```\s*/i, "")
       .replace(/```\s*$/, "")
       .trim() + "\n";
+
+    // [검수봇 2단계] 저장 직전 파일명 및 핵심 슬러그 2차 중복 가드
+    const newBaseSlug = extractBaseSlug(filename);
+    const slugConflict = existingPosts.find((p) => p.baseSlug === newBaseSlug);
+    if (slugConflict) {
+      console.warn(`🛑 [검수봇 차단] 생성된 파일(${filename})의 핵심 슬러그(${newBaseSlug})가 기존 파일(${slugConflict.file})과 이미 존재합니다. 중복 생성을 강력 차단하고 작업을 안전하게 중단합니다.`);
+      return;
+    }
+
+    // 제목 중복 2차 가드
+    const newTitleMatch = finalPostContent.match(/^title:\s*["']?(.*?)["']?$/m);
+    const newTitle = newTitleMatch ? newTitleMatch[1].trim() : "";
+    if (newTitle) {
+      const titleConflict = existingPosts.find((p) => p.title && (p.title === newTitle || p.title.includes(newTitle) || newTitle.includes(p.title)));
+      if (titleConflict) {
+        console.warn(`🛑 [검수봇 차단] 생성된 제목(${newTitle})이 기존 파일(${titleConflict.file}: "${titleConflict.title}")과 중복됩니다. 저장을 차단합니다.`);
+        return;
+      }
+    }
 
     const targetFilePath = path.join(postsDir, filename);
 
