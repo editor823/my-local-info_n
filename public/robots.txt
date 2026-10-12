@@ -1,13 +1,25 @@
-User-agent: Mediapartners-Google
+User-Agent: Mediapartners-Google
 Allow: /
 
-User-agent: Google-Display-Ads-Bot
+User-Agent: Google-Display-Ads-Bot
 Allow: /
 
-User-agent: Googlebot
+User-Agent: Googlebot
 Allow: /
 
-User-agent: *
+User-Agent: Yeti
 Allow: /
 
+User-Agent: bingbot
+Allow: /
+
+User-Agent: OAI-SearchBot
+User-Agent: PerplexityBot
+User-Agent: Claude-SearchBot
+Allow: /
+
+User-Agent: *
+Allow: /
+
+Host: https://goodkey-info.com
 Sitemap: https://goodkey-info.com/sitemap.xml
