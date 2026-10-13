@@ -17,10 +17,10 @@ body {
   color: #1e293b;
 }
 
-/* 블로그 본문 가독성 강화 스타일 (글자 크기 & 여백 최적화) */
+/* Article Body Typography */
 .article-content {
-  font-size: 1.0625rem; /* 17px */
-  line-height: 1.85; /* 편안한 줄 간격 */
+  font-size: 1.0625rem;
+  line-height: 1.85;
   color: #334155;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .article-content h2 {
-  font-size: 1.625rem; /* 26px */
+  font-size: 1.625rem;
   font-weight: 800;
   color: #0f172a;
   margin-top: 2.75rem;
@@ -39,7 +39,7 @@ body {
 }
 
 .article-content h3 {
-  font-size: 1.35rem; /* 21.6px */
+  font-size: 1.35rem;
   font-weight: 800;
   color: #0f172a;
   margin-top: 2.25rem;
@@ -48,7 +48,7 @@ body {
 }
 
 .article-content h4 {
-  font-size: 1.15rem; /* 18.4px */
+  font-size: 1.15rem;
   font-weight: 700;
   color: #1e293b;
   margin-top: 1.75rem;
@@ -98,3 +98,47 @@ body {
   color: #0f172a;
 }
 
+/* Markdown Table Clean Design */
+.article-content table {
+  width: 100%;
+  margin-top: 1.75rem;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.article-content th {
+  background-color: #f0fdf4;
+  color: #065f46;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 2px solid #bbf7d0;
+  white-space: nowrap;
+}
+
+.article-content td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: top;
+}
+
+.article-content tr:last-child td {
+  border-bottom: none;
+}
+
+.article-content tr:nth-child(even) td {
+  background-color: #f8fafc;
+}
+
+.article-content td strong {
+  color: #0f172a;
+  font-weight: 700;
+}

@@ -234,8 +234,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         {/* 4열 와이드 그리드 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topHighlights.map((item, idx) => {
-            const postSlug = item.slug || `info-${item.id}`;
-            const detailHref = `/blog/${postSlug}/`;
+            const hasPost = Boolean(item.slug);
+            const detailHref = hasPost ? `/blog/${item.slug}/` : (item.link || "https://www.gov.kr");
             const districtInfo = getDistrictBadge(item.location);
             const rankBadges = [
               "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white",
@@ -264,7 +264,13 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
                   {/* 제목 및 내용 */}
                   <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
-                    <Link href={detailHref}>{item.title}</Link>
+                    {hasPost ? (
+                      <Link href={detailHref}>{item.title}</Link>
+                    ) : (
+                      <a href={detailHref} target="_blank" rel="noopener noreferrer">
+                        {item.title}
+                      </a>
+                    )}
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
                     {item.summary}
@@ -280,12 +286,23 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                     </div>
                   </div>
 
-                  <Link
-                    href={detailHref}
-                    className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                  >
-                    상세 혜택 분석 보기 →
-                  </Link>
+                  {hasPost ? (
+                    <Link
+                      href={detailHref}
+                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
+                    >
+                      상세 혜택 분석 보기 →
+                    </Link>
+                  ) : (
+                    <a
+                      href={detailHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
+                    >
+                      공식 신청/안내 바로가기 ↗
+                    </a>
+                  )}
                 </div>
               </div>
             );

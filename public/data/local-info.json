@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-10-13",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -69,6 +69,58 @@
   ],
   "benefits": [
     {
+      "id": "nowon-longevity-grant-2026",
+      "name": "노원구 어르신 장수축하금 지원",
+      "title": "노원구 어르신 장수축하금 지원 (최대 100만 원)",
+      "category": "혜택",
+      "startDate": "2026-01-01",
+      "endDate": "상시",
+      "location": "서울특별시 노원구",
+      "target": "노원구 관내 1년 이상 주민등록을 두고 계속 거주 중인 90세, 95세, 100세 이상 어르신",
+      "summary": "건강한 노후 생활을 응원하며 90세 30만원, 95세 50만원, 100세 이상 100만원의 장수축하금 지급",
+      "link": "https://www.gov.kr/",
+      "slug": "2026-10-11-nowon-longevity-grant"
+    },
+    {
+      "id": "dobong-childbirth-support-2026",
+      "name": "도봉구 출산지원금 & 첫만남이용권",
+      "title": "도봉구 출산지원금 및 산후조리비 지원",
+      "category": "혜택",
+      "startDate": "2026-01-01",
+      "endDate": "상시",
+      "location": "서울특별시 도봉구",
+      "target": "도봉구에 주민등록을 둔 신생아 출생 가정 및 산모",
+      "summary": "첫째 50만원, 둘째 100만원, 셋째 200만원 출산지원금 및 서울형 산후조리경비 100만원 지원",
+      "link": "https://www.gov.kr/",
+      "slug": "dobong-childbirth-support-allowance"
+    },
+    {
+      "id": "nowon-youth-work-2026",
+      "name": "노원구 청년일경험 지원사업",
+      "title": "노원구 청년일경험 지원사업 (실무 인턴십 & 수당)",
+      "category": "혜택",
+      "startDate": "2026-01-01",
+      "endDate": "상시",
+      "location": "서울특별시 노원구",
+      "target": "노원구 거주 만 19세~39세 미취업 청년 및 취업준비생",
+      "summary": "직무 교육부터 공공·민간기업 인턴십 실전 참여 기회 제공 및 실무 활동수당 전액 지원",
+      "link": "https://www.gov.kr/",
+      "slug": "2026-10-09-nowon-youth-work-experience"
+    },
+    {
+      "id": "gangbuk-filial-piety-2026",
+      "name": "강북구 100세 어르신 효도지원금",
+      "title": "강북구 100세 어르신 효도지원금 지원",
+      "category": "혜택",
+      "startDate": "2026-01-01",
+      "endDate": "상시",
+      "location": "서울특별시 강북구",
+      "target": "강북구 관내 1년 이상 주민등록을 두고 계속 거주하는 100세 이상 어르신",
+      "summary": "경로효친 사상을 기리며 매년 100세 도달 및 이상 어르신께 효도지원금과 돌봄 연계 지원",
+      "link": "https://www.gov.kr/",
+      "slug": "gangbuk-filial-piety-allowance"
+    },
+    {
       "id": "308000000102",
       "name": "국가보훈대상자 사망위로금 지원",
       "title": "국가보훈대상자 사망위로금 지원",
@@ -104,7 +156,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 장애인활동지원 종합조사로 자격을 취득하고 아래 조건에 부합하는 자\r\n - 성인발달장애인 : 종합점수 X1중 인지행동특성 70점이상인자(제외 : 시비추가지원대상)\r\n - 성인 최중증장애인 : 종합점수 X1 합계 360점이상 독거 또는 취약가구",
       "summary": "장애인을 대상으로 활동지원 서비스 추가 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000109"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000109",
+      "slug": "2026-09-24-nowon-disability-support"
     },
     {
       "id": "308000000110",
@@ -116,7 +169,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 관내 18세 이하 아동 및 청소년",
       "summary": "관내 18세 이하 아동 및 청소년을 대상으로 제1,2대구치에 대한 치아홈메우기  시술 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000110"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000110",
+      "slug": "gangbuk-maternal-health-support"
     },
     {
       "id": "308000000112",
@@ -156,19 +210,6 @@
       "summary": "강북구 거주 저소득 독거노인, 장애정도가 심한 장애인에 맞춤형 세탁서비스 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000114",
       "slug": "gangbuk-custom-laundry-service"
-    },
-    {
-      "id": "308000000116",
-      "name": "효도지원금 지원",
-      "title": "효도지원금 지원",
-      "category": "혜택",
-      "startDate": "2026-01-01",
-      "endDate": "상시",
-      "location": "서울특별시 강북구",
-      "target": "○ 매년 1월 1일 현재 서울특별시 강북구에 1년 이상 주민등록을 두고 거주하는 효행가정\r\n   - 효행가정 : 효행대상자와 그 직계비속이 서울특별시 강북구에서 동일한 세대를 이루고 생계를 같이하는 가정\r\n   - 효행대상자 : 효도지원금을 지급하는 날이 속하는 해 12월 31일 기준으로 만 100세가 되는 사람",
-      "summary": "효행가정에 효도지원금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116",
-      "slug": "gangbuk-filial-piety-allowance"
     },
     {
       "id": "308000000118",
@@ -438,19 +479,6 @@
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000137"
     },
     {
-      "id": "309000000138",
-      "name": "산모·신생아 건강관리 본인부담금 지원",
-      "title": "산모·신생아 건강관리 본인부담금 지원",
-      "category": "혜택",
-      "startDate": "2026-01-01",
-      "endDate": "상시",
-      "location": "서울특별시 도봉구",
-      "target": "○ 도봉구 모든 출산 가정(신청일 기준 도봉구에 6개월 이상 주민등록된 산모)",
-      "summary": "출산가정에 산모신생아 건강관리 서비스 본인부담금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000138",
-      "slug": "dobong-childbirth-support-allowance"
-    },
-    {
       "id": "309000000139",
       "name": "초등학생 척추측만증 및 거북목 검진지원",
       "title": "초등학생 척추측만증 및 거북목 검진지원",
@@ -536,19 +564,6 @@
       "slug": "nowon-pay-local-currency"
     },
     {
-      "id": "310000000103",
-      "name": "장수축하금 지원",
-      "title": "장수축하금 지원",
-      "category": "혜택",
-      "startDate": "2026-01-01",
-      "endDate": "상시",
-      "location": "서울특별시 노원구",
-      "target": "○ 관내 1년이상 거주한 만100세 및 만90세 어르신",
-      "summary": "만 90세 및 만 100세 어르신에게 장수축하금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000103",
-      "slug": "2026-10-11-nowon-longevity-grant"
-    },
-    {
       "id": "310000000105",
       "name": "미니태양광 설치 지원",
       "title": "미니태양광 설치 지원",
@@ -560,19 +575,6 @@
       "summary": " 베란다형 태양광 설치 시 설치비 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000105",
       "slug": "2026-10-10-nowon-mini-solar"
-    },
-    {
-      "id": "310000000107",
-      "name": "청년일경험 지원",
-      "title": "청년일경험 지원",
-      "category": "혜택",
-      "startDate": "2026-01-01",
-      "endDate": "상시",
-      "location": "서울특별시 노원구",
-      "target": "○ 노원구 거주 만 18세~39세 미취업 청년 40명\r\n○ 선정기준\r\n   - 미취업청년, 취업취약청년, 고립은둔 청년, 1인가구 청년 중 희망자",
-      "summary": "미취업 청년에게 일경험 제공 및 교육비, 상해보험 가입 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000107",
-      "slug": "2026-10-09-nowon-youth-work-experience"
     },
     {
       "id": "310000000109",
