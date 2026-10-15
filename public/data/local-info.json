@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-15",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -769,6 +769,18 @@
       "target": "매년 1월 1일 현재 서울특별시 강북구에 1년 이상 주민등록을 두고 거주하는 효행가정",
       "summary": "효행가정에 효도지원금 지급",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116"
+    },
+    {
+      "id": "309000000138",
+      "name": "산모·신생아 건강관리 본인부담금 지원",
+      "title": "산모·신생아 건강관리 본인부담금 지원",
+      "category": "혜택",
+      "startDate": "2024-05-20",
+      "endDate": "상시",
+      "location": "서울특별시 도봉구",
+      "target": "도봉구 모든 출산 가정(신청일 기준 도봉구에 6개월 이상 주민등록된 산모)",
+      "summary": "출산가정에 산모신생아 건강관리 서비스 본인부담금 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000138"
     }
   ]
 }
