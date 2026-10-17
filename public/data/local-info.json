@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-16",
+  "lastUpdated": "2026-10-17",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -793,6 +793,18 @@
       "target": "관내 1년이상 거주한 만100세 및 만90세 어르신",
       "summary": "만 90세 및 만 100세 어르신에게 장수축하금 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000103"
+    },
+    {
+      "id": "310000000107",
+      "name": "청년일경험 지원",
+      "title": "청년일경험 지원",
+      "category": "혜택",
+      "startDate": "2024-05-24",
+      "endDate": "상시",
+      "location": "서울특별시 노원구",
+      "target": "노원구 거주 만 18세~39세 미취업 청년 40명",
+      "summary": "미취업 청년에게 일경험 제공 및 교육비, 상해보험 가입 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000107"
     }
   ]
 }
