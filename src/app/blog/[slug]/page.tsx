@@ -248,8 +248,8 @@ export default async function BlogPostPage({
       </div>
 
       {/* 3. 메인 상세 본문 */}
-      <main className="max-w-4xl w-full mx-auto px-4 py-10 flex-1 space-y-10">
-        <article className="bg-white rounded-3xl p-6 sm:p-10 border border-emerald-100/80 shadow-sm space-y-6">
+      <main className="max-w-4xl w-full mx-auto px-3 sm:px-4 py-6 sm:py-10 flex-1 space-y-10 min-w-0 overflow-hidden">
+        <article className="bg-white rounded-3xl p-4 sm:p-10 border border-emerald-100/80 shadow-sm space-y-6 max-w-full overflow-hidden break-words">
           {/* 머리글 정보 */}
           <div className="space-y-3 pb-6 border-b border-slate-100">
             <div className="flex items-center gap-3 text-xs text-slate-400 font-medium">
@@ -314,6 +314,29 @@ export default async function BlogPostPage({
 
           {/* [하이브리드 중단 Middle] 마크다운 렌더링 본문 (중간에 2번째 사진 자동 삽입) */}
           {(() => {
+            const markdownComponents = {
+              pre: ({ children, ...props }: any) => (
+                <pre
+                  className="max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-xs sm:text-sm text-slate-800 my-4 shadow-inner"
+                  {...props}
+                >
+                  {children}
+                </pre>
+              ),
+              table: ({ children, ...props }: any) => (
+                <div className="w-full max-w-full overflow-x-auto my-6 rounded-xl border border-slate-200/80 shadow-sm">
+                  <table className="min-w-full" {...props}>
+                    {children}
+                  </table>
+                </div>
+              ),
+              p: ({ children, ...props }: any) => (
+                <p className="break-words" {...props}>
+                  {children}
+                </p>
+              ),
+            };
+
             const sections = post.content.split("\n### ");
             if (sections.length > 2) {
               const midIndex = Math.floor(sections.length / 2);
@@ -322,8 +345,8 @@ export default async function BlogPostPage({
 
               return (
                 <>
-                  <div className="article-content max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <div className="article-content max-w-none overflow-hidden break-words">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {part1}
                     </ReactMarkdown>
                   </div>
@@ -354,8 +377,8 @@ export default async function BlogPostPage({
                     </div>
                   </figure>
 
-                  <div className="article-content max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <div className="article-content max-w-none overflow-hidden break-words">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {part2}
                     </ReactMarkdown>
                   </div>
@@ -364,8 +387,8 @@ export default async function BlogPostPage({
             }
 
             return (
-              <div className="article-content max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <div className="article-content max-w-none overflow-hidden break-words">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                   {post.content}
                 </ReactMarkdown>
               </div>
