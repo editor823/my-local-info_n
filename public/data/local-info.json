@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-21",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -805,6 +805,18 @@
       "target": "노원구 거주 만 18세~39세 미취업 청년 40명",
       "summary": "미취업 청년에게 일경험 제공 및 교육비, 상해보험 가입 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000107"
+    },
+    {
+      "id": "306000000101",
+      "name": "중랑구 보훈예우수당",
+      "title": "중랑구 보훈예우수당",
+      "category": "혜택",
+      "startDate": "2024-05-22",
+      "endDate": "상시",
+      "location": "서울특별시 중랑구",
+      "target": "국가보훈대상자 본인 또는 우선순위 유족",
+      "summary": "국가보훈대상자 본인 및 우선순위 유족을 위해 중랑구 보훈예우수당 지급",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000101"
     }
   ]
 }

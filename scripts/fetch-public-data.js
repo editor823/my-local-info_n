@@ -42,7 +42,7 @@ async function main() {
 
   // [1단계] 공공데이터포털 Gov24 API에서 데이터 가져오기 (강북, 도봉, 노원 탐색)
   const endpoint = "https://api.odcloud.kr/api/gov24/v3/serviceList";
-  const targetDistricts = ["강북구", "도봉구", "노원구"];
+  const targetDistricts = ["강북구", "도봉구", "노원구", "성북구", "중랑구"];
 
   // 기존 등록된 서비스명 목록
   const existingNames = new Set([
@@ -89,14 +89,14 @@ async function main() {
   }
 
   if (!candidateItem) {
-    console.log("강북구, 도봉구, 노원구의 새로운 공공서비스 데이터가 없습니다.");
+    console.log("강북·도봉·노원·성북·중랑 지역의 새로운 공공서비스 데이터가 없습니다.");
     return;
   }
 
-  console.log("새로 발견된 강북·도봉·노원 공공서비스:", candidateItem["서비스명"]);
+  console.log("새로 발견된 강북·도봉·노원·성북·중랑 공공서비스:", candidateItem["서비스명"]);
 
   // [2단계] Gemini AI로 새 항목 가공 (gemini-3.6-flash 호환)
-  const prompt = `아래 서울 강북구/도봉구/노원구 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
+  const prompt = `아래 서울 강북구/도봉구/노원구/성북구/중랑구 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
 {id: 숫자, name: 서비스명, category: '행사' 또는 '혜택', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 소관기관명, target: 지원대상, summary: 한줄요약, link: 상세URL}
 category는 내용을 보고 행사/축제면 '행사', 지원금/수당/서비스면 '혜택'으로 판단해.
 startDate가 없으면 오늘 날짜, endDate가 없으면 '상시'로 넣어.

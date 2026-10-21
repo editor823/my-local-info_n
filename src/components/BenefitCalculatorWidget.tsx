@@ -173,6 +173,34 @@ export default function BenefitCalculatorWidget({
           </p>
         </div>
       )}
+
+      {/* [운영자 가이드 및 투명성 고지] 도구의 원리, 한계점, 자주 묻는 질문 */}
+      <div className="mt-5 pt-4 border-t border-emerald-700/50 space-y-3 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-emerald-100">
+          <div className="bg-emerald-950/60 p-3.5 rounded-2xl border border-emerald-800/60 space-y-1.5">
+            <h4 className="font-bold text-emerald-300 flex items-center gap-1.5 text-xs">
+              <span>⚙️</span> 시뮬레이터 산정 원리
+            </h4>
+            <p className="text-[11px] text-emerald-200/80 leading-relaxed">
+              2026년도 대한민국 보건복지부 고시 기준 중위소득 공식 데이터(1인~4인 가구)를 기반으로 작동합니다. 사용자가 선택한 가구원 수와 거주 자치구 조례의 수급 기준선을 실시간으로 비교 대조합니다.
+            </p>
+          </div>
+
+          <div className="bg-emerald-950/60 p-3.5 rounded-2xl border border-emerald-800/60 space-y-1.5">
+            <h4 className="font-bold text-amber-300 flex items-center gap-1.5 text-xs">
+              <span>⚠️</span> 이 도구가 하지 못하는 한계점
+            </h4>
+            <p className="text-[11px] text-emerald-200/80 leading-relaxed">
+              행복e음(사회보장정보시스템)의 금융재산, 부동산 공시지가, 자동차 가액, 부채 차감 등 정밀 소득인정액 조사는 반영되지 않습니다. 따라서 모의 참고용이며 법적 확정 효력은 없습니다.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-3 bg-emerald-900/40 rounded-xl border border-emerald-800/40 text-[11px] text-emerald-300 flex items-center justify-between flex-wrap gap-2">
+          <span>✍️ <strong>에디터 노트:</strong> 115만 동북권 구민이 복잡한 고시문 대신 1분 만에 기준을 파악할 수 있도록 지속 업데이트 중입니다.</span>
+          <span className="text-emerald-400 font-medium">데이터 기준: 2026년 최신 고시</span>
+        </div>
+      </div>
     </div>
   );
 }
