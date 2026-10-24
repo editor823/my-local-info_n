@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-23",
+  "lastUpdated": "2026-10-24",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -841,6 +841,18 @@
       "target": "지역 소상공인, 지역 주민 등",
       "summary": "지역 소상공인 및 주민 등을 위한 지역사랑상품권 혜택 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000107"
+    },
+    {
+      "id": "306000000109",
+      "name": "고등학생 결핵이동검진 지원",
+      "title": "고등학생 결핵이동검진 지원",
+      "category": "혜택",
+      "startDate": "2026-03-30",
+      "endDate": "상시",
+      "location": "서울특별시 중랑구",
+      "target": "관내 고등학교 2학년 학생",
+      "summary": "고등학교 2학년 학생을 대상으로 결핵이동검진 비용 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000109"
     }
   ]
 }
