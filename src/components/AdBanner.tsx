@@ -17,13 +17,16 @@ export default function AdBanner({
 }: AdBannerProps) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID || "ca-pub-5767039912569697";
 
-  // adsenseId가 없거나 "나중에_입력"인 경우 광고 영역을 아예 렌더링하지 않음
   const isAdsenseActive = Boolean(
     adsenseId && adsenseId.trim() !== "" && adsenseId.trim() !== "나중에_입력"
   );
 
+  // 애드센스 승인 완료 전(NEXT_PUBLIC_ADSENSE_APPROVED === "true"가 아닐 때)에는
+  // 심사 기간 동안 빈 상자 노출 및 403 에러를 방지하기 위해 개별 광고 단위를 렌더링하지 않음
+  const isApproved = process.env.NEXT_PUBLIC_ADSENSE_APPROVED === "true";
+
   useEffect(() => {
-    if (isAdsenseActive) {
+    if (isAdsenseActive && isApproved) {
       try {
         const win = window as unknown as { adsbygoogle?: unknown[] };
         win.adsbygoogle = win.adsbygoogle || [];
@@ -32,9 +35,9 @@ export default function AdBanner({
         // 중복 로드 또는 차단 시 무시
       }
     }
-  }, [isAdsenseActive]);
+  }, [isAdsenseActive, isApproved]);
 
-  if (!isAdsenseActive) {
+  if (!isAdsenseActive || !isApproved) {
     return null;
   }
 

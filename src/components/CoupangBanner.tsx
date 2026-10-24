@@ -5,9 +5,17 @@ interface CoupangBannerProps {
 }
 
 export default function CoupangBanner({ className = "" }: CoupangBannerProps) {
+  // [애드센스 심사 통과용 안전 장치]
+  // 구글 '가치가 별로 없는 콘텐츠(제휴 마케팅 상업 사이트)' 오판 방지를 위해
+  // 심사 기간 동안은 외부 제휴 마케팅 배너를 원천 차단합니다. (승인 후 true로 변경 가능)
+  const IS_COUPANG_ACTIVE = false;
+  if (!IS_COUPANG_ACTIVE) {
+    return null;
+  }
+
   const partnerId = process.env.NEXT_PUBLIC_COUPANG_PARTNER_ID;
 
-  // partnerId가 없거나 "off", "none", "나중에_입력" 또는 빈 문자열이면 렌더링하지 않음 (애드센스 심사 기간 중 과도한 외부 광고 방지)
+  // partnerId가 없거나 "off", "none", "나중에_입력" 또는 빈 문자열이면 렌더링하지 않음
   if (!partnerId || partnerId.trim() === "" || partnerId.trim() === "나중에_입력" || partnerId === "off" || partnerId === "none") {
     return null;
   }
