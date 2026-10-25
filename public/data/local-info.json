@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-24",
+  "lastUpdated": "2026-10-25",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -853,6 +853,18 @@
       "target": "관내 고등학교 2학년 학생",
       "summary": "고등학교 2학년 학생을 대상으로 결핵이동검진 비용 지원",
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000109"
+    },
+    {
+      "id": "306000000111",
+      "name": "국가보훈대상자 사망위로금(중랑구)",
+      "title": "국가보훈대상자 사망위로금(중랑구)",
+      "category": "혜택",
+      "startDate": "2026-03-31",
+      "endDate": "상시",
+      "location": "서울특별시 중랑구",
+      "target": "국가보훈대상자 본인 및 우선순위 유족",
+      "summary": "국가보훈대상자 본인 및 우선순위 유족 사망 시 사망위로금 40만원 지급",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000111"
     }
   ]
 }
