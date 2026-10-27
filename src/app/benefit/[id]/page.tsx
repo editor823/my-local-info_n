@@ -11,6 +11,7 @@ import BenefitCalculatorWidget from "@/components/BenefitCalculatorWidget";
 import PostFaqSection from "@/components/PostFaqSection";
 import ArticleTocAndShare from "@/components/ArticleTocAndShare";
 import InteractiveChecklist from "@/components/InteractiveChecklist";
+import AuthorBio from "@/components/AuthorBio";
 import { getPostPexelsImages } from "@/lib/pexels";
 import {
   BenefitItem,
@@ -530,6 +531,11 @@ export default async function BenefitDetailPage({ params }: PageProps) {
           <PostFaqSection
             postTitle={mainTitle}
             category={benefit.category || "혜택"}
+          />
+
+          {/* [E-E-A-T & 신뢰도 보강] 현장 팩트체크 전담 에디터 프로필 */}
+          <AuthorBio
+            district={district}
           />
 
           {/* 광고 배너 영역 */}

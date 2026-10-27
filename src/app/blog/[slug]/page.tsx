@@ -8,6 +8,7 @@ import AdBanner from "@/components/AdBanner";
 import CoupangBanner from "@/components/CoupangBanner";
 import BenefitCalculatorWidget from "@/components/BenefitCalculatorWidget";
 import PostFaqSection from "@/components/PostFaqSection";
+import AuthorBio from "@/components/AuthorBio";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { getPostPexelsImages } from "@/lib/pexels";
 import localInfoData from "../../../../public/data/local-info.json";
@@ -140,9 +141,10 @@ export default async function BlogPostPage({
       "@id": `${siteUrl}/blog/${slug}/`,
     },
     author: {
-      "@type": "Organization",
-      name: "우리 동네 이야기",
-      url: siteUrl,
+      "@type": "Person",
+      name: "김에디터",
+      jobTitle: "로컬 복지 큐레이터",
+      url: `${siteUrl}/about/`,
     },
     publisher: {
       "@type": "Organization",
@@ -441,6 +443,12 @@ export default async function BlogPostPage({
           <PostFaqSection
             postTitle={post.title}
             category={post.category}
+          />
+
+          {/* [E-E-A-T & 신뢰도 보강] 현장 팩트체크 전담 에디터 프로필 */}
+          <AuthorBio
+            district={post.tags?.find((t) => t.includes("구")) || "강북·도봉·노원"}
+            publishedDate={post.date}
           />
 
           {/* 본문 하단 애드센스 광고 영역 */}
