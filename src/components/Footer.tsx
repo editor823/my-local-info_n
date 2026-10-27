@@ -66,9 +66,13 @@ export default function Footer() {
             </p>
             <p>
               공식 문의 및 정정 요청:{" "}
-              <a href="mailto:tkdgus8231@gmail.com" className="text-emerald-700 font-bold hover:underline">
-                tkdgus8231@gmail.com
-              </a>{" "}
+              <a
+                href="mailto:tkdgus8231@gmail.com"
+                className="text-emerald-700 font-bold hover:underline"
+                dangerouslySetInnerHTML={{
+                  __html: "<!--email_off-->tkdgus8231@gmail.com<!--/email_off-->",
+                }}
+              />{" "}
               (에디토리얼팀)
             </p>
           </div>

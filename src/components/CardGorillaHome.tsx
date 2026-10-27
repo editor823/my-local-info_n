@@ -200,7 +200,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                   onClick={() => setActiveDistrict(dist.id as "all" | "강북구" | "도봉구" | "노원구")}
                   className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
                     isSelected
-                      ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/30 scale-105 ring-2 ring-emerald-500 ring-offset-2"
+                      ? "bg-emerald-700 text-white shadow-md shadow-emerald-900/30 scale-105 ring-2 ring-emerald-600 ring-offset-2"
                       : "bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700"
                   }`}
                 >
