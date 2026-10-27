@@ -28,6 +28,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
   const [activeDistrict, setActiveDistrict] = useState<"all" | "강북구" | "도봉구" | "노원구">("all");
   const [activeTab, setActiveTab] = useState<"all" | "benefit" | "event">("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [visibleCount, setVisibleCount] = useState(8);
 
   const allItems = [
     ...benefits.map((b) => ({ ...b, type: "benefit" as const })),
@@ -70,8 +71,11 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
     return combined.includes(term);
   });
 
+  const displayedItems = filteredItems.slice(0, visibleCount);
+
   const handleSearchSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    setVisibleCount(8);
     if (typeof window !== "undefined") {
       const targetElement = document.getElementById("content-list");
       if (targetElement) {
@@ -81,6 +85,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
   };
 
   const handleTagClick = (tag: string) => {
+    setVisibleCount(8);
     if (tag === "강북구" || tag === "도봉구" || tag === "노원구") {
       setActiveDistrict(tag);
       setSearchTerm("");
@@ -99,15 +104,10 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
   return (
     <div className="space-y-12 pb-20">
       {/* 1. 히어로 섹션: 포레스트 그린 & 틸 그라디언트 */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#062c1e] via-[#0d3d2a] to-[#124d38] text-white py-14 sm:py-20 px-4 sm:px-6 shadow-xl">
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
-          <div className="absolute -top-24 left-1/4 w-96 h-96 bg-emerald-400 rounded-full blur-[140px]"></div>
-          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-teal-300 rounded-full blur-[140px]"></div>
-        </div>
-
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#062c1e] via-[#0d3d2a] to-[#0a3322] text-white py-14 sm:py-20 px-4 sm:px-6 shadow-xl">
         <div className="relative max-w-4xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold px-4 py-1.5 rounded-full shadow-inner backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <div className="inline-flex items-center gap-2 bg-[#042418] border border-emerald-500/40 text-emerald-200 text-xs font-bold px-4 py-1.5 rounded-full shadow-inner">
+            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>2026 강북 · 도봉 · 노원 구민을 위한 실시간 생활 혜택 차트</span>
           </div>
 
@@ -118,7 +118,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
             </span>
           </h1>
 
-          <p className="text-emerald-100/80 text-sm sm:text-base max-w-xl mx-auto font-normal leading-relaxed">
+          <p className="text-emerald-100 text-sm sm:text-base max-w-xl mx-auto font-normal leading-relaxed">
             강북구·도봉구·노원구 주민을 위한 맞춤형 장학금, 출산지원금, 안심보험부터 지역 축제까지! <br className="hidden sm:inline" />
             열린 공공데이터를 기반으로 실시간 알찬 혜택을 큐레이션해 드립니다.
           </p>
@@ -129,40 +129,40 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
               onSubmit={handleSearchSubmit}
               className="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 sm:p-2.5 border border-emerald-100"
             >
-              <span className="text-xl sm:text-2xl px-3 text-emerald-600">🔍</span>
+              <span className="text-xl sm:text-2xl px-3 text-emerald-700">🔍</span>
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="관심 혜택, 행사, 대상(강북구, 도봉구, 노원구, 장학금, 안심보험) 검색"
-                className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-medium focus:outline-none"
+                className="w-full bg-transparent text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium focus:outline-none"
               />
               {searchTerm && (
                 <button
                   type="button"
                   onClick={() => setSearchTerm("")}
-                  className="text-xs text-slate-400 hover:text-slate-600 px-2 font-bold cursor-pointer"
+                  className="text-xs text-slate-500 hover:text-slate-700 px-2 font-bold cursor-pointer"
                 >
                   지우기
                 </button>
               )}
               <button
                 type="submit"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-colors shrink-0 shadow-md shadow-emerald-700/20 cursor-pointer"
+                className="bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm px-6 py-3 rounded-xl transition-colors shrink-0 shadow-md shadow-emerald-900/30 cursor-pointer"
               >
                 검색
               </button>
             </form>
 
             {/* 빠른 추천 태그 버튼 */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs text-emerald-200/90">
-              <span className="font-bold text-emerald-300">지역 / 혜택 키워드:</span>
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs">
+              <span className="font-extrabold text-white">지역 / 혜택 키워드:</span>
               {["강북구", "도봉구", "노원구", "장학금", "출산지원금", "지역사랑상품권", "안심보험"].map((tag) => (
                 <button
                   key={tag}
                   type="button"
                   onClick={() => handleTagClick(tag)}
-                  className="bg-emerald-950/60 hover:bg-emerald-800/70 hover:border-emerald-400 text-emerald-100 px-3 py-1 rounded-lg border border-emerald-800/70 transition-all cursor-pointer"
+                  className="bg-[#042418] hover:bg-emerald-800 text-white font-bold px-3 py-1.5 rounded-lg border border-emerald-500/50 transition-all cursor-pointer shadow-xs"
                 >
                   #{tag}
                 </button>
@@ -217,16 +217,16 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
       <section id="rankings" className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 border-b border-emerald-100 pb-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-black text-emerald-600 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-black text-emerald-700 uppercase tracking-wider">
               <span>FEATURED HIGHLIGHTS</span>
-              <span className="w-1 h-1 rounded-full bg-emerald-300"></span>
-              <span className="text-slate-400 font-normal">기준: {lastUpdated}</span>
+              <span className="w-1 h-1 rounded-full bg-emerald-400"></span>
+              <span className="text-slate-600 font-medium">기준: {lastUpdated}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1 flex items-center gap-2">
               🌿 {activeDistrict === "all" ? "강북·도봉·노원" : activeDistrict} 구민 추천 TOP 혜택
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-600">
             {activeDistrict === "all" ? "3개 자치구" : activeDistrict} 주민들이 가장 많이 조회하고 혜택을 받는 핵심 복지 지원입니다.
           </p>
         </div>
@@ -234,8 +234,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         {/* 4열 와이드 그리드 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topHighlights.map((item, idx) => {
-            const hasPost = Boolean(item.slug);
-            const detailHref = hasPost ? `/blog/${item.slug}/` : (item.link || "https://www.gov.kr");
+            const detailHref = `/benefit/${item.id}/`;
             const districtInfo = getDistrictBadge(item.location);
             const rankBadges = [
               "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white",
@@ -263,16 +262,10 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                   </div>
 
                   {/* 제목 및 내용 */}
-                  <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
-                    {hasPost ? (
-                      <Link href={detailHref}>{item.title}</Link>
-                    ) : (
-                      <a href={detailHref} target="_blank" rel="noopener noreferrer">
-                        {item.title}
-                      </a>
-                    )}
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 leading-snug mb-2">
+                    <Link href={detailHref}>{item.title}</Link>
                   </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
                     {item.summary}
                   </p>
                 </div>
@@ -280,29 +273,18 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                 {/* 하단 세부 정보 및 버튼 */}
                 <div className="space-y-3 pt-3 border-t border-slate-100">
                   <div className="bg-slate-50 p-2.5 rounded-xl text-[11px] space-y-1">
-                    <div className="flex justify-between text-slate-500">
+                    <div className="flex justify-between text-slate-600">
                       <span>접수/소관</span>
-                      <span className="font-semibold text-slate-700 truncate max-w-[120px]">{item.location}</span>
+                      <span className="font-semibold text-slate-800 truncate max-w-[120px]">{item.location}</span>
                     </div>
                   </div>
 
-                  {hasPost ? (
-                    <Link
-                      href={detailHref}
-                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                    >
-                      상세 혜택 분석 보기 →
-                    </Link>
-                  ) : (
-                    <a
-                      href={detailHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all"
-                    >
-                      공식 신청/안내 바로가기 ↗
-                    </a>
-                  )}
+                  <Link
+                    href={detailHref}
+                    className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs rounded-xl transition-all shadow-2xs"
+                  >
+                    상세 혜택 분석 보기 →
+                  </Link>
                 </div>
               </div>
             );
@@ -326,7 +308,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                 총 {filteredItems.length}건
               </span>
             </h2>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-slate-600 mt-1">
               {term ? `'${searchTerm}' 키워드가 포함된 추천 혜택 및 행사 목록입니다.` : `선택한 ${activeDistrict === "all" ? "3개 자치구" : activeDistrict}의 복지 지원 및 축제·행사 데이터입니다.`}
             </p>
           </div>
@@ -337,8 +319,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
               onClick={() => setActiveTab("all")}
               className={`px-4 py-2 rounded-lg transition-all cursor-pointer ${
                 activeTab === "all"
-                  ? "bg-white text-emerald-700 shadow-sm"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "bg-white text-emerald-800 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               전체 ({filteredItems.length})
@@ -348,8 +330,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
               onClick={() => setActiveTab("benefit")}
               className={`px-4 py-2 rounded-lg transition-all cursor-pointer ${
                 activeTab === "benefit"
-                  ? "bg-white text-emerald-700 shadow-sm"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "bg-white text-emerald-800 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               복지 & 혜택
@@ -359,8 +341,8 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
               onClick={() => setActiveTab("event")}
               className={`px-4 py-2 rounded-lg transition-all cursor-pointer ${
                 activeTab === "event"
-                  ? "bg-white text-teal-700 shadow-sm"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "bg-white text-teal-800 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               축제 & 행사
@@ -370,10 +352,10 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
         {/* 2열 카드 그리드 */}
         {filteredItems.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-emerald-100 p-12 text-center text-slate-400 space-y-3 shadow-sm">
+          <div className="bg-white rounded-2xl border border-emerald-100 p-12 text-center text-slate-600 space-y-3 shadow-sm">
             <span className="text-4xl">🔎</span>
-            <p className="font-bold text-slate-700">선택하신 조건에 해당하는 정보가 없습니다.</p>
-            <p className="text-xs">다른 검색어나 지역 필터를 변경해 보세요.</p>
+            <p className="font-bold text-slate-800">선택하신 조건에 해당하는 정보가 없습니다.</p>
+            <p className="text-xs text-slate-600">다른 검색어나 지역 필터를 변경해 보세요.</p>
             <button
               type="button"
               onClick={() => {
@@ -381,96 +363,93 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                 setActiveDistrict("all");
                 setActiveTab("all");
               }}
-              className="inline-block mt-2 bg-emerald-50 text-emerald-600 font-bold text-xs px-4 py-2 rounded-xl hover:bg-emerald-100 transition-colors cursor-pointer"
+              className="inline-block mt-2 bg-emerald-50 text-emerald-800 font-bold text-xs px-4 py-2 rounded-xl hover:bg-emerald-100 transition-colors cursor-pointer"
             >
               전체 조건 초기화
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-            {filteredItems.map((item, index) => {
-              const hasPost = Boolean(item.slug);
-              const detailHref = hasPost ? `/blog/${item.slug}/` : (item.link || "https://www.gov.kr");
-              const isEvent = item.type === "event";
-              const districtInfo = getDistrictBadge(item.location);
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+              {displayedItems.map((item, index) => {
+                const detailHref = `/benefit/${item.id}/`;
+                const isEvent = item.type === "event";
+                const districtInfo = getDistrictBadge(item.location);
 
-              return (
-                <article
-                  key={`${item.id}-${index}`}
-                  className="bg-white rounded-2xl p-5 sm:p-6 border border-emerald-100/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group"
-                >
-                  <div className="space-y-3">
-                    {/* 상단 뱃지 라인 */}
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${districtInfo.color}`}>
-                          {districtInfo.name}
-                        </span>
-                        <span
-                          className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md ${
-                            isEvent
-                              ? "bg-teal-50 text-teal-700 border border-teal-200"
-                              : "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                          }`}
-                        >
-                          {item.category}
+                return (
+                  <article
+                    key={`${item.id}-${index}`}
+                    className="bg-white rounded-2xl p-5 sm:p-6 border border-emerald-100/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group"
+                  >
+                    <div className="space-y-3">
+                      {/* 상단 뱃지 라인 */}
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${districtInfo.color}`}>
+                            {districtInfo.name}
+                          </span>
+                          <span
+                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md ${
+                              isEvent
+                                ? "bg-teal-50 text-teal-800 border border-teal-200"
+                                : "bg-emerald-50 text-emerald-800 border border-emerald-200"
+                            }`}
+                          >
+                            {item.category}
+                          </span>
+                        </div>
+                        <span className="text-xs text-slate-600 font-medium">
+                          {item.endDate === "상시" ? "상시 운영" : `${item.startDate} ~ ${item.endDate}`}
                         </span>
                       </div>
-                      <span className="text-xs text-slate-400 font-medium">
-                        {item.endDate === "상시" ? "상시 운영" : `${item.startDate} ~ ${item.endDate}`}
-                      </span>
-                    </div>
 
-                    {/* 제목 */}
-                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
-                      {hasPost ? (
+                      {/* 제목 */}
+                      <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug">
                         <Link href={detailHref}>{item.title}</Link>
-                      ) : (
-                        <a href={detailHref} target="_blank" rel="noopener noreferrer">
-                          {item.title}
-                        </a>
-                      )}
-                    </h3>
+                      </h3>
 
-                    {/* 요약 */}
-                    <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed">
-                      {item.summary}
-                    </p>
-                  </div>
-
-                  {/* 하단 대상 및 액션 버튼 */}
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[10px] text-slate-400 block font-medium">지원 대상</span>
-                      <p className="text-xs font-semibold text-slate-700 truncate">
-                        {item.target}
+                      {/* 요약 */}
+                      <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed">
+                        {item.summary}
                       </p>
                     </div>
 
-                    {hasPost ? (
+                    {/* 하단 대상 및 액션 버튼 */}
+                    <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <span className="text-[10px] text-slate-500 block font-medium">지원 대상</span>
+                        <p className="text-xs font-semibold text-slate-800 truncate">
+                          {item.target}
+                        </p>
+                      </div>
+
                       <Link
                         href={detailHref}
-                        className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
+                        className="inline-flex items-center gap-1 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-800 group-hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0 shadow-2xs"
                       >
                         <span>자세히 보기</span>
                         <span>&rarr;</span>
                       </Link>
-                    ) : (
-                      <a
-                        href={detailHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-slate-100 hover:bg-emerald-600 text-slate-700 hover:text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shrink-0"
-                      >
-                        <span>공식 신청</span>
-                        <span>↗</span>
-                      </a>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {/* 더보기 버튼 */}
+            {visibleCount < filteredItems.length && (
+              <div className="text-center pt-8">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => prev + 10)}
+                  className="inline-flex items-center gap-2 bg-white hover:bg-emerald-50 text-emerald-800 font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 shadow-sm transition-all cursor-pointer"
+                >
+                  <span>더 많은 알짜 정보 보기 (+{Math.min(10, filteredItems.length - visibleCount)}건 / 총 {filteredItems.length}건)</span>
+                  <span className="text-xs">▼</span>
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
     </div>

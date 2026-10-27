@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
+import localInfoData from "../../public/data/local-info.json";
 
 export const dynamic = "force-static";
 
@@ -70,5 +71,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  return [...routes, ...postRoutes];
+  // 모든 자치구 혜택/행사 상세 아티클 (/benefit/[id]/) 사이트맵 자동 등록
+  const localItems = [
+    ...(localInfoData.benefits || []),
+    ...(localInfoData.events || []),
+  ];
+  const benefitRoutes: MetadataRoute.Sitemap = localItems.map((item) => ({
+    url: `${siteUrl}/benefit/${item.id}/`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...routes, ...benefitRoutes, ...postRoutes];
 }

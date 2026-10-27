@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-27",
+  "lastUpdated": "2026-10-24",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -245,7 +245,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 소득인정액이 기준중위소득 50%이하 및 건강보험료(장기요양보험료 포함) 지역가입자의 부과액이 22,340원 이하",
       "summary": "저소득주민에게 건강보험료 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000120"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000120",
+      "slug": "2026-10-22-low-income-health-insurance-support"
     },
     {
       "id": "308000000121",
@@ -257,7 +258,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 순국선열, 애국지사, 전몰/전상/순직/공상군경, 무공/보국수훈자, 6.25참전 재일학도의용군인, 참전유공자(사망한 참전유공자의 배우자 포함), 4.19혁명사망자/부상자/공로자, 순직/공상공무원, 국가사회발전 특별공로 순직자/상이자, 국가사회발전 특별공로자, 특수임무유공자, 5.18민주유공자 및 선순위 유족 1명",
       "summary": "○ 보훈예우수당 지급: 국가보훈대상자 월 70천원(서울시 보훈수당 4종 수급자 월30천원)",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000121"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000121",
+      "slug": "gangbuk-veterans-support"
     },
     {
       "id": "308000000122",
@@ -281,7 +283,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 장애인 휠체어 등 전동 보장구 수리사업\r\n   - 신청기간: 2025년 1월 ~ 12월(예산 소진 시까지)\r\n  - 대   상: 강북구 등록 장애인 중 휠체어 사용자\r\n  - 수리내용: 수동·전동휠체어 장애인 보조기기 부품·소모품비 지원  \r\n  - 금   액: 기초생활수급자 및 차상위 - 연간 30만원 한도,  일반장애인 - (수리비의 50%) 연간 10만원 한도\r\n  - 구비서류: 장애인증명서 또는 복지카드, 수급자·차상위 증명서(해당자 만) \r\n  - 문의 및 접수처: 케어런의료기 (tel 02-900-3116)\r\n  -업체주소: 강북구 삼양로 107길 10, SM케슬 1층 101호(수유동)  \r\n\r\n○ 장애인 보청기 수리비 지원 신청 안내\r\n   - 신청기간: 2025년 1월 ~ 12월(예산 소진 시까지)\r\n  - 대   상: 강북구 등록 장애인 중 보청기 사용자\r\n  - 수리내용: 고장수리비용/업그레이드비용/몰드교체비용\r\n  - 금   액: 기초생활수급자 및 차상위 - 연간 20만원 한도, 일반장애인 - (수리비의 50%) 연간 10만원 한도\r\n  - 구비서류: 수리내역서, 영수증, 장애인증명서 또는 복지카드, 통장사본,   수급자·차상위 증명서(해당자 만) \r\n  ○ 문의 및 접수처: 강북구수어통역센터  \r\n                   (tel 02-990-0872, 070-7947-0872(수어영상))\r\n  ○ 기관주소: 강북구 도봉로 388(번동) 테마빌딩 5층",
       "summary": "장애인을 대상으로 보조기기 수리비 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000124"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000124",
+      "slug": "2026-09-19-nowon-disability-mobility-repair-support"
     },
     {
       "id": "308000000125",
@@ -331,7 +334,8 @@
       "location": "서울특별시 강북구",
       "target": "○ 서울시 보훈수당 대상자(독립유공생활지원수당 대상자 중 선순위유족 1인에게만 지급) 및 보훈단체 추천회원\r\n ※ 서울시 보훈수당 : 참전명예수당, 국가유공자 생활보조수당, 독립유공생활지원수당\r\n ※ 1인 최대 3만원 지급 가능",
       "summary": "국가보훈대상자에게 명절(설, 추석) 및 호국보훈의 달에 위문금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000129"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000129",
+      "slug": "gangbuk-veterans-support"
     },
     {
       "id": "308000000266",
@@ -343,7 +347,8 @@
       "location": "서울특별시 강북구",
       "target": "계약기간 중 강북구에 주민등록을 둔 모든 구민(등록외국인, 거소등록동포 포함)",
       "summary": "강북구민 대상 상해의료비, 해외위난상황 유해송환비, 어린이 통학버스 부상치료비 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000266"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000266",
+      "slug": "gangbuk-safety-insurance"
     },
     {
       "id": "309000000124",
@@ -367,7 +372,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 국민건강보험료 부과금액이 최저보험료 (2026년 기준 22,800원) 이하인 만65세 이상 어르신 세대",
       "summary": "저소득 어르신 세대에게 국민건강보험료 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000125"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000125",
+      "slug": "2026-10-22-low-income-health-insurance-support"
     },
     {
       "id": "309000000126",
@@ -379,7 +385,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 법정 한부모가정",
       "summary": "한부모가정에 명절위문금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000126"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000126",
+      "slug": "2026-09-17-nowon-single-parent-support"
     },
     {
       "id": "309000000129",
@@ -428,7 +435,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 출산한 여성장애인\r\n○ 배우자가 출산한 장애의 정도가 심한 남성장애인",
       "summary": "출산한 장애인가정에 출산지원금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000132"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000132",
+      "slug": "2026-10-21-dobong-disability-birth-grant"
     },
     {
       "id": "309000000134",
@@ -440,7 +448,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 도봉구에 주소지를 둔 등록장애인 중 수동휠체어, 전동휠체어, 의료용 스쿠터 등 보장구 사용자",
       "summary": "보장구를 사용하는 장애인에게 수리 서비스 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000134"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000134",
+      "slug": "2026-10-19-dobong-wheelchair-repair"
     },
     {
       "id": "309000000135",
@@ -464,7 +473,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 안전취약계층(치매어르신, 장애인, 홀몸어르신 가구 등)",
       "summary": "안전취약계층 190가구에 가스안전차단기 설치 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000136"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000136",
+      "slug": "2026-10-18-dobong-gas-timer"
     },
     {
       "id": "309000000137",
@@ -476,7 +486,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 고등학생\r\n○ 대학생",
       "summary": "우수학생 및 경제적 어려움이 있는 고등학생 및 대학생에게 장학금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000137"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000137",
+      "slug": "dobong-scholarship-support"
     },
     {
       "id": "309000000139",
@@ -488,7 +499,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 관내 초등학교 5학년 대상(희망학교)",
       "summary": "초등학교 5학년 대상으로 척추측만증 및 거북목검진을 지원하여 척추질환 조기발견 및 치료연계",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000139"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000139",
+      "slug": "2026-10-17-dobong-elementary-spine-checkup"
     },
     {
       "id": "309000000140",
@@ -500,7 +512,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 순직공무원, 순직군경유족, 전상군경, 무공수훈자, 참전유공자, 애국지사, 전몰군경유족, 공상군경, 고엽제후유의증, 보국수훈자, 순국선열, 6ㆍ18자유상이자,재해사망군경유족, 4ㆍ19혁명상이자, 공상공무원, 4ㆍ19혁명공로자, 재해부상군경, 지원공상공무원, 5ㆍ18부상자, 특수임무공로자, 지원공상군경, 지원순직군경 5ㆍ18희생자, 특수임무부상자, 6ㆍ25참전재일학도의용군인, 4ㆍ19혁명사망자",
       "summary": "국가보훈대상자를 위해 보훈예우수당, 위문금, 사망위로금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000140"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000140",
+      "slug": "gangbuk-veterans-support"
     },
     {
       "id": "309000000141",
@@ -512,7 +525,8 @@
       "location": "서울특별시 도봉구",
       "target": "○ 상품권 구매자",
       "summary": "도봉사랑상품권 구매자에게 5% 할인 판매 혜택 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000141"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000141",
+      "slug": "2026-10-16-dobong-love-gift-certificate"
     },
     {
       "id": "309000000282",
@@ -524,7 +538,8 @@
       "location": "서울특별시 도봉구",
       "target": "2026년 1월 1일 이후 출생아",
       "summary": "출생축하용품 물품상자 택배 발송",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000282"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000282",
+      "slug": "2026-10-15-dobong-birth-supplies"
     },
     {
       "id": "309000000284",
@@ -536,7 +551,8 @@
       "location": "서울특별시 도봉구",
       "target": "도봉구에 주민등록을 둔 모든 구민(등록외국인, 거소등록동포 포함)",
       "summary": "급격하고도 우연한 외래 사고로 신체에 상해를 입은 경우 그 피해를 보상\r\n",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000284"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/309000000284",
+      "slug": "2026-10-14-dobong-safety-insurance"
     },
     {
       "id": "310000000101",
@@ -548,7 +564,8 @@
       "location": "서울특별시 노원구",
       "target": "\"○ 관내 가정 위탁시설 보호종료청소년\r\n\r\n○  선정기준\r\n   - 보호종료청소년에게 1인당 200만원 지급\r\n   - 퇴소시 시설의 신청에 따라 퇴소 아동에게 교부\"",
       "summary": "  시설 및 가정위탁 보호종료아동 지원\r\n",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000101"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000101",
+      "slug": "2026-10-13-nowon-foster-youth-settlement"
     },
     {
       "id": "310000000102",
@@ -768,7 +785,8 @@
       "location": "서울특별시 강북구",
       "target": "매년 1월 1일 현재 서울특별시 강북구에 1년 이상 주민등록을 두고 거주하는 효행가정",
       "summary": "효행가정에 효도지원금 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/308000000116",
+      "slug": "gangbuk-filial-piety-allowance"
     },
     {
       "id": "309000000138",
@@ -792,7 +810,8 @@
       "location": "서울특별시 노원구",
       "target": "관내 1년이상 거주한 만100세 및 만90세 어르신",
       "summary": "만 90세 및 만 100세 어르신에게 장수축하금 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000103"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000103",
+      "slug": "2026-10-11-nowon-longevity-grant"
     },
     {
       "id": "310000000107",
@@ -804,7 +823,8 @@
       "location": "서울특별시 노원구",
       "target": "노원구 거주 만 18세~39세 미취업 청년 40명",
       "summary": "미취업 청년에게 일경험 제공 및 교육비, 상해보험 가입 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000107"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/310000000107",
+      "slug": "2026-10-09-nowon-youth-work-experience"
     },
     {
       "id": "306000000101",
@@ -816,7 +836,8 @@
       "location": "서울특별시 중랑구",
       "target": "국가보훈대상자 본인 또는 우선순위 유족",
       "summary": "국가보훈대상자 본인 및 우선순위 유족을 위해 중랑구 보훈예우수당 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000101"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000101",
+      "slug": "gangbuk-veterans-support"
     },
     {
       "id": "306000000106",
@@ -828,7 +849,8 @@
       "location": "서울특별시 중랑구",
       "target": "국민건강보험공단 중랑지사 지역가입자 중 국민건강보험료가 보건복지부장관이 고시한 월별 보험료액의 하한액 이하인 세대로 질병, 실직, 노령 등으로 생활에 어려움을 겪고 있는 대상자 (65세이상 노인세대, 한부모가족 및 소년소녀가정세대, 등록장애인이 있는 세대, 국가유공자 세대 등)",
       "summary": "저소득층에 국민건강보험료 및 노인장기요양보험료 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000106"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000106",
+      "slug": "2026-10-22-low-income-health-insurance-support"
     },
     {
       "id": "306000000107",
@@ -840,7 +862,8 @@
       "location": "서울특별시 중랑구",
       "target": "지역 소상공인, 지역 주민 등",
       "summary": "지역 소상공인 및 주민 등을 위한 지역사랑상품권 혜택 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000107"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000107",
+      "slug": "2026-10-23-jungnang-love-pay"
     },
     {
       "id": "306000000109",
@@ -852,43 +875,8 @@
       "location": "서울특별시 중랑구",
       "target": "관내 고등학교 2학년 학생",
       "summary": "고등학교 2학년 학생을 대상으로 결핵이동검진 비용 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000109"
-    },
-    {
-      "id": "306000000111",
-      "name": "국가보훈대상자 사망위로금(중랑구)",
-      "title": "국가보훈대상자 사망위로금(중랑구)",
-      "category": "혜택",
-      "startDate": "2026-03-31",
-      "endDate": "상시",
-      "location": "서울특별시 중랑구",
-      "target": "국가보훈대상자 본인 및 우선순위 유족",
-      "summary": "국가보훈대상자 본인 및 우선순위 유족 사망 시 사망위로금 40만원 지급",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000111"
-    },
-    {
-      "id": "306000000210",
-      "name": "[중랑구]난임부부 약제비 지원(난임시술 이후 원외약제비 청구)",
-      "title": "[중랑구]난임부부 약제비 지원(난임시술 이후 원외약제비 청구)",
-      "category": "혜택",
-      "startDate": "2024-05-23",
-      "endDate": "상시",
-      "location": "서울특별시 중랑구",
-      "target": "서울시 거주 모든 난임부부(1년 이상의 사실혼 포함), 난임부부 시술비 지원사업 지원결정통지서 발급 이후 해당 시술 완료자",
-      "summary": "난임시술 이후 해당 시술건에 대해 처방받은 원외약제비 청구 및 접수, 지원",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000210"
-    },
-    {
-      "id": "306000000212",
-      "name": "중랑구 구민안전보험",
-      "title": "중랑구 구민안전보험",
-      "category": "혜택",
-      "startDate": "2024-12-22",
-      "endDate": "상시",
-      "location": "서울특별시 중랑구",
-      "target": "지역 주민 모두",
-      "summary": "재난이나 그밖의 각종 사고로 피해가 발생한 경우 그 피해를 보상",
-      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000212"
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/306000000109",
+      "slug": "2026-10-24-highschool-tb-checkup"
     }
   ]
 }

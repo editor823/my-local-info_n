@@ -20,6 +20,7 @@ function getCurrentTime() {
 }
 
 export default function Chatbot() {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -31,14 +32,29 @@ export default function Chatbot() {
   ]);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
-
   const messageIdRef = useRef(1);
+
+  useEffect(() => {
+    // 초기 로딩 시 메인 스레드를 방해하지 않고 브라우저가 준비되었을 때 마운트
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => setMounted(true));
+      } else {
+        const timer = setTimeout(() => setMounted(true), 800);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
       chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, isOpen]);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleQuestionClick = (question: string, answer: string) => {
     messageIdRef.current += 1;
@@ -130,7 +146,7 @@ export default function Chatbot() {
                   >
                     {msg.text}
                   </div>
-                  <span className="text-[10px] text-slate-400 shrink-0 pb-0.5">
+                  <span className="text-[10px] text-slate-500 shrink-0 pb-0.5">
                     {msg.time}
                   </span>
                 </div>
@@ -142,7 +158,7 @@ export default function Chatbot() {
 
         {/* 하단 질문 버튼 */}
         <div className="p-3 bg-white border-t border-emerald-100 shrink-0">
-          <p className="text-[11px] font-semibold text-slate-500 mb-2 flex items-center gap-1">
+          <p className="text-[11px] font-semibold text-slate-600 mb-2 flex items-center gap-1">
             <span>💡</span> 궁금하신 내용을 클릭하세요:
           </p>
           <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">

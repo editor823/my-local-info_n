@@ -15,10 +15,20 @@ export interface PostData {
   image?: string;
 }
 
+// Pexels CDN 이미지를 WebP로 자동 최적화하는 헬퍼
+function ensureWebp(url: string): string {
+  if (!url) return "";
+  if (url.includes("images.pexels.com") && !url.includes("fm=webp")) {
+    const sep = url.includes("?") ? "&" : "?";
+    return `${url}${sep}auto=compress&fm=webp`;
+  }
+  return url;
+}
+
 // 글 제목/카테고리에 맞는 Pexels 고화질 무료 이미지 매칭 헬퍼
 export function getPostFeaturedImage(post: { title: string; category?: string; image?: string }): string {
   if (post.image && post.image.trim() !== "") {
-    return post.image;
+    return ensureWebp(post.image);
   }
 
   const titleLower = post.title.toLowerCase();
@@ -103,7 +113,7 @@ export function getPostSecondaryImage(post: { title: string; category?: string }
   }
 
   // 기본 서브 이미지 (따뜻한 커뮤니티 생활)
-  return "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200";
+  return ensureWebp("https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200");
 }
 
 // 날짜 값을 YYYY-MM-DD 형식의 문자열로 안전하게 변환

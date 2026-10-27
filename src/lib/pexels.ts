@@ -70,11 +70,21 @@ export async function searchPexelsImages(query: string, perPage = 5): Promise<Pe
       photographer_url?: string;
     }
 
+    // Pexels CDN 이미지를 100% WebP로 자동 변환하는 헬퍼
+    const toWebpUrl = (url?: string): string => {
+      if (!url) return "";
+      if (url.includes("images.pexels.com")) {
+        const sep = url.includes("?") ? "&" : "?";
+        return `${url}${sep}auto=compress&fm=webp`;
+      }
+      return url;
+    };
+
     const images: PexelsImage[] = (data.photos as RawPexelsPhoto[]).map((photo) => ({
       id: photo.id,
-      url: photo.src.large2x || photo.src.large || "",
-      medium: photo.src.medium || "",
-      thumbnail: photo.src.small || photo.src.tiny || "",
+      url: toWebpUrl(photo.src.large2x || photo.src.large),
+      medium: toWebpUrl(photo.src.medium),
+      thumbnail: toWebpUrl(photo.src.small || photo.src.tiny),
       alt: photo.alt || `${query} image`,
       photographer: photo.photographer || "Pexels Creator",
       photographerUrl: photo.photographer_url || "https://www.pexels.com",

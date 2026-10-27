@@ -17,38 +17,38 @@ export default function Footer() {
                   강북 · 도봉 · 노원
                 </span>
               </span>
-              <p className="text-[11px] text-slate-400 font-medium">
+              <p className="text-[11px] text-slate-600 font-medium">
                 지역 구민을 위한 똑똑한 생활 복지 &amp; 문화 축제 아카이브
               </p>
             </div>
           </div>
 
           {/* 구글 애드센스 필수 3대 페이지 + 약관 메뉴 (가독성 높은 탭 디자인) */}
-          <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-bold text-slate-600">
+          <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-bold text-slate-700">
             <Link
               href="/about/"
-              className="px-3 py-1.5 rounded-lg hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+              className="px-3 py-1.5 rounded-lg hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
             >
               서비스 소개 (About)
             </Link>
-            <span className="text-slate-300">·</span>
+            <span className="text-slate-400">·</span>
             <Link
               href="/contact/"
-              className="px-3 py-1.5 rounded-lg hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+              className="px-3 py-1.5 rounded-lg hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
             >
               문의 및 제보 (Contact)
             </Link>
-            <span className="text-slate-300">·</span>
+            <span className="text-slate-400">·</span>
             <Link
               href="/privacy/"
-              className="px-3 py-1.5 rounded-lg hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+              className="px-3 py-1.5 rounded-lg hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
             >
               개인정보처리방침 (Privacy)
             </Link>
-            <span className="text-slate-300">·</span>
+            <span className="text-slate-400">·</span>
             <Link
               href="/terms/"
-              className="px-3 py-1.5 rounded-lg hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+              className="px-3 py-1.5 rounded-lg hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
             >
               이용약관 (Terms)
             </Link>
@@ -56,9 +56,9 @@ export default function Footer() {
         </div>
 
         {/* 하단: 데이터 출처, 연락처 및 저작권 정보 */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs text-slate-400 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs text-slate-600 text-center md:text-left">
           <div className="space-y-1">
-            <p className="font-semibold text-slate-600">
+            <p className="font-semibold text-slate-800">
               우리 동네 이야기 · 공공데이터 기반 비영리 생활 정보 큐레이션 포털
             </p>
             <p>
@@ -66,7 +66,7 @@ export default function Footer() {
             </p>
             <p>
               공식 문의 및 정정 요청:{" "}
-              <a href="mailto:tkdgus8231@gmail.com" className="text-emerald-600 font-semibold hover:underline">
+              <a href="mailto:tkdgus8231@gmail.com" className="text-emerald-700 font-bold hover:underline">
                 tkdgus8231@gmail.com
               </a>{" "}
               (에디토리얼팀)
@@ -75,7 +75,7 @@ export default function Footer() {
 
           <div className="text-center md:text-right space-y-1">
             <p>© 2026 우리 동네 이야기 (GoodKey-Info). All rights reserved.</p>
-            <p className="text-[10px] text-slate-400">
+            <p className="text-[10px] text-slate-600">
               본 사이트는 구글 애드센스 게시자 운영 정책 및 개인정보 보호 규정을 철저히 준수합니다.
             </p>
           </div>

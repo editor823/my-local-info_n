@@ -42,7 +42,7 @@ export default function Header() {
                   강북·도봉·노원
                 </span>
               </span>
-              <p className="text-[11px] text-slate-400 font-medium hidden sm:block -mt-0.5">
+              <p className="text-[11px] text-slate-600 font-medium hidden sm:block -mt-0.5">
                 지역 구민을 위한 똑똑한 혜택 & 축제 가이드
               </p>
             </div>
@@ -87,7 +87,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/blog/"
-            className="text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-600/20 flex items-center gap-1.5"
+            className="text-xs sm:text-sm font-extrabold bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-900/20 flex items-center gap-1.5"
           >
             <span>전체 혜택 보기</span>
             <span className="text-xs">→</span>

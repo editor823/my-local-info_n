@@ -315,7 +315,7 @@ export default async function BlogPostPage({
           {/* [하이브리드 중단 Middle] 마크다운 렌더링 본문 (중간에 2번째 사진 자동 삽입) */}
           {(() => {
             const markdownComponents = {
-              pre: ({ children, ...props }: any) => (
+              pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
                 <pre
                   className="max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-xs sm:text-sm text-slate-800 my-4 shadow-inner"
                   {...props}
@@ -323,14 +323,14 @@ export default async function BlogPostPage({
                   {children}
                 </pre>
               ),
-              table: ({ children, ...props }: any) => (
+              table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
                 <div className="w-full max-w-full overflow-x-auto my-6 rounded-xl border border-slate-200/80 shadow-sm">
                   <table className="min-w-full" {...props}>
                     {children}
                   </table>
                 </div>
               ),
-              p: ({ children, ...props }: any) => (
+              p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
                 <p className="break-words" {...props}>
                   {children}
                 </p>

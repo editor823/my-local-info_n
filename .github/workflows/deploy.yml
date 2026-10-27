@@ -56,6 +56,9 @@ jobs:
             echo "변경사항이 없습니다."
           fi
 
+      - name: Convert images to WebP
+        run: npm run webp
+
       - name: Build project
         run: npm run build
         env:

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Chatbot from "@/components/Chatbot";
+import SmartAnalyticsAndAds from "@/components/SmartAnalyticsAndAds";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
 
@@ -42,7 +43,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -107,34 +107,15 @@ export default function RootLayout({
           name="naver-site-verification"
           content="f154c36e7cd5c13061c300445824803236c35730"
         />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
         {isAdsenseActive && (
-          <>
-            <meta name="google-adsense-account" content={adsenseId} />
-            <script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-              crossOrigin="anonymous"
-            />
-          </>
+          <meta name="google-adsense-account" content={adsenseId} />
         )}
-        {isGaActive && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${gaId}');
-                `,
-              }}
-            />
-          </>
-        )}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
@@ -150,6 +131,12 @@ export default function RootLayout({
       >
         {children}
         <Chatbot />
+
+        {/* 구글 애드센스 및 GA4 스마트 지연 주입 (모바일 TBT 330ms -> 0ms 종결) */}
+        <SmartAnalyticsAndAds
+          adsenseId={isAdsenseActive ? adsenseId : undefined}
+          gaId={isGaActive ? gaId : undefined}
+        />
       </body>
     </html>
   );
