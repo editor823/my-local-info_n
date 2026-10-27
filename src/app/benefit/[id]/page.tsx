@@ -386,6 +386,8 @@ export default async function BenefitDetailPage({ params }: PageProps) {
             <img
               src={featuredImage}
               alt={`${mainTitle} 혜택 안내 이미지`}
+              width={1200}
+              height={630}
               className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-500"
               loading="lazy"
             />

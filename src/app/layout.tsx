@@ -1,9 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Chatbot from "@/components/Chatbot";
 import SmartAnalyticsAndAds from "@/components/SmartAnalyticsAndAds";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#047857",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

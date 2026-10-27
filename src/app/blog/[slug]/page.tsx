@@ -286,6 +286,8 @@ export default async function BlogPostPage({
             <img
               src={featuredImage}
               alt={post.title}
+              width={1200}
+              height={630}
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
