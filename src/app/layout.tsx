@@ -115,11 +115,6 @@ export default function RootLayout({
         {isAdsenseActive && (
           <meta name="google-adsense-account" content={adsenseId} />
         )}
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

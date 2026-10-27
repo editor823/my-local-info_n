@@ -52,6 +52,13 @@ export default function Footer() {
             >
               이용약관 (Terms)
             </Link>
+            <span className="text-slate-400">·</span>
+            <Link
+              href="/disclaimer/"
+              className="px-3 py-1.5 rounded-lg hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
+            >
+              면책조항 (Disclaimer)
+            </Link>
           </nav>
         </div>
 
