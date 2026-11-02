@@ -25,7 +25,9 @@ interface Props {
 }
 
 export default function CardGorillaHome({ events, benefits, lastUpdated }: Props) {
-  const [activeDistrict, setActiveDistrict] = useState<"all" | "강북구" | "도봉구" | "노원구">("all");
+  const [activeDistrict, setActiveDistrict] = useState<
+    "all" | "강북구" | "도봉구" | "노원구" | "성북구" | "중랑구" | "동대문구" | "광진구" | "은평구"
+  >("all");
   const [activeTab, setActiveTab] = useState<"all" | "benefit" | "event">("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(8);
@@ -42,6 +44,11 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
     if (loc.includes("강북")) return { name: "강북구", color: "bg-emerald-100 text-emerald-800 border-emerald-200" };
     if (loc.includes("도봉")) return { name: "도봉구", color: "bg-teal-100 text-teal-800 border-teal-200" };
     if (loc.includes("노원")) return { name: "노원구", color: "bg-green-100 text-green-800 border-green-200" };
+    if (loc.includes("성북")) return { name: "성북구", color: "bg-cyan-100 text-cyan-800 border-cyan-200" };
+    if (loc.includes("중랑")) return { name: "중랑구", color: "bg-lime-100 text-lime-800 border-lime-200" };
+    if (loc.includes("동대문")) return { name: "동대문구", color: "bg-amber-100 text-amber-800 border-amber-200" };
+    if (loc.includes("광진")) return { name: "광진구", color: "bg-sky-100 text-sky-800 border-sky-200" };
+    if (loc.includes("은평")) return { name: "은평구", color: "bg-emerald-100 text-emerald-800 border-emerald-200" };
     return { name: "서울시", color: "bg-slate-100 text-slate-700 border-slate-200" };
   };
 
@@ -86,8 +93,9 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
   const handleTagClick = (tag: string) => {
     setVisibleCount(8);
-    if (tag === "강북구" || tag === "도봉구" || tag === "노원구") {
-      setActiveDistrict(tag);
+    const targetList = ["강북구", "도봉구", "노원구", "성북구", "중랑구", "동대문구", "광진구", "은평구"];
+    if (targetList.includes(tag)) {
+      setActiveDistrict(tag as any);
       setSearchTerm("");
     } else {
       setActiveDistrict("all");
@@ -157,7 +165,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
             {/* 빠른 추천 태그 버튼 */}
             <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs">
               <span className="font-extrabold text-white">지역 / 혜택 키워드:</span>
-              {["강북구", "도봉구", "노원구", "장학금", "출산지원금", "지역사랑상품권", "안심보험"].map((tag) => (
+              {["강북구", "도봉구", "노원구", "동대문구", "광진구", "은평구", "장학금", "출산지원금", "안심보험"].map((tag) => (
                 <button
                   key={tag}
                   type="button"
@@ -187,17 +195,22 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
           <div className="flex flex-wrap gap-2">
             {[
-              { id: "all", label: "전체 3개구 (강북·도봉·노원)" },
+              { id: "all", label: "전체 자치구" },
               { id: "강북구", label: "🌳 강북구" },
               { id: "도봉구", label: "⛰️ 도봉구" },
               { id: "노원구", label: "🌸 노원구" },
+              { id: "성북구", label: "📚 성북" },
+              { id: "중랑구", label: "🌹 중랑" },
+              { id: "동대문구", label: "🏛️ 동대문" },
+              { id: "광진구", label: "🌊 광진" },
+              { id: "은평구", label: "🌲 은평" },
             ].map((dist) => {
               const isSelected = activeDistrict === dist.id;
               return (
                 <button
                   key={dist.id}
                   type="button"
-                  onClick={() => setActiveDistrict(dist.id as "all" | "강북구" | "도봉구" | "노원구")}
+                  onClick={() => setActiveDistrict(dist.id as any)}
                   className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
                     isSelected
                       ? "bg-emerald-700 text-white shadow-md shadow-emerald-900/30 scale-105 ring-2 ring-emerald-600 ring-offset-2"

@@ -51,7 +51,7 @@ async function main() {
   }
 
   // 강북구, 도봉구, 노원구 대상 필터링
-  const targetDistricts = ["강북구", "도봉구", "노원구", "성북구", "중랑구"];
+  const targetDistricts = ["강북구", "도봉구", "노원구", "성북구", "중랑구", "동대문구", "광진구", "은평구"];
   const targetItems = allItems.filter((item) => {
     const text = `${item.location || ""} ${item.name || ""} ${item.title || ""} ${
       item.target || ""
@@ -63,7 +63,7 @@ async function main() {
   const availableItems = targetItems;
 
   if (availableItems.length === 0) {
-    console.log("강북·도봉·노원·성북·중랑 지역 대상 공공서비스 데이터가 없습니다.");
+    console.log("서울 관심 자치구(강북·도봉·노원·성북·중랑·동대문·광진·은평) 대상 공공서비스 데이터가 없습니다.");
     return;
   }
 
@@ -84,6 +84,7 @@ async function main() {
     "발행", "판매", "지원", "사업", "안내", "신청", "핵심", "총정리", "가이드", "혜택",
     "서울", "서울시", "서울특별시", "강북", "강북구", "도봉", "도봉구", "노원", "노원구",
     "성북", "성북구", "중랑", "중랑구",
+    "동대문", "동대문구", "광진", "광진구", "은평", "은평구",
     "2026", "2025", "2024", "알림", "모집", "선발", "운영", "실시", "및", "등"
   ]);
 
@@ -170,7 +171,7 @@ async function main() {
   }
 
   if (!latestItem) {
-    console.log("✅ [검수봇 완료] 강북·도봉·노원·성북·중랑 지역의 새로운 작성 대상이 없습니다 (모든 주제가 이미 고품질 글로 작성됨). 중복 생성을 안전하게 방지합니다.");
+    console.log("✅ [검수봇 완료] 서울 관심 자치구(강북·도봉·노원·성북·중랑·동대문·광진·은평)의 새로운 작성 대상이 없습니다 (모든 주제가 이미 고품질 글로 작성됨). 중복 생성을 안전하게 방지합니다.");
     return;
   }
 
@@ -182,7 +183,17 @@ async function main() {
     ? "도봉구"
     : locationText.includes("노원")
     ? "노원구"
-    : "서울 강북·도봉·노원";
+    : locationText.includes("성북")
+    ? "성북구"
+    : locationText.includes("중랑")
+    ? "중랑구"
+    : locationText.includes("동대문")
+    ? "동대문구"
+    : locationText.includes("광진")
+    ? "광진구"
+    : locationText.includes("은평")
+    ? "은평구"
+    : "서울 지역";
 
   console.log(`새로운 블로그 글 작성 시작: [${districtName}] ${targetName}`);
 

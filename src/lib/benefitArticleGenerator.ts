@@ -71,6 +71,14 @@ export function getBenefitHighlights(benefit: BenefitItem) {
     ? "도봉구"
     : location.includes("노원")
     ? "노원구"
+    : location.includes("성북")
+    ? "성북구"
+    : location.includes("동대문")
+    ? "동대문구"
+    : location.includes("광진")
+    ? "광진구"
+    : location.includes("은평")
+    ? "은평구"
     : location.includes("중랑")
     ? "중랑구"
     : "서울시";
@@ -102,6 +110,16 @@ export function generateBenefitDeepArticle(benefit: BenefitItem): string {
     ? "도봉구"
     : benefit.location.includes("노원")
     ? "노원구"
+    : benefit.location.includes("성북")
+    ? "성북구"
+    : benefit.location.includes("중랑")
+    ? "중랑구"
+    : benefit.location.includes("동대문")
+    ? "동대문구"
+    : benefit.location.includes("광진")
+    ? "광진구"
+    : benefit.location.includes("은평")
+    ? "은평구"
     : "서울시 자치구";
 
   const title = benefit.name || benefit.title || "구민 생활 복지 지원 사업";

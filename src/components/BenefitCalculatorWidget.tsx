@@ -18,6 +18,16 @@ export default function BenefitCalculatorWidget({
       ? "도봉구"
       : defaultDistrict.includes("노원")
       ? "노원구"
+      : defaultDistrict.includes("성북")
+      ? "성북구"
+      : defaultDistrict.includes("중랑")
+      ? "중랑구"
+      : defaultDistrict.includes("동대문")
+      ? "동대문구"
+      : defaultDistrict.includes("광진")
+      ? "광진구"
+      : defaultDistrict.includes("은평")
+      ? "은평구"
       : defaultDistrict.includes("강북")
       ? "강북구"
       : "강북구"
@@ -80,6 +90,11 @@ export default function BenefitCalculatorWidget({
               <option value="강북구">서울특별시 강북구</option>
               <option value="도봉구">서울특별시 도봉구</option>
               <option value="노원구">서울특별시 노원구</option>
+              <option value="성북구">서울특별시 성북구</option>
+              <option value="중랑구">서울특별시 중랑구</option>
+              <option value="동대문구">서울특별시 동대문구</option>
+              <option value="광진구">서울특별시 광진구</option>
+              <option value="은평구">서울특별시 은평구</option>
             </select>
           </div>
 
