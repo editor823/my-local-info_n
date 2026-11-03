@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-02",
+  "lastUpdated": "2026-11-03",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -891,7 +891,7 @@
       "slug": "2026-10-24-highschool-tb-checkup"
     },
     {
-"id": "306000000111",
+      "id": "306000000111",
       "name": "국가보훈대상자 사망위로금(중랑구)",
       "title": "국가보훈대상자 사망위로금(중랑구)",
       "category": "혜택",
@@ -939,17 +939,7 @@
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2152557&bnefType=all&svcId=306000000220"
     },
     {
-      "id": "306000000222",
-      "name": "구민 정보화교육",
-      "title": "구민 정보화교육",
-      "category": "혜택",
-      "startDate": "2025-05-20",
-      "endDate": "상시",
-      "location": "서울특별시 중랑구",
-      "target": "30세이상 중랑구민, 중랑구 관내사업자 및 재직자",
-      "summary": "중랑구민의 정보화 격차 해소 및 디지털 역량 강화를 위한 무료 정보화 교육 지원",
-      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2152929&bnefType=all&svcId=306000000222",
-    "id": "304000000101",
+      "id": "304000000101",
       "name": "범죄피해자 지원",
       "title": "범죄피해자 지원",
       "category": "혜택",
@@ -959,6 +949,18 @@
       "target": "광진구에서 발생한 범죄의 피해자 또는 광진구에 거주하는 범죄피해자",
       "summary": "범죄로 피해를 입은 사람에게 종합적 서비스 지원",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001061&bnefType=all&svcId=304000000101"
+    },
+    {
+      "id": "304000000102",
+      "name": "장애인가정 출산비용 지원(구비)",
+      "title": "장애인가정 출산비용 지원(구비)",
+      "category": "혜택",
+      "startDate": "2026-03-31",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "신생아 출생일을 기준으로 1년 전부터 신청일 현재까지 계속하여 서울특별시 광진구에 주민등록을 두고 거주하는 장애인가정에 지원함.",
+      "summary": "장애인가정에 출산지원금 지급",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001585&bnefType=all&svcId=304000000102"
     }
   ]
 }
