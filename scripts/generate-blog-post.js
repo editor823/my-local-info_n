@@ -85,7 +85,9 @@ async function main() {
     "서울", "서울시", "서울특별시", "강북", "강북구", "도봉", "도봉구", "노원", "노원구",
     "성북", "성북구", "중랑", "중랑구",
     "동대문", "동대문구", "광진", "광진구", "은평", "은평구",
-    "2026", "2025", "2024", "알림", "모집", "선발", "운영", "실시", "및", "등"
+    "2026", "2025", "2024", "알림", "모집", "선발", "운영", "실시", "및", "등",
+    "구비", "시비", "국비", "가정", "대상", "가구", "주민", "구민", "시민",
+    "프로그램", "사업명", "제도", "서비스", "비용", "생활", "복지", "정보", "관내"
   ]);
 
   function extractCoreKeywords(text) {
@@ -115,10 +117,10 @@ async function main() {
     }
   });
 
-  // 중복 여부 판별 검수 함수 (Slug 일치, 핵심 키워드 중복, 본문 포함 여부 3중 검사)
+  // 중복 여부 판별 검수 함수 (Slug 일치, 기존 제목 유사도 검사)
   function isDuplicate(candidate) {
     const candidateName = candidate.name || candidate.title || "";
-    if (!candidateName) return true;
+    if (!candidateName) return { duplicate: true, reason: "이름 없음" };
 
     const candidateSlug = (candidate.slug || candidate.id || "").toString().toLowerCase().trim();
     const candidateKeywords = extractCoreKeywords(candidateName);
@@ -129,22 +131,28 @@ async function main() {
         return { duplicate: true, reason: `동일 슬러그 매칭 (${post.file})` };
       }
 
-      // 2. 본문에 후보 전체 이름이 이미 포함된 경우
-      if (post.content.includes(candidateName)) {
-        return { duplicate: true, reason: `본문 내 키워드 완전 포함 (${post.file})` };
+      // 2. 기존 글 제목에 후보 전체 이름이 완전히 들어있는 경우
+      if (post.title && post.title.includes(candidateName)) {
+        return { duplicate: true, reason: `기존 글 제목 내 전체 명칭 일치 (${post.file})` };
       }
 
-      // 3. 핵심 고유명사 키워드가 기존 제목과 겹치는 경우 (예: '노원사랑상품권', '강북사랑상품권')
-      if (candidateKeywords.length > 0) {
-        const matchingKeywords = candidateKeywords.filter((k) =>
-          post.title.includes(k) || post.content.includes(k)
+      // 3. 기존 글 제목과 핵심 고유명사 키워드가 2개 이상 겹치면서 관할 구가 같은 경우
+      if (candidateKeywords.length > 0 && post.title) {
+        const matchingKeywords = candidateKeywords.filter((k) => post.title.includes(k));
+        const candidateLoc = candidate.location || "";
+        const sameDistrict = ["강북", "도봉", "노원", "성북", "중랑", "동대문", "광진", "은평"].some(
+          (d) => candidateLoc.includes(d) && post.title.includes(d)
         );
-        // 핵심 고유명사가 2개 이상 겹치거나, 핵심 단어가 1개뿐인데 그게 정확히 일치할 때
+
         if (
-          (candidateKeywords.length >= 2 && matchingKeywords.length >= 2) ||
-          (candidateKeywords.length === 1 && matchingKeywords.length === 1 && matchingKeywords[0].length >= 4)
+          sameDistrict &&
+          ((candidateKeywords.length >= 2 && matchingKeywords.length >= 2) ||
+            (candidateKeywords.length === 1 && matchingKeywords.length === 1 && matchingKeywords[0].length >= 4))
         ) {
-          return { duplicate: true, reason: `핵심 주제 키워드 중복: [${matchingKeywords.join(", ")}] (${post.file})` };
+          return {
+            duplicate: true,
+            reason: `동일 자치구 핵심 주제 키워드 중복: [${matchingKeywords.join(", ")}] (${post.file})`,
+          };
         }
       }
     }

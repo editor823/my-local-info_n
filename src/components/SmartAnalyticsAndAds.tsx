@@ -32,7 +32,7 @@ export default function SmartAnalyticsAndAds({ adsenseId, gaId }: Props) {
         document.head.appendChild(gaInitScript);
       }
 
-      // 2. Google AdSense (284KB 무거운 메인스레드 차단 방지)
+      // 2. Google AdSense (구글 애드센스 심사 봇 및 일반 사용자 지원)
       if (adsenseId) {
         const adsScript = document.createElement("script");
         adsScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`;
@@ -52,26 +52,19 @@ export default function SmartAnalyticsAndAds({ adsenseId, gaId }: Props) {
       window.removeEventListener("keydown", loadScripts);
     };
 
-    // Lighthouse 검사 봇 감지 시에는 측정 시간(4초) 동안 무거운 스크립트 실행을 방지
-    const isBot =
-      typeof navigator !== "undefined" &&
-      /Lighthouse|HeadlessChrome|Chrome-Lighthouse/i.test(navigator.userAgent);
+    // 일반 방문자의 첫 동작(스크롤, 터치, 마우스 이동, 키입력) 시 즉시 실행
+    window.addEventListener("scroll", loadScripts, { passive: true, once: true });
+    window.addEventListener("touchstart", loadScripts, { passive: true, once: true });
+    window.addEventListener("mousemove", loadScripts, { passive: true, once: true });
+    window.addEventListener("keydown", loadScripts, { passive: true, once: true });
 
-    if (!isBot) {
-      // 일반 방문자의 첫 동작(스크롤, 터치, 마우스 이동, 키입력) 시 즉시 실행
-      window.addEventListener("scroll", loadScripts, { passive: true, once: true });
-      window.addEventListener("touchstart", loadScripts, { passive: true, once: true });
-      window.addEventListener("mousemove", loadScripts, { passive: true, once: true });
-      window.addEventListener("keydown", loadScripts, { passive: true, once: true });
+    // 동작이 없거나 구글 크롤러/심사 봇을 위한 안전 자동 로드 (3.5초 뒤 자동 주입)
+    const fallbackTimer = setTimeout(loadScripts, 3500);
 
-      // 동작이 없는 방문자를 위한 안전 자동 로드 (5.5초 뒤)
-      const fallbackTimer = setTimeout(loadScripts, 5500);
-
-      return () => {
-        clearTimeout(fallbackTimer);
-        cleanup();
-      };
-    }
+    return () => {
+      clearTimeout(fallbackTimer);
+      cleanup();
+    };
   }, [adsenseId, gaId]);
 
   return null;

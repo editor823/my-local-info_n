@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
-import localInfoData from "../../public/data/local-info.json";
 
 export const dynamic = "force-static";
 
@@ -59,7 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // src/content/posts/ 폴더의 모든 마크다운 글 자동 포함
+  // src/content/posts/ 폴더의 모든 오리지널 고품질 마크다운 글만 사이트맵에 등록
+  // (구글 애드센스 가치없는 콘텐츠 방지: 템플릿 양산형 /benefit/ 페이지 제외)
   const posts = getAllPosts();
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => {
     let date = new Date();
@@ -73,21 +73,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/blog/${post.slug}/`,
       lastModified: date,
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.8,
     };
   });
 
-  // 모든 자치구 혜택/행사 상세 아티클 (/benefit/[id]/) 사이트맵 자동 등록
-  const localItems = [
-    ...(localInfoData.benefits || []),
-    ...(localInfoData.events || []),
-  ];
-  const benefitRoutes: MetadataRoute.Sitemap = localItems.map((item) => ({
-    url: `${siteUrl}/benefit/${item.id}/`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
-
-  return [...routes, ...benefitRoutes, ...postRoutes];
+  return [...routes, ...postRoutes];
 }

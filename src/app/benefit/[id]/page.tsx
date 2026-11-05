@@ -54,8 +54,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: "혜택 정보를 찾을 수 없습니다 | 우리 동네 이야기",
       description: "요청하신 자치구 복지 및 행사 정보를 찾을 수 없습니다.",
+      robots: { index: false, follow: false },
     };
   }
+
+  const articleData = getBenefitArticleData(benefit);
+  const hasOriginalPost = Boolean(articleData.post && articleData.post.slug);
 
   const { district, amountBadge } = getBenefitHighlights(benefit);
   const title = `${benefit.name || benefit.title} [${district}] ${amountBadge} | 우리 동네 이야기`;
@@ -64,17 +68,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${district} 주민을 위한 2026년 맞춤형 복지 혜택 및 신청 자격 상세 안내`;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://goodkey-info.com";
+  const canonicalUrl = hasOriginalPost && articleData.post
+    ? `/blog/${articleData.post.slug}/`
+    : `/benefit/${benefit.id}/`;
 
   return {
     title,
     description,
+    // 마크다운 원본 글이 없는 템플릿 아티클은 검색엔진 색인 제외 (구글 애드센스 가치없는 콘텐츠 방지)
+    robots: hasOriginalPost
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     alternates: {
-      canonical: `/benefit/${benefit.id}/`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/benefit/${benefit.id}/`,
+      url: `${siteUrl}${canonicalUrl}`,
       type: "article",
     },
     twitter: {
