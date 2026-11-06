@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-05",
+  "lastUpdated": "2026-11-06",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -985,6 +985,18 @@
       "target": "본인 또는 배우자가 출산한 만 7세 미만의 아동을 양육하면서 신청일 기준으로 1년 전부터 계속하여 광진구에 주민등록을 두고 거주하는 장애인(2022.7. 조례개정)",
       "summary": "자녀를 양육하는 장애인에게 양육지원금 지급",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001588&bnefType=all&svcId=304000000105"
+    },
+    {
+      "id": "304000000106",
+      "name": "법정 한부모가족 명절격려금 지원",
+      "title": "법정 한부모가족 명절격려금 지원",
+      "category": "혜택",
+      "startDate": "2024-05-20",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "법정한부모가족(소득인정액 기준중위소득 63% 이하)",
+      "summary": "한부모가족에게 명절격려금 지원",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001589&bnefType=all&svcId=304000000106"
     }
   ]
 }
