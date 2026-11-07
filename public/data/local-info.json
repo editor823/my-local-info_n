@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-06",
+  "lastUpdated": "2026-11-07",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -997,6 +997,18 @@
       "target": "법정한부모가족(소득인정액 기준중위소득 63% 이하)",
       "summary": "한부모가족에게 명절격려금 지원",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001589&bnefType=all&svcId=304000000106"
+    },
+    {
+      "id": "304000000108",
+      "name": "첫돌(출산)축하금 지원",
+      "title": "첫돌(출산)축하금 지원",
+      "category": "혜택",
+      "startDate": "2026-03-30",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "2025. 1. 1.이후 출생아로 출생일 포함하여 지원일까지 계속하여 동일세대로 광진구 거주하고 있는 부모 또는 보호자",
+      "summary": "2025. 1. 1.이후 출생아, 1년 뒤 첫돌축하금 신청.",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001591&bnefType=all&svcId=304000000108"
     }
   ]
 }
