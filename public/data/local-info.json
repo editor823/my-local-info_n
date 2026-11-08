@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-07",
+  "lastUpdated": "2026-11-08",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -1009,6 +1009,18 @@
       "target": "2025. 1. 1.이후 출생아로 출생일 포함하여 지원일까지 계속하여 동일세대로 광진구 거주하고 있는 부모 또는 보호자",
       "summary": "2025. 1. 1.이후 출생아, 1년 뒤 첫돌축하금 신청.",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001591&bnefType=all&svcId=304000000108"
+    },
+    {
+      "id": "304000000109",
+      "name": "입양축하금 지원(구비)",
+      "title": "입양축하금 지원(구비)",
+      "category": "혜택",
+      "startDate": "2026-03-30",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "입양특례법상 허가된 입양기관에서 만 18세 미만의 아동을 입양한 가정 (입양일 기준 6개월 이상 광진구 주민등록 및 실제 거주)",
+      "summary": "입양가정에 입양아동 1명당 50만원(장애아동 100만원)의 축하금 지원",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001660&bnefType=all&svcId=304000000109"
     }
   ]
 }
