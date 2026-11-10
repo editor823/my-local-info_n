@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-09",
+  "lastUpdated": "2026-11-10",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -1033,6 +1033,18 @@
       "target": "1순위: 만65세 이상 기초생활수급자 중 중증·만성질환 독거어르신 / 2순위: 만65세 이상 차상위계층 중 중증·만성질환 독거어르신 / 3순위: 사회적 단절 및 질병·장애 등으로 안부확인이 필요한 대상",
       "summary": "저소득 독거노인을 대상으로 주2회 음료배달을 통해 안부확인",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001662&bnefType=all&svcId=304000000111"
+    },
+    {
+      "id": "304000000112",
+      "name": "장수축하금 지급",
+      "title": "장수축하금 지급",
+      "category": "혜택",
+      "startDate": "2024-05-21",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "지급기준일 현재 광진구에 1년 이상 주민등록을 두고 계속하여 거주하고 있는 만 90세 이상 국민기초생활수급자(생계, 의료)",
+      "summary": "90세 이상 수급자(생계,의료) 어르신에게 장수축하금 지급",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1003352&bnefType=all&svcId=304000000112"
     }
   ]
 }
