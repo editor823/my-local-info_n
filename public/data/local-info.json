@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-11",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -1045,6 +1045,18 @@
       "target": "지급기준일 현재 광진구에 1년 이상 주민등록을 두고 계속하여 거주하고 있는 만 90세 이상 국민기초생활수급자(생계, 의료)",
       "summary": "90세 이상 수급자(생계,의료) 어르신에게 장수축하금 지급",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1003352&bnefType=all&svcId=304000000112"
+    },
+    {
+      "id": "304000000113",
+      "name": "저소득 어르신 낙상예방 및 안전물품 지원",
+      "title": "저소득 어르신 낙상예방 및 안전물품 지원",
+      "category": "혜택",
+      "startDate": "2024-05-22",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "기초수급자, 차상위계층, 기초연금 등 만65세 이상 저소득 어르신가구",
+      "summary": "수급자, 차상위계층 등 저소득 어르신을 대상으로 낙상예방 안전용품 지원",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1004266&bnefType=all&svcId=304000000113"
     }
   ]
 }
