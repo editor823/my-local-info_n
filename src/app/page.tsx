@@ -2,19 +2,32 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CardGorillaHome from "@/components/CardGorillaHome";
 import localInfoData from "../../public/data/local-info.json";
+import { findPostSlug } from "@/lib/legacyRedirect";
+import { buildDateKST } from "@/lib/dates";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 비교 & 축제 순위",
-  description: "강북구, 도봉구, 노원구 구민을 위한 맞춤형 지원금, 복지 혜택 비교 및 실시간 인기 순위와 축제 정보 아카이브!",
+  title: { absolute: "우리 동네 이야기 | 강북·도봉·노원 지원금·복지혜택 & 축제 정보" },
+  description: "강북구, 도봉구, 노원구 등 서울 동북권 구민을 위한 지원금·복지 혜택과 지역 축제 정보를 공공데이터를 바탕으로 정리합니다.",
   alternates: {
     canonical: "/",
   },
 };
 
 export default function Home() {
-  const events = localInfoData.events || [];
-  const benefits = localInfoData.benefits || [];
+  // [애드센스 재심사 대응] 실제 글이 있는 항목만 노출하고, 글(/blog/)로 바로 연결합니다.
+  // 행사는 빌드 시점 기준으로 종료 여부를 표시합니다.
+  const today = buildDateKST();
+  const withPost = <T extends { id: string; slug?: string; endDate?: string }>(list: T[]) =>
+    list
+      .map((item) => ({
+        ...item,
+        postSlug: findPostSlug(item.id) || (item.slug ? findPostSlug(item.slug) : null),
+        isEnded: Boolean(item.endDate && /^\d{4}-\d{2}-\d{2}$/.test(item.endDate) && item.endDate < today),
+      }))
+      .filter((item): item is T & { postSlug: string; isEnded: boolean } => Boolean(item.postSlug));
+  const events = withPost(localInfoData.events || []);
+  const benefits = withPost(localInfoData.benefits || []);
   const lastUpdated = localInfoData.lastUpdated;
 
   // 핵심 상위 하이라이트 4개만 홈 화면 스키마로 제공 (HTML 용량 80% 절감으로 모바일 FCP 대폭 단축)

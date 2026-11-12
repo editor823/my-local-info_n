@@ -3,10 +3,11 @@ import Footer from "@/components/Footer";
 import localInfoData from "../../../public/data/local-info.json";
 import { getPostFeaturedImage } from "@/lib/posts";
 import Link from "next/link";
+import { buildDateKST } from "@/lib/dates";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "축제 & 문화행사 소식 | 우리 동네 이야기",
+  title: "축제 & 문화행사 소식",
   description: "강북구·도봉구·노원구에서 열리는 주요 축제, 문화 공연, 플리마켓, 가족 체험 행사 일정을 한눈에 모아보세요.",
   alternates: {
     canonical: "/events/",
@@ -14,7 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
-  const events = localInfoData.events || [];
+  // [애드센스 재심사 대응] 빌드 시점(KST) 기준으로 진행 중·예정 행사와 지난 행사를 나눠 표시합니다.
+  const today = buildDateKST();
+  const isEnded = (e: { endDate?: string }) =>
+    Boolean(e.endDate && /^\d{4}-\d{2}-\d{2}$/.test(e.endDate) && e.endDate < today);
+  const allEvents = localInfoData.events || [];
+  const upcoming = allEvents.filter((e) => !isEnded(e));
+  const past = allEvents.filter((e) => isEnded(e));
+  const events = [...upcoming, ...past];
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">
@@ -39,13 +47,19 @@ export default function EventsPage() {
       <main className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-12 flex-1 space-y-8">
         <div className="flex items-center justify-between pb-3 border-b-2 border-emerald-600">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span>🎪</span> 진행 예정 축제 & 문화행사
+            <span>🎪</span> 축제 & 문화행사
             <span className="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">
-              총 {events.length}건
+              진행 중·예정 {upcoming.length}건 · 지난 행사 {past.length}건
             </span>
           </h2>
-          <span className="text-xs text-slate-400">기준: 2026년 최신 데이터</span>
+          <span className="text-xs text-slate-500">기준일: {today}</span>
         </div>
+
+        {upcoming.length === 0 && (
+          <p className="text-sm text-slate-600 bg-white border border-slate-200 rounded-2xl p-4">
+            현재 진행 중이거나 예정된 행사 정보가 없습니다. 아래는 올해 열린 행사 기록이며, 다음 일정은 각 구청 공식 홈페이지에서 확인해 주세요.
+          </p>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event) => {
@@ -55,7 +69,7 @@ export default function EventsPage() {
             return (
               <article
                 key={event.id}
-                className="bg-white rounded-2xl overflow-hidden border border-emerald-100/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                className={`${isEnded(event) ? "opacity-70 " : ""}bg-white rounded-2xl overflow-hidden border border-emerald-100/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group`}
               >
                 {/* 썸네일 배너 */}
                 <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-slate-100">
@@ -84,7 +98,7 @@ export default function EventsPage() {
                       {event.category}
                     </span>
                     <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
-                      🗓️ {event.startDate} ~ {event.endDate}
+                      {isEnded(event) ? "종료 · " : ""}🗓️ {event.startDate} ~ {event.endDate}
                     </span>
                   </div>
 

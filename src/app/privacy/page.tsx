@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "개인정보처리방침 및 구글 애드센스 규정 준수 | 우리 동네 이야기",
+  title: "개인정보처리방침",
   description: "우리 동네 이야기의 개인정보 수집·이용, 쿠키 정책 및 Google AdSense 제3자 광고 사업자 규정 준수(맞춤설정 광고 해제 안내, aboutads.info 링크 포함)에 관한 방침입니다.",
   alternates: {
     canonical: "/privacy/",
@@ -44,8 +44,7 @@ export default function PrivacyPage() {
                 <strong>자동 수집 정보</strong>: 이용자의 웹 브라우저 종류 및 OS 버전, 방문 일시, 접속 IP 주소, 리퍼러(방문 전 이전 페이지 주소), 서비스 이용 기록 등이 웹 서버 로그 및 분석 도구를 통해 자동으로 생성되어 수집될 수 있습니다.
               </li>
               <li>
-                <strong>이용자 직접 문의 시</strong>: [문의하기] 폼 또는 관리자 이메일을 통해 정정 요청이나 제보를 접수하실 경우, 원활한 답변 회신을 위해 성함(또는 닉네임)과 이메일 주소를 수집합니다.
-              </li>
+                <strong>이용자 직접 문의 시</strong>: 관리자 이메일로 정정 요청이나 제보를 보내실 경우, 답장을 위해 보내신 분의 이름(또는 닉네임)과 이메일 주소, 메일 내용을 받게 됩니다. [문의하기] 페이지의 양식은 사이트에 내용을 저장하지 않고 이용자의 메일 앱으로 새 메일을 만들어 줄 뿐입니다.</li>
             </ul>
           </div>
         </section>
@@ -79,6 +78,22 @@ export default function PrivacyPage() {
 
             <div className="flex items-start gap-2.5">
               <span className="text-emerald-600 font-bold">3)</span>
+              <p>
+                <strong>쿠키·웹 비콘·IP 주소를 통한 정보 수집:</strong> 본 사이트에 광고가 게재되면 Google을 포함한 제3자는 이용자의 브라우저에 쿠키를 저장하거나 읽을 수 있으며, 웹 비콘이나 IP 주소 등을 이용해 광고 게재·측정에 필요한 정보를 수집할 수 있습니다. Google이 이 정보를 어떻게 사용하는지는{" "}
+                <a
+                  href="https://policies.google.com/technologies/partner-sites?hl=ko"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-700 font-bold underline hover:text-emerald-800"
+                >
+                  Google 파트너의 사이트나 앱 사용 시 Google의 데이터 사용 방법
+                </a>
+                에서 확인할 수 있습니다.
+              </p>
+            </div>
+
+            <div className="flex items-start gap-2.5">
+              <span className="text-emerald-600 font-bold">4)</span>
               <div className="space-y-2">
                 <p>
                   <strong>맞춤설정 광고 선택 해제(Opt-out) 권리:</strong> 이용자는 언제든지 맞춤설정 광고 게재에 사용되는 쿠키를 선택 해제(거부)할 권리가 있으며, 아래 공식 링크를 통해 간편하게 비활성화하실 수 있습니다.
@@ -214,7 +229,7 @@ export default function PrivacyPage() {
 
         {/* 하단 고지 */}
         <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400">
-          <span>공고 일자: 2026년 9월 13일 | 최종 개정 일자: 2026년 9월 30일</span>
+          <span>공고 일자: 2026년 9월 13일 | 최종 개정 일자: 2026년 11월 12일</span>
           <div className="flex items-center gap-3">
             <Link href="/terms/" className="text-slate-600 hover:text-emerald-600 font-medium">
               이용약관 보기

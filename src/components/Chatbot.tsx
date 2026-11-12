@@ -99,10 +99,10 @@ export default function Chatbot() {
               <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#0f3b28] rounded-full"></span>
             </div>
             <div>
-              <h3 className="font-bold text-sm">동네알리미 AI 상담원</h3>
+              <h3 className="font-bold text-sm">동네알리미 자주 묻는 질문</h3>
               <p className="text-[11px] text-emerald-200 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                실시간 답변 대기중
+                미리 준비된 안내 답변
               </p>
             </div>
           </div>

@@ -6,8 +6,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBanner from "@/components/AdBanner";
 import CoupangBanner from "@/components/CoupangBanner";
-import BenefitCalculatorWidget from "@/components/BenefitCalculatorWidget";
-import PostFaqSection from "@/components/PostFaqSection";
 import AuthorBio from "@/components/AuthorBio";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { getPostPexelsImages } from "@/lib/pexels";
@@ -23,7 +21,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "게시글을 찾을 수 없습니다 | 강북·도봉·노원 생활 혜택",
+      title: "게시글을 찾을 수 없습니다",
       description: "요청하신 블로그 포스트를 찾을 수 없습니다.",
     };
   }
@@ -141,9 +139,8 @@ export default async function BlogPostPage({
       "@id": `${siteUrl}/blog/${slug}/`,
     },
     author: {
-      "@type": "Person",
-      name: "김에디터",
-      jobTitle: "로컬 복지 큐레이터",
+      "@type": "Organization",
+      name: "우리 동네 이야기",
       url: `${siteUrl}/about/`,
     },
     publisher: {
@@ -179,45 +176,6 @@ export default async function BlogPostPage({
     ],
   };
 
-  // FAQPage JSON-LD 스키마 (화면의 PostFaqSection과 내용 일치)
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `${post.title}의 신청 자격 요건은 어떻게 되나요?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "본 지원 사업은 관할 자치구(강북구·도봉구·노원구)에 주민등록을 둔 구민을 우선 대상으로 합니다. 가구 소득(2026년 기준 중위소득 기준) 및 연령, 대상 자격(어르신, 장애인, 한부모, 청년 등)을 충족해야 하며, 상세 기준은 관할 동 주민센터 또는 정부24에서 확인 가능합니다.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "신청 시 필요한 필수 구비 서류는 무엇인가요?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "신청인 본인 신분증, 주민등록등본(최근 3개월 이내 발급본), 본인 명의 통장 사본이 기본 필요 서류입니다. 대리 신청의 경우 위임장과 대리인 신분증, 가족관계증명서가 추가로 요구될 수 있습니다.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "타 자치구 지원금이나 유사 복지 혜택과 중복 수혜가 가능한가요?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "사업의 성격에 따라 중복 수급이 제한될 수 있습니다. 예를 들어 동일한 목적으로 지급되는 생계비나 바우처는 중복 지급이 제외될 수 있으므로, 접수 전 관할 동 주민센터 복지팀 담당자와 사전 상담하시는 것을 권장합니다.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "온라인 접수와 방문 접수 중 어떤 방법이 더 빠른가요?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "정부24(gov.kr) 또는 복지로(bokjiro.go.kr)에 온라인 신청 창구가 열려 있는 경우 24시간 온라인 접수가 가장 간편합니다. 다만 증빙 서류 보완이 필요한 경우에는 관할 동 주민센터(행정복지센터)를 직접 방문하여 접수하시는 편이 서류 누락 방지에 유리합니다.",
-        },
-      },
-    ],
-  };
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">
@@ -229,10 +187,6 @@ export default async function BlogPostPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* 1. 글로벌 헤더 */}
@@ -308,13 +262,6 @@ export default async function BlogPostPage({
               </a>
             </div>
           </div>
-
-          {/* [하이브리드 상단 Top UI] 대화형 모의 진단 및 계산 도구 */}
-          <BenefitCalculatorWidget
-            defaultDistrict={post.tags.find((t) => t.includes("구")) || "강북구"}
-            category={post.category}
-            postTitle={post.title}
-          />
 
           {/* [하이브리드 중단 Middle] 마크다운 렌더링 본문 (중간에 2번째 사진 자동 삽입) */}
           {(() => {
@@ -399,7 +346,7 @@ export default async function BlogPostPage({
             );
           })()}
 
-          {/* [하이브리드 하단 Bottom - 1] 작성자 관점 실전 팁 & 주의사항 (Experience 기반) */}
+          {/* 공통 신청 안내 (사업별 조건이 아닌 일반 안내) */}
           <section className="bg-emerald-50/70 border border-emerald-200/90 rounded-3xl p-6 sm:p-7 space-y-4 my-8">
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
@@ -407,10 +354,10 @@ export default async function BlogPostPage({
               </span>
               <div>
                 <h3 className="text-base font-black text-emerald-950">
-                  현장 큐레이터의 실전 신청 팁 &amp; 주의사항 (Editor&apos;s Checklist)
+                  신청 전 공통 확인 사항
                 </h3>
                 <p className="text-xs text-emerald-800">
-                  행정복지센터 방문 전 꼭 챙겨야 할 3대 필수 사전 체크포인트
+                  대부분의 지원 사업에 해당하는 일반 안내입니다. 사업별 조건은 공식 공고를 따르세요.
                 </p>
               </div>
             </div>
@@ -426,26 +373,20 @@ export default async function BlogPostPage({
               <div className="bg-white p-4 rounded-2xl border border-emerald-100 space-y-1">
                 <strong className="block text-emerald-900 font-bold">2. 서류 유효기간 3개월</strong>
                 <p className="text-slate-600 leading-relaxed">
-                  주민등록등본 및 소득 증빙 서류는 접수일 기준 3개월 이내 발급본이어야 반려되지 않습니다.
+                  주민등록등본 등 증빙 서류는 최근 발급본을 요구하는 경우가 많습니다. 유효기간은 기관 안내를 확인하세요.
                 </p>
               </div>
 
               <div className="bg-white p-4 rounded-2xl border border-emerald-100 space-y-1">
                 <strong className="block text-emerald-900 font-bold">3. 대리 신청 시 위임장</strong>
                 <p className="text-slate-600 leading-relaxed">
-                  가족이 대리 접수할 경우 위임인 도장 날인 위임장, 가족관계증명서, 대리인 신분증을 반드시 지참하세요.
+                  가족이 대리 접수할 때는 위임장, 가족관계증명서, 대리인 신분증 등을 요구할 수 있으니 미리 문의하세요.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* [하이브리드 하단 Bottom - 2] 자주 묻는 질문 FAQ 아코디언 */}
-          <PostFaqSection
-            postTitle={post.title}
-            category={post.category}
-          />
-
-          {/* [E-E-A-T & 신뢰도 보강] 현장 팩트체크 전담 에디터 프로필 */}
+          {/* 작성·검토 방식 안내 */}
           <AuthorBio
             district={post.tags?.find((t) => t.includes("구")) || "강북·도봉·노원"}
             publishedDate={post.date}
@@ -486,15 +427,15 @@ export default async function BlogPostPage({
                 <span>📋</span> 정보 신뢰성 고지 및 편집 정책
               </p>
               <p>
-                본 가이드는 대한민국 행정안전부 <strong>공공데이터포털(data.go.kr)</strong> 및 서울시 각 자치구 공식 고시 정보를 기반으로 전문 에디터가 체계적으로 분석·정리한 자료입니다. 보다 상세한 데이터 검증 정책은{" "}
+                이 글은 행정안전부 <strong>공공데이터포털(data.go.kr)</strong>·정부24의 공공서비스 정보를 바탕으로 정리했으며, 초안 작성에 AI 도구를 사용했습니다. 작성 방식은{" "}
                 <Link href="/about/" className="font-bold underline text-emerald-800 hover:text-emerald-950">
-                  서비스 소개 및 E-E-A-T 원칙
+                  서비스 소개
                 </Link>
                 에서 확인하실 수 있으며, 정보에 오류가 있거나 변경 사항이 있다면{" "}
                 <Link href="/contact/" className="font-bold underline text-emerald-800 hover:text-emerald-950">
                   문의 및 제보 창구
                 </Link>
-                를 통해 알려주시면 24~48시간 이내에 반영됩니다.
+                를 통해 알려 주세요. 확인 후 수정합니다.
               </p>
             </div>
           </div>

@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "서비스 소개 및 E-E-A-T 편집 원칙 | 우리 동네 이야기 (강북·도봉·노원)",
-  description: "서울 강북구·도봉구·노원구 주민을 위한 생활 혜택 정보 큐레이션 포털 '우리 동네 이야기'의 운영 목적, 운영 주체, E-E-A-T 기반 데이터 검증 원칙 및 고유 가치를 소개합니다.",
+  title: "서비스 소개 및 편집 원칙",
+  description: "서울 강북구·도봉구·노원구 주민을 위한 생활 혜택 정보 사이트 '우리 동네 이야기'의 운영 목적, 운영 주체, 글을 만드는 방식을 소개합니다.",
   alternates: {
     canonical: "/about/",
   },
@@ -28,7 +28,7 @@ export default function AboutPage() {
             우리 동네 이야기 소개
           </h1>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
-            서울 동북권(강북구·도봉구·노원구) 115만 구민의 더 나은 일상을 위해, 복잡한 정부·지자체 복지 공고와 문화 축제 소식을 가장 쉽고 명쾌하게 해설하는 <strong>지역 맞춤형 생활 복지 아카이브</strong>입니다.
+            서울 동북권(강북구·도봉구·노원구) 구민의 더 나은 일상을 위해, 복잡한 정부·지자체 복지 공고와 문화 축제 소식을 가장 쉽고 명쾌하게 해설하는 <strong>지역 맞춤형 생활 복지 아카이브</strong>입니다.
           </p>
         </div>
 
@@ -122,59 +122,32 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 4. 데이터 검증 방식 및 E-E-A-T 원칙 체계 */}
+        {/* 4. 글을 만드는 방식 (AI 사용과 검토 범위를 있는 그대로 공개) */}
         <section className="bg-white p-6 sm:p-8 rounded-3xl border border-emerald-100 shadow-sm space-y-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold">
               ⚖️
             </div>
             <div>
-              <h2 className="text-xl font-black text-slate-900">E-E-A-T 기반 데이터 검증 및 신뢰 체계</h2>
-              <p className="text-xs text-slate-500">구글의 고품질 콘텐츠 평가 기준(경험, 전문성, 권위, 신뢰)을 충실히 따릅니다</p>
+              <h2 className="text-xl font-black text-slate-900">글을 만드는 방식</h2>
+              <p className="text-xs text-slate-500">어디서 정보를 가져오고, 누가 어떻게 정리하는지 밝힙니다</p>
             </div>
           </div>
 
-          <div className="space-y-4 text-xs sm:text-sm text-slate-700">
-            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-1">
-              <strong className="text-slate-900 flex items-center gap-2 text-sm">
-                <span className="w-6 h-6 rounded-lg bg-emerald-600 text-white text-xs flex items-center justify-center font-bold">E</span>
-                Experience (경험 기반의 실전 가이드)
-              </strong>
-              <p className="text-slate-600 leading-relaxed pl-8">
-                단순 텍스트 복사가 아닌, 실제 관할 동 주민센터를 방문하여 신청할 때 필요한 구비서류 체크리스트와 놓치기 쉬운 필수 유의사항(소득 인정액 계산 팁 등)을 실무 경험에 입각해 설명합니다.
-              </p>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-1">
-              <strong className="text-slate-900 flex items-center gap-2 text-sm">
-                <span className="w-6 h-6 rounded-lg bg-teal-600 text-white text-xs flex items-center justify-center font-bold">E</span>
-                Expertise (공식 데이터 분석 전문성)
-              </strong>
-              <p className="text-slate-600 leading-relaxed pl-8">
-                대한민국 행정안전부 <strong>공공데이터포털(data.go.kr)</strong>의 공식 오픈 API 및 강북구청, 도봉구청, 노원구청의 최신 고시·공고 원본 문서를 바탕으로 전담 에디터가 항목을 정밀 대조·분석합니다.
-              </p>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-1">
-              <strong className="text-slate-900 flex items-center gap-2 text-sm">
-                <span className="w-6 h-6 rounded-lg bg-blue-600 text-white text-xs flex items-center justify-center font-bold">A</span>
-                Authoritativeness (투명한 권위성 및 원천 링크)
-              </strong>
-              <p className="text-slate-600 leading-relaxed pl-8">
-                게재된 모든 글의 하단에 정부 공식 출처(정부24, 지자체 공식 웹사이트 링크)를 명시하여 독자가 언제든지 1차 원문을 재확인할 수 있도록 완전한 투명성을 보장합니다.
-              </p>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-1">
-              <strong className="text-slate-900 flex items-center gap-2 text-sm">
-                <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs flex items-center justify-center font-bold">T</span>
-                Trustworthiness (정기 검수 및 책임 있는 정정)
-              </strong>
-              <p className="text-slate-600 leading-relaxed pl-8">
-                예산 조기 소진이나 조례 개정 등으로 변동 사항이 발생할 경우, 주기적인 데이터 점검과 독자 제보 시스템을 통해 <strong>24~48시간 이내에 최신 상태로 정정·업데이트</strong>합니다.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-xs sm:text-sm text-slate-700 list-decimal pl-5">
+            <li>
+              <strong>출처:</strong> 행정안전부 공공데이터포털(data.go.kr)의 정부24 공공서비스 정보와 각 구청이 공개한 공고를 기본 자료로 씁니다.
+            </li>
+            <li>
+              <strong>초안:</strong> 공공데이터 원문을 바탕으로 AI 도구가 읽기 쉬운 초안을 만듭니다. 작성자 경험담이나 현장 방문기를 지어내지 않습니다.
+            </li>
+            <li>
+              <strong>검토:</strong> 운영자가 초안을 관할 기관 공고와 대조해 고친 뒤 게시합니다. 확인하지 못한 부분은 글에 그렇다고 적습니다.
+            </li>
+            <li>
+              <strong>정정:</strong> 지원 조건은 예산과 조례에 따라 바뀝니다. 오류 제보를 받으면 확인 후 수정하며, 신청 전에는 반드시 공식 공고를 확인해 주세요.
+            </li>
+          </ol>
         </section>
 
         {/* 5. 운영 주체 및 투명성 정보 */}
@@ -190,9 +163,9 @@ export default function AboutPage() {
             </div>
 
             <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
-              <span className="text-xs text-slate-400 font-bold block">에디토리얼 &amp; 운영팀</span>
-              <strong className="text-slate-900 text-sm">우리 동네 이야기 콘텐츠 랩</strong>
-              <p className="text-slate-500 text-xs">공공데이터 정제 및 지역 생활 복지 가이드 기획·검수팀</p>
+              <span className="text-xs text-slate-400 font-bold block">운영</span>
+              <strong className="text-slate-900 text-sm">우리 동네 이야기 운영자</strong>
+              <p className="text-slate-500 text-xs">공공데이터 정리, 글 검토와 정정을 맡습니다</p>
             </div>
 
             <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
@@ -200,7 +173,7 @@ export default function AboutPage() {
               <a href="mailto:tkdgus8231@gmail.com" className="text-emerald-600 font-extrabold hover:underline">
                 tkdgus8231@gmail.com
               </a>
-              <p className="text-slate-500 text-xs">운영시간: 평일 10:00 ~ 18:00 (회신: 24~48시간 이내)</p>
+              <p className="text-slate-500 text-xs">메일을 확인하는 대로 답장드립니다</p>
             </div>
 
             <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
@@ -213,7 +186,7 @@ export default function AboutPage() {
 
         {/* 6. 하단 바로가기 링크 */}
         <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <span>최종 정책 업데이트: 2026년 9월 30일</span>
+          <span>최종 수정: 2026년 11월 12일</span>
           <div className="flex items-center gap-4">
             <Link href="/contact/" className="text-slate-700 font-bold hover:text-emerald-600 transition-colors">
               문의/오류 제보 창구 →

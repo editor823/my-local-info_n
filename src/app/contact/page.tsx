@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "문의하기 & 소통 창구 | 우리 동네 이야기 (강북·도봉·노원)",
-  description: "우리 동네 이야기 운영팀과 직접 소통하실 수 있는 공식 문의 및 오류 제보 창구입니다. 영업일 기준 24~48시간 이내에 신속하게 답변해 드립니다.",
+  title: "문의하기",
+  description: "우리 동네 이야기에 정보 정정 요청, 행사 제보, 기타 문의를 보내는 방법을 안내합니다.",
   alternates: {
     canonical: "/contact/",
   },
@@ -54,10 +54,10 @@ export default function ContactPage() {
             </div>
             <h3 className="font-bold text-slate-900 text-sm">답변 처리 소요 시간</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              접수된 모든 문의는 담당 에디터가 확인 후 24~48시간 이내에 회신합니다.
+              운영자가 메일을 확인하는 대로 답장드립니다. 정보 오류 제보는 우선 확인합니다.
             </p>
             <p className="text-xs font-semibold text-slate-700 pt-1">
-              평일: 10:00 ~ 18:00 (주말/공휴일 제외)
+              답장은 보내 주신 메일 주소로 드립니다.
             </p>
           </div>
 

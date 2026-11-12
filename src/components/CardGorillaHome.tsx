@@ -16,6 +16,8 @@ interface InfoItem {
   link: string;
   slug?: string;
   name?: string;
+  postSlug: string;
+  isEnded?: boolean;
 }
 
 interface Props {
@@ -116,7 +118,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
         <div className="relative max-w-4xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 bg-[#042418] border border-emerald-500/40 text-emerald-200 text-xs font-bold px-4 py-1.5 rounded-full shadow-inner">
             <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>2026 강북 · 도봉 · 노원 구민을 위한 실시간 생활 혜택 차트</span>
+            <span>강북 · 도봉 · 노원 구민을 위한 생활 혜택 안내</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight sm:leading-snug">
@@ -128,7 +130,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
 
           <p className="text-emerald-100 text-sm sm:text-base max-w-xl mx-auto font-normal leading-relaxed">
             강북구·도봉구·노원구 주민을 위한 맞춤형 장학금, 출산지원금, 안심보험부터 지역 축제까지! <br className="hidden sm:inline" />
-            열린 공공데이터를 기반으로 실시간 알찬 혜택을 큐레이션해 드립니다.
+            공공데이터포털·정부24에 공개된 정보를 바탕으로 정리합니다. 신청 전에는 관할 기관 공고를 꼭 확인하세요.
           </p>
 
           {/* 통합 검색창 */}
@@ -236,18 +238,18 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
               <span className="text-slate-600 font-medium">기준: {lastUpdated}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1 flex items-center gap-2">
-              🌿 {activeDistrict === "all" ? "강북·도봉·노원" : activeDistrict} 구민 추천 TOP 혜택
+              🌿 {activeDistrict === "all" ? "강북·도봉·노원" : activeDistrict} 주요 혜택 안내
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600">
-            {activeDistrict === "all" ? "3개 자치구" : activeDistrict} 주민들이 가장 많이 조회하고 혜택을 받는 핵심 복지 지원입니다.
+            {activeDistrict === "all" ? "전체 자치구" : activeDistrict}의 지원 사업 중 일부를 먼저 보여 드립니다. 순서는 조회수와 무관합니다.
           </p>
         </div>
 
         {/* 4열 와이드 그리드 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topHighlights.map((item, idx) => {
-            const detailHref = `/benefit/${item.id}/`;
+            const detailHref = `/blog/${item.postSlug}/`;
             const districtInfo = getDistrictBadge(item.location);
             const rankBadges = [
               "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white",
@@ -267,7 +269,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                     <span
                       className={`w-8 h-8 rounded-xl ${rankBadges[idx % 4]} font-black text-sm flex items-center justify-center shadow-md`}
                     >
-                      0{idx + 1}
+                      📌
                     </span>
                     <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${districtInfo.color}`}>
                       {districtInfo.name}
@@ -296,7 +298,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                     href={detailHref}
                     className="block text-center w-full py-2.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs rounded-xl transition-all shadow-2xs"
                   >
-                    상세 혜택 분석 보기 →
+                    안내 글 보기 →
                   </Link>
                 </div>
               </div>
@@ -385,7 +387,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
               {displayedItems.map((item, index) => {
-                const detailHref = `/benefit/${item.id}/`;
+                const detailHref = `/blog/${item.postSlug}/`;
                 const isEvent = item.type === "event";
                 const districtInfo = getDistrictBadge(item.location);
 
@@ -412,7 +414,7 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                           </span>
                         </div>
                         <span className="text-xs text-slate-600 font-medium">
-                          {item.endDate === "상시" ? "상시 운영" : `${item.startDate} ~ ${item.endDate}`}
+                          {item.endDate === "상시" ? "상시 운영" : `${item.startDate} ~ ${item.endDate}${item.isEnded ? " (종료)" : ""}`}
                         </span>
                       </div>
 

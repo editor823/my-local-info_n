@@ -44,11 +44,15 @@ export default function ContactForm() {
     setErrorMessage("");
     setStatus("submitting");
 
-    // 2. 제출 처리 (정적 웹 환경이므로 안전하게 접수 상태를 저장하고 mailto 백업 옵션 제공)
-    setTimeout(() => {
-      setStatus("success");
-    }, 600);
+    // 2. [애드센스 재심사 대응] 정적 사이트라 서버로 전송하지 않습니다.
+    //    입력 내용으로 메일 앱의 새 메일을 열고, 실제 전송은 사용자가 메일 앱에서 합니다.
+    window.location.href = mailtoHref;
+    setStatus("success");
   };
+
+  const mailtoHref = `mailto:tkdgus8231@gmail.com?subject=${encodeURIComponent(
+    `[${formData.category}] ${formData.title}`
+  )}&body=${encodeURIComponent(`보낸 사람: ${formData.name} (${formData.email})\n\n${formData.message}`)}`;
 
   const handleReset = () => {
     setFormData({
@@ -69,9 +73,9 @@ export default function ContactForm() {
           ✍️
         </div>
         <div>
-          <h2 className="text-xl font-black text-slate-900">온라인 문의 접수 양식</h2>
+          <h2 className="text-xl font-black text-slate-900">메일로 문의하기</h2>
           <p className="text-xs text-slate-500">
-            남겨주신 문의 사항은 담당 에디터가 검토 후 영업일 기준 24~48시간 이내에 회신해 드립니다.
+            아래 내용을 채우면 메일 앱에 새 메일이 만들어집니다. 메일 앱에서 보내기를 눌러야 전송됩니다.
           </p>
         </div>
       </div>
@@ -82,11 +86,11 @@ export default function ContactForm() {
             ✓
           </div>
           <div>
-            <h3 className="text-lg font-bold text-emerald-950">문의가 성공적으로 접수되었습니다!</h3>
+            <h3 className="text-lg font-bold text-emerald-950">메일 앱에서 보내기를 눌러 주세요</h3>
             <p className="text-xs sm:text-sm text-emerald-800 mt-1.5 leading-relaxed">
-              입력해 주신 이메일(<strong>{formData.email}</strong>)로 검토 결과 및 답변을 보내드리겠습니다.
+              작성하신 내용으로 새 메일을 열었습니다. 아직 전송되지 않았으니 메일 앱에서 보내기를 눌러 주세요.
               <br />
-              소중한 의견으로 더 정확하고 유익한 지역 정보를 만들겠습니다.
+              메일 앱이 열리지 않았다면 아래 버튼을 누르거나 tkdgus8231@gmail.com 으로 직접 보내 주세요.
             </p>
           </div>
 
@@ -99,14 +103,10 @@ export default function ContactForm() {
               추가 문의 작성하기
             </button>
             <a
-              href={`mailto:tkdgus8231@gmail.com?subject=[${encodeURIComponent(
-                formData.category
-              )}] ${encodeURIComponent(formData.title)}&body=${encodeURIComponent(
-                `보낸 사람: ${formData.name} (${formData.email})\n\n${formData.message}`
-              )}`}
+              href={mailtoHref}
               className="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-all shadow-sm cursor-pointer"
             >
-              메일 앱에서 직접 전송하기 ↗
+              메일 앱 다시 열기 ↗
             </a>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function ContactForm() {
           <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] text-slate-500 flex items-start gap-2">
             <span>🔒</span>
             <p>
-              입력하신 성함과 이메일은 <strong>문의 답변 및 원활한 상담 처리 목적</strong>으로만 이용되며, 상담 완료 후 관련 법령에 따라 안전하게 파기됩니다.
+              이 양식은 사이트에 내용을 저장하거나 전송하지 않습니다. 입력하신 내용은 이용자의 메일 앱으로만 전달되며, 보내신 메일은 <strong>문의 답변 목적</strong>으로만 이용합니다.
             </p>
           </div>
 
@@ -230,11 +230,11 @@ export default function ContactForm() {
             {status === "submitting" ? (
               <>
                 <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                <span>접수 처리 중...</span>
+                <span>메일 앱 여는 중...</span>
               </>
             ) : (
               <>
-                <span>문의 및 제보 접수하기</span>
+                <span>메일 앱으로 작성하기</span>
                 <span>→</span>
               </>
             )}

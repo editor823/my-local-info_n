@@ -62,7 +62,7 @@ export default function BenefitCalculatorWidget({
             <h3 className="font-black text-base sm:text-lg text-emerald-100 flex flex-wrap items-center gap-2">
               <span>2026 {category} 자가 진단 시뮬레이터</span>
               <span className="text-[10px] bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-bold">
-                {postTitle ? `${postTitle.slice(0, 15)}... 연계` : "실시간 간편 진단"}
+                {postTitle ? `${postTitle.slice(0, 15)}... 연계` : "간편 진단"}
               </span>
             </h3>
             <p className="text-xs text-emerald-200/70">

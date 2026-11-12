@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "이용약관 및 면책조항 | 우리 동네 이야기",
+  title: "이용약관",
   description: "우리 동네 이야기 서비스 이용 조건 및 공공데이터 정보 제공에 관한 법적 면책 조항 안내입니다.",
   alternates: {
     canonical: "/terms/",
