@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-11",
+  "lastUpdated": "2026-11-12",
   "events": [
     {
       "id": "event-gangbuk-1",
@@ -1057,6 +1057,18 @@
       "target": "기초수급자, 차상위계층, 기초연금 등 만65세 이상 저소득 어르신가구",
       "summary": "수급자, 차상위계층 등 저소득 어르신을 대상으로 낙상예방 안전용품 지원",
       "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1004266&bnefType=all&svcId=304000000113"
+    },
+    {
+      "id": "304000000117",
+      "name": "국민기초생활보장 문화체험활동경비 지원",
+      "title": "국민기초생활보장 문화체험활동경비 지원",
+      "category": "혜택",
+      "startDate": "2026-03-09",
+      "endDate": "상시",
+      "location": "서울특별시 광진구",
+      "target": "기준중위소득 40% 이하의 생계, 의료급여 수급자 가구의 초6, 중2, 고2 재학생",
+      "summary": "수급자 가정의 학생에게 연 1회 현금 지원",
+      "link": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1005247&bnefType=all&svcId=304000000117"
     }
   ]
 }
