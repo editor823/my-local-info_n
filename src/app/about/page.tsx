@@ -164,7 +164,7 @@ export default function AboutPage() {
 
             <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
               <span className="text-xs text-slate-400 font-bold block">운영</span>
-              <strong className="text-slate-900 text-sm">우리 동네 이야기 운영자</strong>
+              <strong className="text-slate-900 text-sm">우리동네이야기</strong>
               <p className="text-slate-500 text-xs">공공데이터 정리, 글 검토와 정정을 맡습니다</p>
             </div>
 

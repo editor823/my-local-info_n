@@ -9,7 +9,7 @@ interface AuthorBioProps {
 // [애드센스 재심사 대응] 가공의 인물·경력·인증 표시를 없애고,
 // 실제 운영 주체와 글이 만들어지는 방식을 그대로 안내합니다.
 // 운영자 실명이나 상호를 공개하려면 OPERATOR_NAME 을 바꾸세요.
-const OPERATOR_NAME = "우리 동네 이야기 운영자";
+const OPERATOR_NAME = "우리동네이야기";
 
 export default function AuthorBio({ publishedDate }: AuthorBioProps) {
   return (
