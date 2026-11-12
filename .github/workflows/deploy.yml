@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '15 22 * * *' # 매일 한국 시간(KST) 오전 7시 15분 실행
+  # [애드센스 재심사 대응] 매일 자동 수집·AI 글 발행을 중지했습니다.
+  # 다시 켜려면 아래 두 줄의 주석을 풀되, 생성된 글은 content-drafts/ 에 쌓이고
+  # 운영자가 검토해 src/content/posts/ 로 옮겨야 발행됩니다.
+  # schedule:
+  #   - cron: '15 22 * * *' # 매일 한국 시간(KST) 오전 7시 15분 실행
   workflow_dispatch:
 
 permissions:
@@ -27,15 +30,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch public data (schedule or manual)
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Fetch public data (schedule only)
+        if: github.event_name == 'schedule'
         run: node scripts/fetch-public-data.js
         env:
           PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Generate blog post (schedule or manual)
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Generate blog post draft (schedule only)
+        if: github.event_name == 'schedule'
         run: node scripts/generate-blog-post.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -43,14 +46,14 @@ jobs:
       - name: Validate no duplicate posts
         run: npm run check:duplicates
 
-      - name: Commit and push changes (schedule or manual)
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Commit and push changes (schedule only)
+        if: github.event_name == 'schedule'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "자동 업데이트: 공공데이터 수집 및 블로그 글 생성"
+            git commit -m "자동 업데이트: 공공데이터 수집 및 블로그 초안 생성"
             git push
           else
             echo "변경사항이 없습니다."
