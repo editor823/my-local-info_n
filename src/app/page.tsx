@@ -31,12 +31,13 @@ export default function Home() {
   const lastUpdated = localInfoData.lastUpdated;
 
   // 핵심 상위 하이라이트 4개만 홈 화면 스키마로 제공 (HTML 용량 80% 절감으로 모바일 FCP 대폭 단축)
+  const isIsoDate = (v?: string) => Boolean(v && /^\d{4}-\d{2}-\d{2}$/.test(v));
   const eventSchemas = events.slice(0, 4).map((event) => ({
     "@context": "https://schema.org",
     "@type": "Event",
     name: event.name || event.title,
-    startDate: event.startDate,
-    endDate: event.endDate || event.startDate,
+    ...(isIsoDate(event.startDate) ? { startDate: event.startDate } : { startDate: "2026-01-01" }),
+    ...(isIsoDate(event.endDate) ? { endDate: event.endDate } : isIsoDate(event.startDate) ? { endDate: event.startDate } : {}),
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {
@@ -44,7 +45,13 @@ export default function Home() {
       name: event.location || "행사장",
       address: {
         "@type": "PostalAddress",
-        addressLocality: event.location?.includes("도봉") ? "도봉구" : event.location?.includes("노원") ? "노원구" : "강북구",
+        addressLocality: event.location?.includes("도봉")
+          ? "도봉구"
+          : event.location?.includes("노원")
+          ? "노원구"
+          : event.location?.includes("중랑")
+          ? "중랑구"
+          : "강북구",
         addressRegion: "서울특별시",
         addressCountry: "KR",
       },

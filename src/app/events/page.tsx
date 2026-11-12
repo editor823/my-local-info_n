@@ -64,7 +64,13 @@ export default function EventsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event) => {
             const hasPost = Boolean(event.slug);
-            const detailHref = hasPost ? `/blog/${event.slug}/` : (event.link || "https://www.gov.kr");
+            const detailHref = hasPost ? `/blog/${event.slug}/` : (event.link || "https://plus.gov.kr");
+            const dateLabel =
+              event.startDate === "상시" && event.endDate === "상시"
+                ? "연중 상시 (월별 접수)"
+                : event.endDate === "상시"
+                ? `${event.startDate} ~ 상시 운영`
+                : `${event.startDate} ~ ${event.endDate}`;
             const eventImage = getPostFeaturedImage({ title: event.title, category: event.category });
             return (
               <article
@@ -86,7 +92,7 @@ export default function EventsPage() {
                   </div>
                   <div className="absolute bottom-3 right-3">
                     <span className="bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                      🗓️ {event.startDate} ~ {event.endDate}
+                      🗓️ {dateLabel}
                     </span>
                   </div>
                 </div>
@@ -98,7 +104,7 @@ export default function EventsPage() {
                       {event.category}
                     </span>
                     <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
-                      {isEnded(event) ? "종료 · " : ""}🗓️ {event.startDate} ~ {event.endDate}
+                      {isEnded(event) ? "종료 · " : ""}🗓️ {dateLabel}
                     </span>
                   </div>
 

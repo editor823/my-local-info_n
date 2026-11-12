@@ -80,7 +80,7 @@ export default function Footer() {
                   __html: "<!--email_off-->tkdgus8231@gmail.com<!--/email_off-->",
                 }}
               />{" "}
-              (에디토리얼팀)
+              (우리 동네 이야기 운영자)
             </p>
           </div>
 

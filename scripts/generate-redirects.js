@@ -9,9 +9,26 @@ const data = JSON.parse(fs.readFileSync(path.join(root, "public", "data", "local
 const postsDir = path.join(root, "src", "content", "posts");
 const posts = new Set(fs.readdirSync(postsDir).filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, "")));
 
+const LEGACY_ALIASES = {
+  "nowon-longevity-grant-2026": "2026-10-11-nowon-longevity-grant",
+  "dobong-childbirth-support-2026": "dobong-childbirth-support-allowance",
+  "nowon-youth-work-2026": "2026-10-09-nowon-youth-work-experience",
+  "gangbuk-filial-piety-2026": "gangbuk-filial-piety-allowance",
+};
+
 const items = [...(data.benefits || []), ...(data.events || [])];
 const lines = [];
 const seen = new Set();
+for (const [aliasId, targetSlug] of Object.entries(LEGACY_ALIASES)) {
+  if (!posts.has(targetSlug)) continue;
+  for (const base of ["/benefit/", "/magazine/"]) {
+    for (const from of [`${base}${aliasId}/`, `${base}${aliasId}`]) {
+      if (seen.has(from)) continue;
+      seen.add(from);
+      lines.push(`${from} /blog/${targetSlug}/ 301`);
+    }
+  }
+}
 for (const item of items) {
   const target = [item.slug, item.id].find((s) => s && posts.has(s));
   if (!target) continue;

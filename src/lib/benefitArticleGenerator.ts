@@ -125,7 +125,7 @@ export function generateBenefitDeepArticle(benefit: BenefitItem): string {
   const title = benefit.name || benefit.title || "구민 생활 복지 지원 사업";
   const summary = benefit.summary || "지역 주민의 생활 안정을 위한 공공 복지 서비스";
   const target = benefit.target || "관내 주민등록을 둔 구민";
-  const link = benefit.link || "https://www.gov.kr";
+  const link = benefit.link || "https://plus.gov.kr";
 
   return `
 # ${title} 2026년 신청 자격 요건 및 심층 이용 가이드
@@ -193,7 +193,7 @@ export function generateBenefitDeepArticle(benefit: BenefitItem): string {
 ### 단계별 신청 절차
 1. **사전 유선 문의:** 관할 동 주민센터 복지팀에 전화하여 당해 연도 사업 예산 잔여 현황 및 추가 지참 서류를 확인합니다.
 2. **서류 준비 및 작성:** 안내받은 서류를 누락 없이 구비합니다.
-3. **접수 신청:** 주소지 관할 행정복지센터를 방문하거나 정부24([gov.kr](${link}))에서 온라인 접수를 완료합니다.
+3. **접수 신청:** 주소지 관할 행정복지센터를 방문하거나 정부24([plus.gov.kr](${link}))에서 온라인 접수를 완료합니다.
 4. **자격 심사 및 통보:** 담당 부서에서 서류 및 소득·재산 조사를 거쳐 최종 선정 여부를 문자(SMS)로 개별 안내합니다.
 
 ---

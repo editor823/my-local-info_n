@@ -116,7 +116,7 @@ export default function AboutPage() {
                 <span>🎪</span> 지역 축제 · 문화 공연 · 플리마켓
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                4·19 국민문화제, 도봉산 페스티벌, 노원 탈축제 &amp; 불빛정원 산책 등 주말에 가족과 함께 즐길 수 있는 문화 캘린더
+                4·19혁명국민문화제, 경흥대로 도봉옛길 문화제, 우이천변 페스타, 노원 수제맥주축제 &amp; 불빛정원 산책 등 가족과 함께 즐길 수 있는 지역 문화 캘린더
               </p>
             </div>
           </div>

@@ -414,7 +414,11 @@ export default function CardGorillaHome({ events, benefits, lastUpdated }: Props
                           </span>
                         </div>
                         <span className="text-xs text-slate-600 font-medium">
-                          {item.endDate === "상시" ? "상시 운영" : `${item.startDate} ~ ${item.endDate}${item.isEnded ? " (종료)" : ""}`}
+                          {item.endDate === "상시"
+                            ? item.startDate === "상시"
+                              ? "상시 운영 (월별 접수)"
+                              : "상시 운영"
+                            : `${item.startDate} ~ ${item.endDate}${item.isEnded ? " (종료)" : ""}`}
                         </span>
                       </div>
 

@@ -16,7 +16,7 @@ export default function InteractiveChecklist({
     { id: "c2", text: "신청일 기준 지원 대상 연령 또는 대상 자격(가구 요건)을 충족하시나요?", checked: false },
     { id: "c3", text: "본인 명의의 신분증 및 본인 명의 입금 통장을 소지하고 계신가요?", checked: false },
     { id: "c4", text: "동일 목적의 타 유사 중복 수혜 지원금을 수령하고 있지 않으신가요?", checked: false },
-    { id: "c5", text: "최근 3개월 이내 발급된 필수 구비 서류를 준비하실 수 있나요?", checked: false },
+    { id: "c5", text: "최근 발급본 등 관할 기관이 안내하는 구비 서류를 준비하실 수 있나요?", checked: false },
   ];
 
   const [items, setItems] = useState(defaultItems);
@@ -94,16 +94,16 @@ export default function InteractiveChecklist({
           </span>
           <span className="font-bold">
             {isAllChecked
-              ? `축하합니다! 5개 필수 조건을 모두 충족하셨습니다. 바로 신청 서류를 준비하세요!`
+              ? `5개 기본 항목을 모두 확인했습니다. 신청 전 관할 기관 공고로 최종 자격을 확인하세요.`
               : checkedCount >= 3
-              ? "대부분의 조건을 충족하셨습니다. 나머지 항목을 점검 후 접수하세요."
+              ? "주요 항목을 대부분 확인했습니다. 나머지 조건과 공고를 점검 후 접수하세요."
               : "조건 항목을 체크하시면 자가진단 결과를 안내해 드립니다."}
           </span>
         </div>
 
         {isAllChecked && (
           <span className="hidden sm:inline-block bg-white text-emerald-800 text-xs font-black px-3 py-1 rounded-full">
-            적격 판정
+            점검 완료
           </span>
         )}
       </div>

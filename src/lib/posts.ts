@@ -13,6 +13,7 @@ export interface PostData {
   tags: string[];
   content: string;
   image?: string;
+  sourceUrl?: string;
 }
 
 // Pexels CDN 이미지를 WebP로 자동 최적화하는 헬퍼
@@ -149,6 +150,7 @@ export function getAllPosts(): PostData[] {
         tags: Array.isArray(data.tags) ? data.tags : [],
         content,
         image: data.image || "",
+        sourceUrl: typeof data.sourceUrl === "string" ? data.sourceUrl : "",
       };
 
       postItem.image = getPostFeaturedImage(postItem);
@@ -177,6 +179,7 @@ export function getPostBySlug(slug: string): PostData | null {
       tags: Array.isArray(data.tags) ? data.tags : [],
       content,
       image: data.image || "",
+      sourceUrl: typeof data.sourceUrl === "string" ? data.sourceUrl : "",
     };
     postItem.image = getPostFeaturedImage(postItem);
     return postItem;

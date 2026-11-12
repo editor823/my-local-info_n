@@ -105,19 +105,30 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
-  // local-info.json에서 원문 출처 링크 검색 (slug 또는 id 또는 제목 매칭)
+  // local-info.json에서 원문 출처 링크 검색 (정확한 slug/id 우선, 동일 자치구 제목 보조)
   const allLocalItems = [
     ...(localInfoData.events || []),
     ...(localInfoData.benefits || []),
   ];
-  const matchedItem = allLocalItems.find(
-    (item: { id?: string; slug?: string; title?: string; name?: string; link?: string }) =>
+  const exactMatchedItem = allLocalItems.find(
+    (item: { id?: string; slug?: string }) =>
       (item.slug && item.slug === slug) ||
-      (item.id && `info-${item.id}` === slug) ||
-      (item.title && post.title.includes(item.title)) ||
-      (item.name && post.title.includes(item.name))
+      (item.id && `info-${item.id}` === slug)
   );
-  const sourceLink = matchedItem?.link || "https://www.data.go.kr";
+  const postDistrict = post.tags?.find((t) => t.endsWith("구")) || "";
+  const fallbackMatchedItem = !exactMatchedItem
+    ? allLocalItems.find((item: { title?: string; name?: string; location?: string }) => {
+        if (postDistrict && item.location && !item.location.includes(postDistrict)) {
+          return false;
+        }
+        return Boolean(
+          (item.title && post.title.includes(item.title)) ||
+            (item.name && post.title.includes(item.name))
+        );
+      })
+    : undefined;
+  const matchedItem = exactMatchedItem || fallbackMatchedItem;
+  const sourceLink = matchedItem?.link || post.sourceUrl || "https://plus.gov.kr";
 
   const { featured: featuredImgData, secondary: secondaryImgData } = await getPostPexelsImages(post);
   const featuredImage = featuredImgData.url;
@@ -371,7 +382,7 @@ export default async function BlogPostPage({
               </div>
 
               <div className="bg-white p-4 rounded-2xl border border-emerald-100 space-y-1">
-                <strong className="block text-emerald-900 font-bold">2. 서류 유효기간 3개월</strong>
+                <strong className="block text-emerald-900 font-bold">2. 서류 발급 기준 확인</strong>
                 <p className="text-slate-600 leading-relaxed">
                   주민등록등본 등 증빙 서류는 최근 발급본을 요구하는 경우가 많습니다. 유효기간은 기관 안내를 확인하세요.
                 </p>

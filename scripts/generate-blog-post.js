@@ -241,6 +241,7 @@ date: "${todayStr}"
 summary: (사실만 담은 1~2문장 요약)
 category: "${latestItem.category || "혜택"}"
 tags: ["${districtName}", "${targetName}"]
+sourceUrl: "${latestItem.link || ""}"
 ---
 
 마지막 줄에 FILENAME: keyword 형식으로 파일명 키워드를 출력해 주세요. 키워드는 간결한 영문 소문자 케밥케이스입니다(예: FILENAME: nowon-mini-solar).`;

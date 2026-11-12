@@ -36,12 +36,12 @@ export default function BenefitCalculatorWidget({
   const [incomeLevel, setIncomeLevel] = useState("median100");
   const [isCalculated, setIsCalculated] = useState(false);
 
-  // 2026년 기준 중위소득 기준표 (단위: 원)
+  // 2026년 보건복지부 고시 기준 중위소득 (단위: 원)
   const medianIncome2026: Record<string, { median100: number; median50: number; median70: number }> = {
-    "1": { median100: 2420000, median50: 1210000, median70: 1694000 },
-    "2": { median100: 4030000, median50: 2015000, median70: 2821000 },
-    "3": { median100: 5180000, median50: 2590000, median70: 3626000 },
-    "4": { median100: 6310000, median50: 3155000, median70: 4417000 },
+    "1": { median100: 2564238, median50: 1282119, median70: 1794967 },
+    "2": { median100: 4199292, median50: 2099646, median70: 2939504 },
+    "3": { median100: 5359036, median50: 2679518, median70: 3751325 },
+    "4": { median100: 6494738, median50: 3247369, median70: 4546317 },
   };
 
   const handleCalculate = (e: React.FormEvent) => {
@@ -157,7 +157,7 @@ export default function BenefitCalculatorWidget({
               <span>📊</span> {district} · {householdSize}인 가구 분석 결과
             </span>
             <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-              지원 적격성: 높음
+              기준선 산출 참고용
             </span>
           </div>
 
@@ -168,7 +168,7 @@ export default function BenefitCalculatorWidget({
                 월 {currentMedian.median100.toLocaleString()}원
               </strong>
               <p className="text-[10px] text-slate-500">
-                (중위 50% 기준선: 월 {currentMedian.median50.toLocaleString()}원)
+                (중위 50%: 월 {currentMedian.median50.toLocaleString()}원 · 70%: 월 {currentMedian.median70.toLocaleString()}원)
               </p>
             </div>
 
@@ -212,7 +212,7 @@ export default function BenefitCalculatorWidget({
         </div>
 
         <div className="p-3 bg-emerald-900/40 rounded-xl border border-emerald-800/40 text-[11px] text-emerald-300 flex items-center justify-between flex-wrap gap-2">
-          <span>✍️ <strong>에디터 노트:</strong> 115만 동북권 구민이 복잡한 고시문 대신 1분 만에 기준을 파악할 수 있도록 지속 업데이트 중입니다.</span>
+          <span>✍️ <strong>운영 안내:</strong> 보건복지부 고시 2026년 기준 중위소득 수치를 반영한 참고용 계산기입니다.</span>
           <span className="text-emerald-400 font-medium">데이터 기준: 2026년 최신 고시</span>
         </div>
       </div>

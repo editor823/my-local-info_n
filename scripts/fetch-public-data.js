@@ -165,7 +165,7 @@ ${JSON.stringify(candidateItem, null, 2)}`;
       location: processedItem.location || candidateItem["소관기관명"] || "서울특별시",
       target: processedItem.target || candidateItem["지원대상"] || "구민",
       summary: processedItem.summary || candidateItem["서비스목적요약"] || "",
-      link: processedItem.link || candidateItem["상세조회URL"] || "https://www.gov.kr",
+      link: processedItem.link || candidateItem["상세조회URL"] || "https://plus.gov.kr",
     };
 
     localInfo[targetCategory].push(itemToSave);
