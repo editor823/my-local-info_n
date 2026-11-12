@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPostSummaries } from "@/lib/posts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogListClient from "@/components/BlogListClient";
@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default function BlogListPage() {
-  const posts = getAllPosts();
+  const posts = getAllPostSummaries();
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">

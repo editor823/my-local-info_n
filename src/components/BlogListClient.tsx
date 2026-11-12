@@ -2,15 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { PostData } from "@/lib/posts";
+import type { PostSummary } from "@/lib/posts";
 
 interface Props {
-  posts: PostData[];
+  posts: PostSummary[];
 }
+
+const PAGE_SIZE = 12;
 
 export default function BlogListClient({ posts }: Props) {
   const [selectedTag, setSelectedTag] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState<string>("" );
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
 
   const allTags = Array.from(
     new Set(posts.flatMap((p) => p.tags || []))
@@ -27,6 +30,9 @@ export default function BlogListClient({ posts }: Props) {
     return matchesTag && matchesSearch;
   });
 
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const remainingCount = Math.max(0, filteredPosts.length - visibleCount);
+
   return (
     <div className="space-y-6">
       {/* 1. 검색 및 필터 바 */}
@@ -36,13 +42,19 @@ export default function BlogListClient({ posts }: Props) {
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setVisibleCount(PAGE_SIZE);
+            }}
             placeholder="찾으시는 혜택 주제나 구(강북구, 도봉구, 노원구, 장학금, 안심보험)를 검색하세요"
             className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-emerald-500 transition-colors"
           />
           {searchQuery && (
             <button
-              onClick={() => setSearchQuery("")}
+              onClick={() => {
+                setSearchQuery("");
+                setVisibleCount(PAGE_SIZE);
+              }}
               className="absolute right-3 text-xs text-slate-400 hover:text-slate-600 font-bold"
             >
               지우기
@@ -54,7 +66,10 @@ export default function BlogListClient({ posts }: Props) {
         <div className="flex flex-wrap items-center gap-1.5 pt-1">
           <span className="text-xs font-bold text-slate-400 mr-1">태그 필터:</span>
           <button
-            onClick={() => setSelectedTag("all")}
+            onClick={() => {
+              setSelectedTag("all");
+              setVisibleCount(PAGE_SIZE);
+            }}
             className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
               selectedTag === "all"
                 ? "bg-emerald-600 text-white shadow-xs"
@@ -66,7 +81,10 @@ export default function BlogListClient({ posts }: Props) {
           {allTags.map((tag) => (
             <button
               key={tag}
-              onClick={() => setSelectedTag(tag === selectedTag ? "all" : tag)}
+              onClick={() => {
+                setSelectedTag(tag === selectedTag ? "all" : tag);
+                setVisibleCount(PAGE_SIZE);
+              }}
               className={`text-xs px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 selectedTag === tag
                   ? "bg-emerald-600 text-white font-bold shadow-xs"
@@ -89,6 +107,7 @@ export default function BlogListClient({ posts }: Props) {
             onClick={() => {
               setSelectedTag("all");
               setSearchQuery("");
+              setVisibleCount(PAGE_SIZE);
             }}
             className="text-emerald-600 hover:underline font-bold"
           >
@@ -97,7 +116,7 @@ export default function BlogListClient({ posts }: Props) {
         )}
       </div>
 
-      {/* 3. 2열 반응형 그리드 레이아웃 (기존 1열에서 2열 그리드로 차별화) */}
+      {/* 3. 2열 반응형 그리드 레이아웃 (모바일 경량화를 위해 초기 12편씩 점진적 노출) */}
       {filteredPosts.length === 0 ? (
         <div className="bg-white rounded-2xl p-12 border border-emerald-100 text-center shadow-sm space-y-2">
           <p className="text-4xl">🔎</p>
@@ -105,72 +124,92 @@ export default function BlogListClient({ posts }: Props) {
           <p className="text-xs text-slate-500">다른 키워드나 태그를 선택해 보세요.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {filteredPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-white rounded-2xl overflow-hidden border border-emerald-100/90 shadow-sm hover:shadow-md hover:border-emerald-300 hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
-            >
-              <div>
-                {/* 썸네일 이미지 (Pexels) */}
-                {post.image && (
-                  <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-100">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="bg-black/50 backdrop-blur-md text-white font-bold text-[11px] px-2.5 py-1 rounded-full border border-white/20">
-                        {post.category}
-                      </span>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {visiblePosts.map((post, index) => (
+              <article
+                key={post.slug}
+                className="bg-white rounded-2xl overflow-hidden border border-emerald-100/90 shadow-sm hover:shadow-md hover:border-emerald-300 hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  {/* 썸네일 이미지 (Pexels 경량 WebP) */}
+                  {post.image && (
+                    <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-100">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        width={600}
+                        height={338}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-black/50 backdrop-blur-md text-white font-bold text-[11px] px-2.5 py-1 rounded-full border border-white/20">
+                          {post.category}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                <div className="p-5 sm:p-6 pb-2">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    {!post.image && (
-                      <span className="bg-emerald-50 text-emerald-800 font-bold text-[11px] px-2.5 py-0.5 rounded-full border border-emerald-200">
-                        {post.category}
+                  <div className="p-5 sm:p-6 pb-2">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      {!post.image && (
+                        <span className="bg-emerald-50 text-emerald-800 font-bold text-[11px] px-2.5 py-0.5 rounded-full border border-emerald-200">
+                          {post.category}
+                        </span>
+                      )}
+                      <time className="text-xs text-slate-400 font-medium ml-auto">📅 {post.date}</time>
+                    </div>
+
+                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 leading-snug line-clamp-2">
+                      <Link href={`/blog/${post.slug}/`}>{post.title}</Link>
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                      {post.summary}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between px-5 sm:px-6 py-3 border-t border-slate-100 text-xs">
+                  <div className="flex flex-wrap gap-1">
+                    {post.tags.slice(0, 2).map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-slate-500 bg-slate-100 px-2 py-0.5 rounded text-[10px]"
+                      >
+                        #{tag}
                       </span>
-                    )}
-                    <time className="text-xs text-slate-400 font-medium ml-auto">📅 {post.date}</time>
+                    ))}
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 leading-snug line-clamp-2">
-                    <Link href={`/blog/${post.slug}/`}>{post.title}</Link>
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
-                    {post.summary}
-                  </p>
+                  <Link
+                    href={`/blog/${post.slug}/`}
+                    className="text-emerald-600 font-bold hover:underline inline-flex items-center gap-1 shrink-0"
+                  >
+                    상세 읽기 &rarr;
+                  </Link>
                 </div>
-              </div>
+              </article>
+            ))}
+          </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
-                <div className="flex flex-wrap gap-1">
-                  {post.tags.slice(0, 2).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-slate-500 bg-slate-100 px-2 py-0.5 rounded text-[10px]"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/blog/${post.slug}/`}
-                  className="text-emerald-600 font-bold hover:underline inline-flex items-center gap-1 shrink-0"
-                >
-                  상세 읽기 &rarr;
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+          {remainingCount > 0 && (
+            <div className="text-center pt-4">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                className="inline-flex items-center gap-2 bg-white hover:bg-emerald-50 text-emerald-800 font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 shadow-sm transition-all cursor-pointer"
+              >
+                <span>
+                  글 더 보기 (+{Math.min(PAGE_SIZE, remainingCount)}편 / 남은 {remainingCount}편)
+                </span>
+                <span className="text-xs">▼</span>
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
