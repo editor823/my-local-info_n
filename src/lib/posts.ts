@@ -168,7 +168,10 @@ export function getAllPostSummaries(): PostSummary[] {
     summaries.push(summaryItem);
   }
 
-  return summaries.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return summaries.sort((a, b) => {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return a.slug.localeCompare(b.slug);
+  });
 }
 
 export function getAllPosts(): PostData[] {
@@ -204,8 +207,11 @@ export function getAllPosts(): PostData[] {
     }
   }
 
-  // 날짜 기준 최신순 정렬
-  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+  // 날짜 기준 최신순 정렬 (같은 날짜는 슬러그 기준 고정 정렬)
+  return allPostsData.sort((a, b) => {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return a.slug.localeCompare(b.slug);
+  });
 }
 
 export function getPostBySlug(slug: string): PostData | null {
