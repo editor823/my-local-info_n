@@ -1,6 +1,7 @@
 ---
 title: "노원·도봉·광진·강북 출산·입양 축하 지원 비교: 구에서 따로 주는 돈과 물품은?"
 date: "2026-11-12"
+lastChecked: "2026-11-13"
 summary: "첫만남이용권 같은 전국 공통 지원 말고, 구가 자체로 주는 출산·입양 축하 지원은 구마다 다릅니다. 노원(둘째 이상 축하용품)·도봉(출생축하용품)·광진(첫돌축하금)의 출산 축하, 도봉·광진의 장애인가정 출산지원금, 강북·광진의 입양축하금을 한 표로 비교했습니다."
 category: "혜택"
 tags: ["출산지원", "입양축하금", "장애인가정 출산지원금", "노원구", "도봉구", "광진구", "강북구", "비교"]
@@ -78,4 +79,4 @@ sourceUrl: "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrv
 * 강북구 입양축하금 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1003994&bnefType=all&svcId=308000000119)
 * 광진구 입양축하금 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001660&bnefType=all&svcId=304000000109)
 
-*각 구 안내 글의 정보를 2026년 11월 12일에 모아 비교했습니다.*
+*각 구 안내 글의 지원 조건·금액·기간은 2026년 11월 13일 기준 관할 구청 공고 및 정부24 최신 정보를 바탕으로 최종 확인되었습니다.*

@@ -1,6 +1,7 @@
 ---
 title: "노원·도봉·강북·중랑 구민안전보험 비교: 넘어져 병원 가면 우리 구는 얼마까지 나오나요?"
 date: "2026-11-12"
+lastChecked: "2026-11-13"
 summary: "구민안전보험은 네 구 모두 주민등록만 있으면 자동 가입이지만, 상해의료비 한도는 9만 원(중랑)부터 20만 원(도봉, 실손 미가입자)까지 다릅니다. 구별 상해의료비 조건, 특화 보장, 청구 전화번호를 한 표로 비교했습니다."
 category: "혜택"
 tags: ["구민안전보험", "노원구", "도봉구", "강북구", "중랑구", "상해의료비", "비교"]
@@ -68,4 +69,4 @@ sourceUrl: "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrv
 * 강북구 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2128726&bnefType=all&svcId=308000000266)
 * 중랑구 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2128741&bnefType=all&svcId=306000000212)
 
-*각 구 안내 글의 정보를 2026년 11월 12일에 모아 비교했습니다.*
+*각 구 안내 글의 지원 조건·금액·기간은 2026년 11월 13일 기준 관할 구청 공고 및 정부24 최신 정보를 바탕으로 최종 확인되었습니다.*

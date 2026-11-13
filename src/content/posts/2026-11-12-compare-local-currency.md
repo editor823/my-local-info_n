@@ -1,6 +1,7 @@
 ---
 title: "노원·강북·도봉·중랑 지역사랑상품권 비교: 할인율·페이백·구매 한도, 어디 걸 사야 할까?"
 date: "2026-11-12"
+lastChecked: "2026-11-13"
 summary: "네 구 상품권 모두 서울페이+ 앱에서 5% 할인으로 살 수 있고 주소와 관계없이 구매할 수 있지만, 쓸 수 있는 곳은 발행한 구의 가맹점뿐입니다. 강북구의 페이백 5%, 도봉·중랑의 월 50만 원 한도 등 차이를 한 표로 비교했습니다."
 category: "혜택"
 tags: ["지역사랑상품권", "서울페이플러스", "노원구", "강북구", "도봉구", "중랑구", "비교"]
@@ -67,4 +68,4 @@ sourceUrl: "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrv
 * 도봉구 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1005907&bnefType=all&svcId=309000000141)
 * 중랑구 — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1004062&bnefType=all&svcId=306000000107)
 
-*각 구 안내 글의 정보를 2026년 11월 12일에 모아 비교했습니다.*
+*각 구 안내 글의 지원 조건·금액·기간은 2026년 11월 13일 기준 관할 구청 공고 및 정부24 최신 정보를 바탕으로 최종 확인되었습니다.*

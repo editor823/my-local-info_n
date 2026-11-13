@@ -1,6 +1,7 @@
 ---
 title: "노원·광진·강북 장수축하금 비교: 몇 살에, 누가, 얼마를, 몇 번 받나요?"
 date: "2026-11-12"
+lastChecked: "2026-11-13"
 summary: "노원구는 만 90세·만 100세에 한 번씩, 광진구는 만 90세 이상 생계·의료수급자에게 매년, 강북구는 만 100세 어르신을 모시는 효행가정에 매년 지급합니다. 세 구의 나이·소득·거주 조건과 신청 시기를 한 표로 비교했습니다."
 category: "혜택"
 tags: ["장수축하금", "효도지원금", "노원구", "광진구", "강북구", "어르신복지", "비교"]
@@ -58,4 +59,4 @@ sourceUrl: "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrv
 * 광진구청 어르신복지과 ☎ **02-450-7437** — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1003352&bnefType=all&svcId=304000000112)
 * 강북구청 어르신·장애인과 ☎ **02-901-6655** — [정부24 안내](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001738&bnefType=all&svcId=308000000116)
 
-*각 구 안내 글의 정부24 기준 정보를 2026년 11월 12일에 모아 비교했습니다.*
+*각 구 안내 글의 지원 조건·금액·기간은 2026년 11월 13일 기준 관할 구청 공고 및 정부24 최신 정보를 바탕으로 최종 확인되었습니다.*

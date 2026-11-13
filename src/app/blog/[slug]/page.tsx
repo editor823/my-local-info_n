@@ -144,7 +144,7 @@ export default async function BlogPostPage({
     description: post.summary || post.title,
     image: featuredImage,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.lastChecked || post.date,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/blog/${slug}/`,
@@ -226,7 +226,7 @@ export default async function BlogPostPage({
               <time>📅 발행일: {post.date}</time>
               <span>·</span>
               <time className="text-emerald-700 font-semibold">
-                최종 업데이트: {post.date}
+                🔍 최종 확인일: {post.lastChecked || post.date}
               </time>
             </div>
 
@@ -401,6 +401,7 @@ export default async function BlogPostPage({
           <AuthorBio
             district={post.tags?.find((t) => t.includes("구")) || "강북·도봉·노원"}
             publishedDate={post.date}
+            lastChecked={post.lastChecked}
           />
 
           {/* 본문 하단 애드센스 광고 영역 */}

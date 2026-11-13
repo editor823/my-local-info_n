@@ -1,6 +1,7 @@
 ---
 title: "[2026 강북구] 국가보훈대상자 지원 총정리: 사망위로금 20만·보훈예우수당 월 7만·위문금 3만 원"
 date: "2026-09-13"
+lastChecked: "2026-11-13"
 summary: "강북구 국가보훈대상자와 유족을 위한 지자체 보훈 지원 3종 정리! 사망위로금 일시금 20만 원, 보훈예우수당 월 7만 원(서울시 보훈수당 병급자 월 3만 원), 명절·보훈의 달 위문금 3만 원의 자격·서류를 안내합니다."
 category: "혜택"
 tags: ["강북구", "국가보훈대상자", "사망위로금", "보훈예우수당", "보훈혜택"]
@@ -65,3 +66,7 @@ A. 조례 및 정부24 기준 신청 기한은 **사망일로부터 1년 이내*
 
 * **소관 부서:** 강북구청 **복지정책과** ☎ **02-901-6713**
 * **공식 상세 페이지:** [정부24 사망위로금](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1001010&bnefType=all&svcId=308000000102) · [보훈예우수당](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1004001&bnefType=all&svcId=308000000121) · [위문금](https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1006535&bnefType=all&svcId=308000000129)
+
+---
+
+*이 안내 글의 지원 대상·금액·신청 기간 및 자격 요건은 2026년 11월 13일 기준 관할 구청 공식 공고 및 정부24 최신 정보를 바탕으로 최종 확인되었습니다.*

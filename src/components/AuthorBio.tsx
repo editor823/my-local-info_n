@@ -4,6 +4,7 @@ import Link from "next/link";
 interface AuthorBioProps {
   district?: string;
   publishedDate?: string;
+  lastChecked?: string;
 }
 
 // [애드센스 재심사 대응] 가공의 인물·경력·인증 표시를 없애고,
@@ -11,7 +12,7 @@ interface AuthorBioProps {
 // 운영자 실명이나 상호를 공개하려면 OPERATOR_NAME 을 바꾸세요.
 const OPERATOR_NAME = "우리동네이야기";
 
-export default function AuthorBio({ publishedDate }: AuthorBioProps) {
+export default function AuthorBio({ publishedDate, lastChecked }: AuthorBioProps) {
   return (
     <section className="my-10 p-6 sm:p-7 bg-white rounded-3xl border border-slate-200 shadow-xs">
       <div className="space-y-2">
@@ -19,6 +20,9 @@ export default function AuthorBio({ publishedDate }: AuthorBioProps) {
           <span className="font-extrabold text-slate-900 text-base">작성·검토: {OPERATOR_NAME}</span>
           {publishedDate && (
             <span className="text-[11px] text-slate-500">작성일 {publishedDate}</span>
+          )}
+          {lastChecked && (
+            <span className="text-[11px] text-emerald-700 font-semibold">· 최종 확인일 {lastChecked}</span>
           )}
         </div>
 

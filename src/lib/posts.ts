@@ -8,6 +8,7 @@ export interface PostData {
   slug: string;
   title: string;
   date: string;
+  lastChecked?: string;
   summary: string;
   category: string;
   tags: string[];
@@ -158,6 +159,7 @@ export function getAllPostSummaries(): PostSummary[] {
       slug,
       title: data.title || slug,
       date: formatPostDate(data.date),
+      lastChecked: formatPostDate(data.lastChecked || data.date),
       summary: data.summary || "",
       category: data.category || "일반",
       tags: Array.isArray(data.tags) ? data.tags : [],
@@ -193,6 +195,7 @@ export function getAllPosts(): PostData[] {
         slug,
         title: data.title || slug,
         date: formatPostDate(data.date),
+        lastChecked: formatPostDate(data.lastChecked || data.date),
         summary: data.summary || "",
         category: data.category || "일반",
         tags: Array.isArray(data.tags) ? data.tags : [],
@@ -225,6 +228,7 @@ export function getPostBySlug(slug: string): PostData | null {
       slug,
       title: data.title || slug,
       date: formatPostDate(data.date),
+      lastChecked: formatPostDate(data.lastChecked || data.date),
       summary: data.summary || "",
       category: data.category || "일반",
       tags: Array.isArray(data.tags) ? data.tags : [],
